@@ -15,8 +15,8 @@ User.destroy_all
 puts 'Creating user...'
 
 user = User.new(
-    email: "text@example.com",
-    first_name: "text",
+    email: "test1@example.com",
+    first_name: "test1",
     last_name: "example",
     password: "123456",
     image: "https://images.unsplash.com/photo-1556911220-dabc1f02913a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
@@ -27,8 +27,8 @@ user = User.new(
 user.save!
 
 user = User.new(
-    email: "text@example.com",
-    first_name: "text",
+    email: "test2@example.com",
+    first_name: "test2",
     last_name: "example",
     password: "123456",
     image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
