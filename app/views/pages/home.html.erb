@@ -15,7 +15,7 @@
   <div class="chooser">
     <div class="text-content">
       <h2>Share an experience with new people around you.</h2>
-      <a class="btn btn-primary" href="">Find Recipe</a>
+      <%= link_to "Find Recipe", recipes_path, class: "btn btn-primary" %>
     </div>
     <div class="checkboxes d-flex  align-content-around flex-wrap">
       <% @ingredient_types.each do |t| %>
