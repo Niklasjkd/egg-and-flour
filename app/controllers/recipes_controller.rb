@@ -4,14 +4,14 @@ class RecipesController < ApplicationController
   end
 
   def show
-    set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 
   private
 
-  def set_recipe
-    @recipe = Recipe.find(params[:id])
-  end
+  # def set_recipe
+
+  # end
 
   def recipes_params
     params.require(:recipes).permit(:id)
