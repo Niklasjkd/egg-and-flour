@@ -1,0 +1,26 @@
+.recipes {
+  flex-direction: row;
+  display: grid;
+  grid-gap: 16px;
+  .recipe {
+    max-width:100%;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    transition-property: background;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+    &:hover {
+      box-shadow: 0 0 60px rgba(0,0,0,0.2);
+      text-decoration: none;
+      background-color: #abb1ba;
+    }
+  img {
+    width: 20%;
+    height: 200px;
+    }
+  }
+}
