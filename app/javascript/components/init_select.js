@@ -1,11 +1,6 @@
-
-
-
-
-const recipes = document.querySelectorAll(".recipe")
-let recipeArray = [];
-
-const highlight = () => {
+const initHighlight = () => {
+  const recipes = document.querySelectorAll(".recipe")
+  let recipeArray = [];
     recipes.forEach(recipe => {
       recipe.addEventListener('click', (event) => {
         event.target.classList.toggle("highlight")
@@ -15,10 +10,9 @@ const highlight = () => {
           recipeArray.push(recipe.dataset.id);
 
         }
-          console.log(recipeArray);
     })
   });
   return recipeArray;
 };
 
-export { highlight };
+export { initHighlight };
