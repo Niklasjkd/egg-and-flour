@@ -4,7 +4,7 @@
   <% @recipes.each do |recipe| %>
     <div class="images card">
       <div class="card-img-top">
-        <div class="recipe">
+        <div class="recipe" data-id="<%= recipe.id %>">
           <%= image_tag(recipe.image) %>
           </div>
         <div class="card-body">
