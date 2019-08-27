@@ -1,0 +1,6 @@
+<div class="profile container">
+  <div><h1>Hello I am <%= current_user.first_name %>!</h1></div>
+  <div><%= current_user.image %></div>
+  <div><p>Member since <%= current_user.created_at.year %></p></div>
+  <div><p>Lives in <%= current_user.lng %> <%= current_user.lat %></p></div>
+</div>
