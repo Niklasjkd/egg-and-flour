@@ -1,6 +1,7 @@
 <h1>Matched Recipes</h1>
 
-<div class= "container recipes col-lg-8">
+<div class= "container ">
+  <div class="cards col-lg-12">
   <% @recipes.each do |recipe| %>
     <div class="images card">
       <div class="card-img-top">
@@ -15,3 +16,7 @@
   <% end %>
 </div>
 
+  <div class="btn btn-primary" id="match_button">
+    <p>Match</p>
+  </div>
+</div>
