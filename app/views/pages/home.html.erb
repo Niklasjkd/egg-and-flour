@@ -5,10 +5,29 @@
     <%=  image_tag("landing/img3.jpg", id: "img3") %>
     <%=  image_tag("landing/img4.jpg", id: "img4") %>
   </div>
-
   <div class="text">
     <h1>Egg & Flour</h1>
     <h2>Share an experience with new people around you.</h2>
-    <a href=""><p>Start Cooking</p></a>
+    <a class="btn btn-primary" href="#choose-ingredients">Start Cooking</a>
+  </div>
+</div>
+<div id="choose-ingredients">
+  <div class="chooser">
+    <div class="text-content">
+      <h2>Share an experience with new people around you.</h2>
+      <a class="btn btn-primary" href="">Find Recipe</a>
+    </div>
+    <div class="checkboxes d-flex  align-content-around flex-wrap">
+      <% @ingredient_types.each do |t| %>
+        <div class="food">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="background-image: <%= asset_path t[:image] %>;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <% t[:ingredients].each do |ingredient| %>
+              <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp; <%= ingredient %> </a></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
