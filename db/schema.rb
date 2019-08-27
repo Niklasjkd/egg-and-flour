@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_150058) do
     t.string "name"
     t.text "description"
     t.string "category"
-    t.text "mathod"
+    t.text "method"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
