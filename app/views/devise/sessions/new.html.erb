@@ -1,21 +1,21 @@
 
 <div class="container d-flex justify-content-center flex-column align-items-center text-center" id="login-form">
-  <h2>Log in</h2>
+  <div class="p-3"><h2>Log in</h2></div>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-inputs">
-      <div>
+      <div class="p-3">
         <%= f.input :email, placeholder: "Enter your E-Mail", label: false,
                     required: false,
                     autofocus: true,
                     input_html: { autocomplete: "email" } %>
       </div>
-      <div>
+      <div class="p-3">
         <%= f.input :password, placeholder: "Enter your password", label: false,
                     required: false,
                     input_html: { autocomplete: "current-password" } %>
       </div>
-      <div>
+      <div >
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
     </div>
@@ -25,5 +25,6 @@
     </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  <div class="p-3"><%= render "devise/shared/links" %></div>
+
 </div>
