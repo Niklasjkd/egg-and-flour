@@ -1,9 +1,16 @@
 <h1>Matched Recipes</h1>
 
-<div class= "container-fluid recipes col-lg-6">
+<div class= "container recipes col-lg-8">
   <% @recipes.each do |recipe| %>
-    <div class="images recipe">
-      <%= image_tag(recipe.image) %>
+    <div class="images card">
+      <div class="card-img-top">
+        <div class="recipe">
+          <%= image_tag(recipe.image) %>
+          </div>
+        <div class="card-body">
+          <p><%= recipe.name %></p>
+        </div>
+        </div>
       </div>
   <% end %>
 </div>
