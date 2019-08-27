@@ -7,9 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'Cleaning databases...'
-# Review.destroy_all
-# Booking.destroy_all
-# Plane.destroy_all
+Request.destroy_all
+RecipeIngredient.destroy_all
+Recipe.destroy_all
+Ingredient.destroy_all
 User.destroy_all
 
 puts 'Creating user...'
@@ -138,4 +139,19 @@ recipe_ingredients = [{
 ]
 
 recipe_ingredients.each { |recipe_ingredient| RecipeIngredient.new(recipe_ingredient).save! }
+
+puts 'create requests'
+
+
+requests = [{
+  recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
+  user_id: User.where(email: "test1@example.com").first.id,
+  host: true
+}, {
+  recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
+  user_id: User.where(email: "test2@example.com").first.id,
+  host: false
+}]
+requests.each { |request| Request.new(request).save!}
+
 puts 'Finished!'

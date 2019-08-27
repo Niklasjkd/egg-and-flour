@@ -4,5 +4,5 @@ class Request < ApplicationRecord
 
   has_many :meetups_as_host, source: :meetups, foreign_key: :host_id
   has_many :meetups_as_guest, source: :meetups, foreign_key: :guest_id
-  validates :host, presence: true
+  # validates :host, presence: true
 end
