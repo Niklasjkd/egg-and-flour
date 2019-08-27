@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :requests
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :image, presence: true
-  validates :lng, presence: true
-  validates :lat, presence: true
+  # validates :image, presence: true
+  # validates :lng, presence: true
+  # validates :lat, presence: true
 end
