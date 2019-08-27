@@ -1,6 +1,20 @@
-<div class="profile container">
-  <div><h1>Hello I am <%= current_user.first_name %>!</h1></div>
-  <div><%= current_user.image %></div>
-  <div><p>Member since <%= current_user.created_at.year %></p></div>
-  <div><p>Lives in <%= current_user.lng %> <%= current_user.lat %></p></div>
+<div class="d-flex justify-content-center" id="profile">
+  <div class="" id="contact-info">
+    <div class="" id="image"><%= current_user.image %></div>
+      <div class="" id="info">
+        <h2>Contact me</h2>
+        <div><%= current_user.email %></div>
+        <div>004917290903217</div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column" id="info-table">
+    <div><h1>Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+    <div><p>Member since <%= current_user.created_at.year %></p></div>
+    <div id="basic-info">
+      <h2>Basic Info</h2>
+      <div><p><i class="fas fa-home"></i> Lives in <%= current_user.lng %> <%= current_user.lat %></p></div>
+    </div>
+    <div id="edit"><%= link_to "Edit your profile", edit_user_registration_path(current_user) %></div>
+  </div>
 </div>
