@@ -5,11 +5,11 @@ class RequestsController < ApplicationController
     @requests = Request.where(user_id: @user.id)
     @matches = @requests.map { |request| Request.where(recipe_id: request.recipe_id) }
 
-    @matches[0].each do |m|
-      @markers = [{
-        lat: User.find_by(id: m.user_id).lat,
-        lng: User.find_by(id: m.user_id).lng
-      }]
+    @markers = @matches[0].map do |m|
+      {
+        lat: User.find_by(id: m.user_id).latitude,
+        lng: User.find_by(id: m.user_id).longitude
+      }
     end
   end
 end
