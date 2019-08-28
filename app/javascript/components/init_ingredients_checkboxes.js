@@ -1,5 +1,4 @@
-function initIngredientsPosition() {
-  const data_ = document.getElementById('ingredients_data');
+function positionIngredients(data_) {
   const ingredients_data = JSON.parse(data_.dataset.markers);
 
   var radians, radius;
@@ -10,8 +9,8 @@ function initIngredientsPosition() {
   var item = 0;
 
   var x, y, angle = 0, step = (2*Math.PI) / totalItems;
-  var width = $('#container').width()/2;
-  var height = $('#container').height()/2;
+  var width = $('#category-circle').width()/2;
+  var height = $('#category-circle').height()/2;
   var itemW = 20, itemH = 2;
   var deg = 0;
 
@@ -35,7 +34,7 @@ function initIngredientsPosition() {
     y = Math.round(height + radius * Math.sin(angle) - itemH/2) - 80;
         //console.log(x + "," + y);
 
-    $('#container').append('<div class="food" id="'+ item +'">'+ inhalt +'<div/>')
+    $('#category-circle').append('<div id="'+ item +'">'+ inhalt +'<div/>')
     $('div#'+item).css('position', 'absolute')
       .css('width', 100+'px').css('height', 100+'px')
       .css('left', x+'px').css('top', y+'px')
@@ -76,8 +75,12 @@ function setEventListener() {
 
 
 function initIngredients() {
-  initIngredientsPosition();
-  setEventListener();
+  const data_ = document.getElementById('ingredients_data');
+
+  if (data_) {
+    positionIngredients(data_);
+    setEventListener();
+  }
 }
 
 export { initIngredients };
