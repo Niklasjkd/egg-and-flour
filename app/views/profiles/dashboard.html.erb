@@ -2,7 +2,7 @@
   <div class="" id="contact-info">
     <div class="" id="image">
       <% if current_user.image? %>
-          <%= cl_image_tag(current_user.image, crop: :fill, class: "dashboard-avatar")%>
+          <%= image_tag(current_user.image, crop: :fill, class: "dashboard-avatar")%>
       <% else %>
           <%= image_tag("http://morrisinsurancegroup.com/wp-content/uploads/2018/01/blank-avatar.png", class: "dashboard-avatar") %>
       <% end %>
@@ -19,7 +19,6 @@
     <div><p>Member since <%= current_user.created_at.year %></p></div>
     <div id="basic-info">
       <h2>Basic Info</h2>
-      <div><p><i class="fas fa-home"></i> Lives in <%= current_user.lng %> <%= current_user.lat %></p></div>
     </div>
     <div id="edit"><%= link_to "Edit your profile", edit_user_registration_path(current_user) %></div>
   </div>
