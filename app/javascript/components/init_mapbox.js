@@ -52,17 +52,18 @@ const initMapbox = () => {
   const mapElement = document.getElementById('map');
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-    map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
     const markers = JSON.parse(mapElement.dataset.markers);
+    console.log(markers);
     addMarkersToMap(map, markers);
 
     fitMapToMarkers(map, markers);
 
-    drawLine(map, markers);
+    // drawLine(map, markers);
   }
 };
 
