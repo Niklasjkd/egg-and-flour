@@ -5,8 +5,7 @@ function positionIngredients(data_) {
   radius = 250;
 
   var totalItems = ingredients_data.length;
-  totalItems = totalItems - 1;
-  var item = 0;
+  var item = 1;
 
   var x, y, angle = 0, step = (2*Math.PI) / totalItems;
   var width = $('#category-circle').width()/2;
@@ -15,7 +14,7 @@ function positionIngredients(data_) {
   var deg = 0;
 
   while(item <= totalItems) {
-    const item_data = ingredients_data[item];
+    const item_data = ingredients_data[item - 1];
     const ingredients = item_data.ingredients;
 
     var inhalt = "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\">";
@@ -26,13 +25,12 @@ function positionIngredients(data_) {
     inhalt += "<ul class=\"dropdown-menu\">";
 
     ingredients.forEach(function(ingredient) {
-      inhalt += "<li><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>&nbsp;"+ ingredient +"</a></li>";
+      inhalt += "<li><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></li>";
     });
     inhalt += "</ul>";
 
     x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80;
     y = Math.round(height + radius * Math.sin(angle) - itemH/2) - 80;
-        //console.log(x + "," + y);
 
     $('#category-circle').append('<div id="'+ item +'">'+ inhalt +'<div/>')
     $('div#'+item).css('position', 'absolute')
@@ -60,11 +58,13 @@ function checkbox_click(event) {
 
 function btn_click(event) {
   const link = `/recipes?${clicked_ingredients.join('+')}`;
+  console.log(link);
   window.location = link;
 }
 
 function setEventListener() {
-  const checkboxes = document.querySelectorAll(".food input");
+  const checkboxes = document.querySelectorAll("#category-circle input");
+  console.log(checkboxes);
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener("click", checkbox_click);
   });
