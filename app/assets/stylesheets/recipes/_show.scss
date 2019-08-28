@@ -1,8 +1,11 @@
 .container {
+  display: flex;
   img {
     width: auto;
-    display: flex;
     height: 428px;
     object-fit: cover;
+  }
+  p {
+    padding: 36px;
   }
 }
