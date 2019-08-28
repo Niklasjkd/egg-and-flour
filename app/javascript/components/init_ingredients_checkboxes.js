@@ -31,8 +31,8 @@ function initIngredientsPosition() {
     });
     inhalt += "</ul>";
 
-    x = Math.round(width + radius * Math.cos(angle) - itemW/2);
-    y = Math.round(height + radius * Math.sin(angle) - itemH/2);
+    x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80;
+    y = Math.round(height + radius * Math.sin(angle) - itemH/2) - 80;
         //console.log(x + "," + y);
 
     $('#container').append('<div class="food" id="'+ item +'">'+ inhalt +'<div/>')
