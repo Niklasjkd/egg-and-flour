@@ -14,3 +14,9 @@
 @import "recipes/index";
 @import "profiles/dashboard";
 @import "requests/index";
+
+
+html {
+  scroll-behavior: smooth;
+}
+
