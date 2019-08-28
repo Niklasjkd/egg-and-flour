@@ -1,14 +1,16 @@
 h1 {
-  text-align: center;
-  font-family: "Roboto";
+  font-family: "Montserrat";
   font-weight: 300;
   margin-top: 10px;
 }
 
 body {
-  text-align: center;
   font-family: "Roboto";
   font-weight: 300;
+}
+
+.recipe-index-title {
+  text-align: center;
 }
 
 .cards {
@@ -28,8 +30,19 @@ body {
   }
 }
 
+.card-body {
+  text-align: center;
+}
 .highlight {
   border: solid $green 2px;
+}
+
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: $green;
+  }
 }
 
 #match_button {
@@ -39,5 +52,6 @@ body {
   border-radius: 10px;
   display: inline-block;
   height: 40px;
+  text-align: center;
 }
 

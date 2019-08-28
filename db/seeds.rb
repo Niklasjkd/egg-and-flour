@@ -9,31 +9,37 @@
 puts 'Cleaning databases...'
 Request.destroy_all
 RecipeIngredient.destroy_all
+UserIngredient.destroy_all
 Recipe.destroy_all
 Ingredient.destroy_all
 User.destroy_all
 
 puts 'Creating user...'
 
-user = User.new(
-    email: "test1@example.com",
-    first_name: "test1",
-    last_name: "example",
-    password: "123456",
-    image: "https://images.unsplash.com/photo-1556911220-dabc1f02913a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
-    address: "Berlin, Checkpoint Charlie"
-  )
-user.save!
+users = [{
+  email: "test1@example.com",
+  first_name: "test1",
+  last_name: "example",
+  password: "123456",
+  image: "https://images.unsplash.com/photo-1556911220-dabc1f02913a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+  address: "Berlin, Checkpoint Charlie"
+}, {
+  email: "test2@example.com",
+  first_name: "test2",
+  last_name: "example",
+  password: "123456",
+  image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
+  address: "Berlin, Alexanderplatz"
+},{
+  email: "test3@example.com",
+  first_name: "test3",
+  last_name: "example",
+  password: "123456",
+  image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
+  address: "Berlin, Alexanderplatz"
+}]
 
-user = User.new(
-    email: "test2@example.com",
-    first_name: "test2",
-    last_name: "example",
-    password: "123456",
-    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
-    address: "Berlin, Alexanderplatz"
-  )
-user.save!
+users.each { |user| User.new(user).save! }
 
 puts 'Creating recipes...'
 
@@ -136,6 +142,27 @@ recipe_ingredients = [{
 ]
 
 recipe_ingredients.each { |recipe_ingredient| RecipeIngredient.new(recipe_ingredient).save! }
+
+user_ingredients = [{
+  user_id: User.where(email: "test1@example.com").first.id,
+  ingredient_id: Ingredient.where(name: "lime").first.id,
+  quantity: 1
+},{
+  user_id: User.where(email: "test1@example.com").first.id,
+  ingredient_id: Ingredient.where(name: "avocado").first.id,
+  quantity: 1
+}, {
+  user_id: User.where(email: "test1@example.com").first.id,
+  ingredient_id: Ingredient.where(name: "Eggs").first.id,
+  quantity: 3
+}, {
+  user_id: User.where(email: "test2@example.com").first.id,
+  ingredient_id: Ingredient.where(name: "Eggs").first.id,
+  quantity: 4
+}]
+
+user_ingredients.each { |user_ingredient| UserIngredient.new(user_ingredient).save! }
+
 
 puts 'create requests'
 

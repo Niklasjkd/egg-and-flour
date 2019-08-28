@@ -1,0 +1,17 @@
+.show {
+   display: flex;
+}
+
+.recipe-show-header {
+  text-align: center;
+}
+
+.recipe-show-image {
+  width: auto;
+  height: 428px;
+  object-fit: cover;
+}
+
+.recipe-show-method {
+  padding: 36px;
+}
