@@ -32,6 +32,14 @@ body {
   border: solid $green 2px;
 }
 
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: $green;
+  }
+}
+
 #match_button {
   color: #fff;
   margin-top: 10px;
