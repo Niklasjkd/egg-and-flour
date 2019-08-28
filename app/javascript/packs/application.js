@@ -7,9 +7,10 @@ initMapbox();
 import { initPopover } from "../components/init_popover.js";
 initPopover();
 
+import initHighlight  from "../components/init_select.js";
+initHighlight()
+
 import { initUpdateNavbarOnScroll } from '../components/init_navbar.js';
 initUpdateNavbarOnScroll();
 
-import { initHighlight } from "../components/init_select.js";
-initHighlight()
 
