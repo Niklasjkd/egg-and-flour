@@ -125,3 +125,27 @@
     width: 100px;
   }
 }
+
+.section-colums {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+  border-top: 1px solid #e3e3e3;
+  padding-top: 46px;
+}
+
+.flex-expander {
+  flex: 1;
+}
+.home-page-footer .title {
+  color: #bababa;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.column {
+  font-size: 18px;
+}
