@@ -57,7 +57,7 @@ function checkbox_click(event) {
 }
 
 function btn_click(event) {
-  const link = `/recipes?${clicked_ingredients.join('+')}`;
+  const link = `/recipes?ingredients=${clicked_ingredients.join('+')}`;
   console.log(link);
   window.location = link;
 }
