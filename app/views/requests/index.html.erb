@@ -1,14 +1,13 @@
-<div class="container">
-  <div class="row">
-  <div class="cards col-xs-6">
+<div class="main-container">
+  <div class="cards col-lg-3 col-md-2 col-sm-12">
     <% @matches[0].each do |m, index| %>
       <%= link_to recipe_request_path(id: m.id) do %>
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3">
           <div class="row no-gutters">
-            <div class="col-md-4">
+            <div>
             <%= image_tag User.find_by(id: m.user_id).image, class: "card-img"%>
             </div>
-            <div class="col-md-8">
+            <div>
               <div class="card-body">
                 <h5 class="card-title"><%= User.find_by(id: m.user_id).first_name%></h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -20,9 +19,8 @@
       <% end %>
     <% end %>
     </div>
-      <div class= "col-xs-6" id="map" style="width: 500px; height: 600px;"
+      <div class= "col-lg-9 col-md-10" id="map"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  </div>
 </div>
