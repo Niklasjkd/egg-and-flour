@@ -5,7 +5,7 @@
   h1 {
     position: absolute;
     left: 8.33%;
-    top: 48.36%;
+    top: 43.36%;
     bottom: 27.59%;
 
     width: 500px;
@@ -22,7 +22,7 @@
   h2 {
     position: absolute;
     left: 8.33%;
-    top: 54.96%;
+    top: 52.96%;
     bottom: 21%;
 
     width: 500px;
@@ -34,6 +34,10 @@
     line-height: 35px;
 
     color: #717171;
+  }
+
+  .text {
+    line-height: 5px;
   }
 
   .btn-primary {
@@ -115,3 +119,4 @@
     }
   }
 }
+
