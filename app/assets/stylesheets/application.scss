@@ -13,3 +13,7 @@
 @import "pages/index";
 @import "recipes/index";
 @import "profiles/dashboard";
+
+html {
+  scroll-behavior: smooth;
+}

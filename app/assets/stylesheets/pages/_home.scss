@@ -1,7 +1,6 @@
-
 .landing {
   width: 100%;
-  height: calc(100vh - 66px);
+  height: 100vh;
 
   h1 {
     position: absolute;
@@ -113,11 +112,6 @@
       width: 100px;
     }
   }
-
-
-html {
-  scroll-behavior: smooth;
-}
 
 .circle, .circle div {
     width:24px; height:300px;
