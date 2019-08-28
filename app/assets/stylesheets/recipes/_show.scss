@@ -1,11 +1,11 @@
-.container {
-  display: flex;
+.show {
+   display: flex;
   img {
     width: auto;
     height: 428px;
     object-fit: cover;
   }
   p {
-    padding: 36px;
+   padding: 36px;
   }
 }
