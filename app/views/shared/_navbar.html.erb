@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<div class="<%= params[:controller] == 'pages' && params[:action] == 'home' ? "navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top" : "navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top navbar-lewagon-solid" %>">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "fight_milk" %>
     <% end %>
