@@ -23,7 +23,7 @@ function positionIngredients(data_) {
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
     inhalt += "</span> <span class=\"caret\"></button>";
     inhalt += "<h5>"+ item_data.title +"</h5>"
-    inhalt += "<ul class=\"dropdown-menu\">";
+    inhalt += "<ul class=\"dropdown-menu ingredients-dropdown\">";
 
     ingredients.forEach(function(ingredient) {
       inhalt += "<li><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>&nbsp;"+ ingredient +"</a></li>";

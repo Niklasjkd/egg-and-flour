@@ -1,7 +1,7 @@
 function initPopover() {
   var options = [];
 
-  $('.dropdown-menu a').on( 'click', function( event ) {
+  $('.ingredients-dropdown a').on( 'click', function( event ) {
     var $target = $( event.currentTarget ),
     val = $target.attr( 'data-value' ),
     $inp = $target.find( 'input' ),
