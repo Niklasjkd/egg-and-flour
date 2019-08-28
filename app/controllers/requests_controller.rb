@@ -9,7 +9,6 @@ class RequestsController < ApplicationController
       requests.each do |match|
         @matches << match if match[:user_id] != @user.id
       end
-      break
     end
 
     @markers = @matches.map do |m|
