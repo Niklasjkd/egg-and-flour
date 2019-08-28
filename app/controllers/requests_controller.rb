@@ -3,14 +3,24 @@ class RequestsController < ApplicationController
 
   def index
     @requests = Request.where(user_id: @user.id)
-    @matches = @requests.map { |request| Request.where(recipe_id: request.recipe_id) }
+    @matches = []
+    @requests.each do |request|
+      requests = Request.where(recipe_id: request.recipe_id)
+      requests.each do |match|
+        @matches << match if match[:user_id] != @user.id
+      end
+    end
 
-    @markers = @matches[0].map do |m|
+    @markers = @matches.map do |m|
       {
         lat: User.find_by(id: m.user_id).latitude,
         lng: User.find_by(id: m.user_id).longitude
       }
     end
+    @markers << {
+        lat: User.find_by(id: @user.id).latitude,
+        lng: User.find_by(id: @user.id).longitude
+      }
   end
 
   def create
