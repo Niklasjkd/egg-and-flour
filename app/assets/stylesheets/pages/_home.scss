@@ -1,3 +1,4 @@
+
 .landing {
   width: 100%;
   height: calc(100vh - 66px);
@@ -97,26 +98,54 @@
   }
 }
 
-.chooser {
-  width: 661px;
-  height: 605px;
-  margin: 73px auto;
-  padding-top: 200px;
 
   .text-content {
     width: 257px;
     height: 193px;
     margin: auto;
+    padding-top: 275px;
   }
 
   .food {
-    width: 100px;
-    height: 100px;
 
     button {
       height: 100px;
       width: 100px;
     }
   }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.circle, .circle div {
+    width:24px; height:300px;
+    position:absolute;
+    left:50%; top:50px;
+}
+.circle:before, .circle div:before {
+    content:'';
+    display:block;
+    width:20px; height:20px;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+.circle div {
+    top:0; left:0;
+    -webkit-transform : rotate(24deg);
+    -ms-transform : rotate(24deg);
+    transform : rotate(24deg);
+}
+
+#container {
+  width: 800px;
+  height: 800px;
+  position: relative;
+  margin: auto;
+}
+
+.category-icon {
+  width: 100px;
 }
 

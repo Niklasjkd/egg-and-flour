@@ -12,22 +12,21 @@
   </div>
 </div>
 <div id="choose-ingredients">
-  <div class="chooser">
-    <div class="text-content">
+  <!-- <div class="chooser"> -->
+
+
+      <div id="container"><div class="checkboxes"><div class="text-content">
       <h2>Share an experience with new people around you.</h2>
-      <%= link_to "Find Recipe", recipes_path, class: "btn btn-primary" %>
+      <a class="btn btn-primary" id="find-recipies">Find Recipe</a>
+      <!-- <%= link_to "Find Recipe", recipes_path, class: "btn btn-primary", id: "find-recipies" %> -->
+    </div></div>
     </div>
-    <div class="checkboxes d-flex  align-content-around flex-wrap">
-      <% @ingredient_types.each do |t| %>
-        <div class="food">
-          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="background-image: <%= asset_path t[:image] %>;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <% t[:ingredients].each do |ingredient| %>
-              <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp; <%= ingredient %> </a></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <!-- </div> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </div>
+<%
+  @ingredient_types.each_with_index do |ingredient, index|
+    @ingredient_types[index][:image] = asset_path(ingredient[:image])
+  end
+%>
+<div id="ingredients_data" data-markers="<%= @ingredient_types.to_json %>"></div>
