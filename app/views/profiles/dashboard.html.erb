@@ -1,6 +1,12 @@
 <div class="d-flex justify-content-center" id="profile">
   <div class="" id="contact-info">
-    <div class="" id="image"><%= current_user.image %></div>
+    <div class="" id="image">
+      <% if current_user.image? %>
+          <%= cl_image_tag(current_user.image, crop: :fill, class: "dashboard-avatar")%>
+      <% else %>
+          <%= image_tag("http://morrisinsurancegroup.com/wp-content/uploads/2018/01/blank-avatar.png", class: "dashboard-avatar") %>
+      <% end %>
+    </div>
       <div class="" id="info">
         <h2>Contact me</h2>
         <div><%= current_user.email %></div>
@@ -9,7 +15,7 @@
   </div>
 
   <div class="d-flex flex-column" id="info-table">
-    <div><h1>Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+    <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
     <div><p>Member since <%= current_user.created_at.year %></p></div>
     <div id="basic-info">
       <h2>Basic Info</h2>
