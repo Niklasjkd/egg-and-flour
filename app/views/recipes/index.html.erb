@@ -16,14 +16,14 @@
   <% end %>
 </div>
 
-  <div class="btn btn-primary" id="match_button">
-    <%= link_to "Match", recipe_requests_path(current_user), method: :post  %>
-  </div>
 
 
-  <%= form_for :requests, url: recipe_requests_path(current_user) do |f| %>
-  <%= f.hidden_field :recipes, value: [] %>
-  <%= f.submit class: "btn btn-primary", id: "match_button" %>
+
+  <% if current_user %>
+    <%= form_for :requests, url: recipe_requests_path(current_user) do |f| %>
+      <%= f.hidden_field :recipes, value: [] %>
+      <%= f.submit class: "btn btn-primary", id: "match_button" %>
+    <% end %>
   <% end %>
 </div>
 
