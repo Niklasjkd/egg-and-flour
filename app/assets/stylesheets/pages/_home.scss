@@ -114,6 +114,13 @@
     height: 100px;
   }
 
+  a {
+
+    &:hover {
+      color: black;
+    }
+  }
+
   .category-icon {
     width: 100px;
   }
