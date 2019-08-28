@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :recipes, only: [:show, :index] do
-    resources :requests, only: [:index, :show]
+    resources :requests, only: [:index, :show, :create]
   end
 
   resources :meetups, only: [:show]
