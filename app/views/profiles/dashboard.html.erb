@@ -19,6 +19,7 @@
     <div><p>Member since <%= current_user.created_at.year %></p></div>
     <div id="basic-info">
       <h2>Basic Info</h2>
+      <div><p><i class="fas fa-home"></i> Lives in <%= current_user.address %></p></div>
     </div>
     <div id="edit"><%= link_to "Edit your profile", edit_user_registration_path(current_user) %></div>
   </div>
