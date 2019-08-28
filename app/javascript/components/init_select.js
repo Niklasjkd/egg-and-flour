@@ -15,4 +15,4 @@ const initHighlight = () => {
   return recipeArray;
 };
 
-export default initHighlight;
+export { initHighlight };
