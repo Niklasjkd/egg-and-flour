@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_08_27_154311) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "lng"
-    t.float "lat"
+    t.float "longitude"
+    t.float "latitude"
     t.string "first_name"
     t.string "last_name"
     t.string "image"
