@@ -2,20 +2,28 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    @ingredients = ["Sugar", "Milk", "Eggs", "Cheese"]
+    category_arr = Ingredient.all.map{ |ingredient| ingredient.category }.uniq
+    @ingredient_types = []
 
-    @ingredient_types = [
-      { title: "Dairy", image: "landing/Dairy.png", ingredients: @ingredients },
-      { title: "Desserts & Snacks", image: "landing/Desserts-Snacks.png", ingredients: @ingredients },
-      { title: "Fish", image: "landing/Fish.png", ingredients: @ingredients },
-      { title: "Legumes", image: "landing/Legumes.png", ingredients: @ingredients },
-      { title: "Meats", image: "landing/Meats.png", ingredients: @ingredients },
-      { title: "Nuts", image: "landing/Nuts.png", ingredients: @ingredients },
-      { title: "Oils", image: "landing/Oils.png", ingredients: @ingredients },
-      { title: "Sauces", image: "landing/Sauces.png", ingredients: @ingredients },
-      { title: "Seafood", image: "landing/Seafood.png", ingredients: @ingredients },
-      { title: "Seasonings", image: "landing/Seasonings.png", ingredients: @ingredients },
-      { title: "Fruits", image: "landing/Fruits.png", ingredients: @ingredients }
-    ]
+    category_arr.each do |category|
+      ingredients = Ingredient.where(category: category).order('name ASC').map { |ingredient| ingredient.name }.uniq
+      @ingredient_types << { title: category, image: "landing/#{category}.png", ingredients: ingredients }
+    end
+
+    # @ingredients = ["Sugar", "Milk", "Eggs", "Cheese"]
+
+    # @ingredient_types = [
+    #   { title: "Dairy", image: "landing/dairy.png", ingredients: @ingredients },
+    #   { title: "Desserts & Snacks", image: "landing/desserts-snacks.png", ingredients: @ingredients },
+    #   { title: "Fish", image: "landing/fish.png", ingredients: @ingredients },
+    #   { title: "Legumes", image: "landing/legumes.png", ingredients: @ingredients },
+    #   { title: "Meats", image: "landing/meats.png", ingredients: @ingredients },
+    #   { title: "Nuts", image: "landing/nuts.png", ingredients: @ingredients },
+    #   { title: "Oils", image: "landing/oils.png", ingredients: @ingredients },
+    #   { title: "Sauces", image: "landing/sauces.png", ingredients: @ingredients },
+    #   { title: "Seafood", image: "landing/seafood.png", ingredients: @ingredients },
+    #   { title: "Seasonings", image: "landing/seasonings.png", ingredients: @ingredients },
+    #   { title: "Fruits", image: "landing/fruits.png", ingredients: @ingredients }
+    # ]
   end
 end

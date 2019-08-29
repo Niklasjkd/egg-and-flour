@@ -82,29 +82,61 @@ recipes.each { |recipe| Recipe.new(recipe).save! }
 
 puts 'Creating ingredients...'
 
+VEGETABLES = %w(onion garlic tomato potato carrot bell pepper basil parsley broccoli corn spinach mushroom green beans ginger chili pepper celery rosemary salad greens red onion cucumber sweet potato pickle avocado zucchini cilantro frozen vegetables olive asparagus cabbage cauliflower dill kale mixed vegetable pumpkin squash mint scallion sun dried tomato shallot eggplant beet butternut squash horseradish leek caper brussels sprout artichoke heart chia seeds radish sauerkraut artichoke portobello mushroom sweet pepper arugula spaghetti squash capsicum bok choy parsnip okra yam fennel turnip snow peas bean sprouts seaweed chard collard canned tomato pimiento watercress tomatillo rocket mustard greens bamboo shoot rutabaga endive broccoli rabe jicama kohlrabi hearts of palm butternut celery root daikon radicchio porcini chinese broccoli jerusalem artichoke cress water chestnut dulse micro greens burdock chayote)
+DAIRY = %w(butter egg milk parmesan cheddar american cheese sour cream cream cheese mozzarella yogurt cream evaporated milk whipped cream half and half feta monterey jack cheese condensed milk cottage cheese ice cream swiss cheese velveeta frosting buttermilk ricotta goat cheese provolone blue cheese powdered milk colby cheese pepper jack italian cheese soft cheese gouda pepperjack cheese romano brie pizza cheese ghee creme fraiche cheese soup gruyere pecorino cheese custard muenster queso fresco cheese hard cheese havarti cheese asiago mascarpone neufchatel halloumi paneer brick cheese camembert cheese goat milk garlic herb cheese edam cheese manchego fontina stilton cheese emmenthaler cheese red leicester cheese jarlsberg cheese bocconcini cheese farmer cheese creme de cassis wensleydale cheese longhorn cheese double gloucester cheese raclette cheese lancashire cheese cheshire cheese)
+
+VEGETABLES.each do |vegetable|
+  ingredient = Ingredient.new(
+    name: vegetable,
+    unit: "grammes",
+    category: "vegetables"
+  )
+  ingredient.save!
+end
+
+DAIRY.each do |vegetable|
+  ingredient = Ingredient.new(
+    name: vegetable,
+    unit: "grammes",
+    category: "dairy"
+  )
+  ingredient.save!
+end
+
+
 ingredients = [{
   name: "waxy potatoes",
-  unit: "grammes"
+  unit: "grammes",
+  category: "vegetables"
 }, {
-  name: "lemon"
+  name: "lemon",
+  category: "vegetables"
 }, {
   name: "rye bread",
-  unit: "75g slice"
+  unit: "75g slice",
+  category: "vegetables"
 },{
   name: "pine nuts",
-  unit: "teaspoon"
+  unit: "teaspoon",
+  category: "vegetables"
 }, {
-  name: "tomato"
+  name: "tomato",
+  category: "vegetables"
 }, {
-  name: "lime"
+  name: "lime",
+  category: "vegetables"
 }, {
-  name: "avocado"
+  name: "avocado",
+  category: "vegetables"
 }, {
-  name: "red chilli"
+  name: "red chilli",
+  category: "vegetables"
 }, {
-  name: "Onion"
+  name: "Onion",
+  category: "vegetables"
 }, {
-  name: "Eggs"
+  name: "Eggs",
+  category: "vegetables"
 }]
 
 ingredients.each { |ingredient| Ingredient.new(ingredient).save!}
@@ -184,24 +216,3 @@ requests = [{
 requests.each { |request| Request.new(request).save!}
 
 puts 'Finished!'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Vegetables = %w(onion garlic tomato potato carrot bell pepper basil parsley broccoli corn spinach mushroom green beans ginger chili pepper celery rosemary salad greens red onion cucumber sweet potato pickle avocado zucchini cilantro frozen vegetables olive asparagus cabbage cauliflower dill kale mixed vegetable pumpkin squash mint scallion sun dried tomato shallot eggplant beet butternut squash horseradish leek caper brussels sprout artichoke heart chia seeds radish sauerkraut artichoke portobello mushroom sweet pepper arugula spaghetti squash capsicum bok choy parsnip okra yam fennel turnip snow peas bean sprouts seaweed chard collard canned tomato pimiento watercress tomatillo rocket mustard greens bamboo shoot rutabaga endive broccoli rabe jicama kohlrabi hearts of palm butternut celery root daikon radicchio porcini chinese broccoli jerusalem artichoke cress water chestnut dulse micro greens burdock chayote)
-Dairy = %w(butter egg milk parmesan cheddar american cheese sour cream cream cheese mozzarella yogurt cream evaporated milk whipped cream half and half feta monterey jack cheese condensed milk cottage cheese ice cream swiss cheese velveeta frosting buttermilk ricotta goat cheese provolone blue cheese powdered milk colby cheese pepper jack italian cheese soft cheese gouda pepperjack cheese romano brie pizza cheese ghee creme fraiche cheese soup gruyere pecorino cheese custard muenster queso fresco cheese hard cheese havarti cheese asiago mascarpone neufchatel halloumi paneer brick cheese camembert cheese goat milk garlic herb cheese edam cheese manchego fontina stilton cheese emmenthaler cheese red leicester cheese jarlsberg cheese bocconcini cheese farmer cheese creme de cassis wensleydale cheese longhorn cheese double gloucester cheese raclette cheese lancashire cheese cheshire cheese)
