@@ -103,12 +103,12 @@ INGREDIENT_TYPES = [
   { title: "dairy", ingredients: DAIRY },
   { title: "fruit", ingredients: FRUITS },
   { title: "baking & grain", ingredients: BAKING_GRAINS },
-  { title: "added sweetener", ingredients: ADDED_SWEETENERS },
   { title: "spice", ingredients: SPICES },
-  { title: "meat", ingredients: MEATS },
-  { title: "fish", ingredients: FISH },
   { title: "seafood", ingredients: SEAFOOD },
   { title: "condiment", ingredients: CONDIMENTS },
+  { title: "meat", ingredients: MEATS },
+  { title: "fish", ingredients: FISH },
+  { title: "added sweetener", ingredients: ADDED_SWEETENERS },
   { title: "oil", ingredients: OILS },
   { title: "seasoning", ingredients: SEASONINGS },
   { title: "sauce", ingredients: SAUCES },
@@ -162,6 +162,9 @@ ingredients = [{
 }, {
   name: "eggs",
   category: "vegetable"
+}, {
+  name: "pussy",
+  category: "meat"
 }
 ]
 

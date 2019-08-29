@@ -12,4 +12,8 @@
     color: #fff !important;
     border-color: #228CA5 !important;
   }
+
+  &:not([href]):not([tabindex]) {
+    color: #fff !important;
+  }
 }
