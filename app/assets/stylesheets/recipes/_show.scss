@@ -1,17 +1,18 @@
-.show {
-   display: flex;
-}
+.recipe-data {
+  padding: 50px;
 
-.recipe-show-header {
-  text-align: center;
-}
+  h1 {
+    text-align: left;
+  }
 
-.recipe-show-image {
-  width: auto;
-  height: 428px;
-  object-fit: cover;
-}
+  .info {
+    text-align: left;
+    padding: 0 25px;
+  }
 
-.recipe-show-method {
-  padding: 36px;
+img {
+  height: 480px;
+  width: 480px;
+  border-radius: 10px;
+}
 }
