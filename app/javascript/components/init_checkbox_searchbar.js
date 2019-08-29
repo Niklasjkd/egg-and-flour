@@ -36,7 +36,7 @@ function initCheckboxSearches() {
 
   if (searchInputs) {
     searchInputs.forEach(function(input) {
-      input.addEventListener('change', changeEvent);
+      input.addEventListener('input', changeEvent);
     });
   }
 }
