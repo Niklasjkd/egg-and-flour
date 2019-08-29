@@ -10,6 +10,6 @@ class MeetupsController < ApplicationController
       new_meetup = Meetup.new(host_id: request, guest_id: request, recipe_id: recipe)
       new_meetup.save!
     end
-    recipe_request_meetup_path(params[:recipe_id], request, @user)
+    redirect_to recipe_request_meetup_path(params[:recipe_id], request, @user)
   end
 end
