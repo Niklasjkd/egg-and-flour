@@ -12,7 +12,8 @@
                 <h5 class="card-title"><%= User.find_by(id: m.user_id).first_name%></h5>
                 <p class="card-text">
                 <% @requests.each do |request| %>
-                  <%= link_to "Find out more about your match and confirm a meetup!", recipe_request_path(params[:recipe_id], request)%><%end%>
+                  <%= link_to "Find out more about your match and confirm a meetup!", recipe_request_path(params[:recipe_id], request)%>
+                  <%end%>
                   </p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
