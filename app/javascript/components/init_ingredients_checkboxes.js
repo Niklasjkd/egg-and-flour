@@ -59,17 +59,38 @@ function checkbox_click(event) {
   } else {
     clicked_ingredients.push(ingredient);
   }
+
+  updateBtn()
+}
+
+function updateBtnText(btn, ingredients_count) {
+  const btnText = btn.innerText.split(' ');
+  btnText.pop();
+  btn.innerText = btnText.join(' ') + " " + ingredients_count + "/5";
+}
+
+function updateBtn() {
+  const btn = document.getElementById("find-recipies");
+  const ingredients_count = clicked_ingredients.length;
+
+  if (ingredients_count >= 5) {
+    btn.classList.remove("disabled");
+  } else {
+    btn.classList.add("disabled");
+  }
+  updateBtnText(btn, ingredients_count);
 }
 
 function btn_click(event) {
-  const link = `/recipes?ingredients=${clicked_ingredients.join('+')}`;
-  console.log(link);
-  window.location = link;
+  if (clicked_ingredients.length >= 5) {
+    const link = `/recipes?ingredients=${clicked_ingredients.join('+')}`;
+    window.location = link;
+  }
 }
 
 function setEventListener() {
   const checkboxes = document.querySelectorAll("#category-circle input");
-  console.log(checkboxes);
+
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener("click", checkbox_click);
   });

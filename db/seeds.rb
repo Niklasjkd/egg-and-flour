@@ -168,9 +168,7 @@ ingredients = [{
 }
 ]
 
-ingredients.each { |ingredient|
-  puts ingredient
-  Ingredient.new(ingredient).save! }
+ingredients.each { |ingredient| Ingredient.new(ingredient).save! }
 
 
 puts 'Creating recipes...'
