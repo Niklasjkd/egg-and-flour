@@ -56,7 +56,7 @@ class RecipesController < ApplicationController
     recipes_by_ingredients
     ingredients_by_user
     #change to ingredients = params...
-    ingredients = [Ingredient.where(name: "avocado").first.id, Ingredient.where(name: "Eggs").first.id]
+    ingredients = [Ingredient.where(name: "avocado").first.id, Ingredient.where(name: "eggs").first.id]
     @scores = []
     @ingredients_by_user.each do |user_ingredients|
       @recipes_by_ingredients.each do |recipe|

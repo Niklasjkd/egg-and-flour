@@ -15,3 +15,6 @@ initHighlight()
 
 import { initUpdateNavbarOnScroll } from '../components/init_navbar.js';
 initUpdateNavbarOnScroll();
+
+import { initCheckboxSearches } from '../components/init_checkbox_searchbar';
+initCheckboxSearches();

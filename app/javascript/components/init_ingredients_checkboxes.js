@@ -1,5 +1,5 @@
 function positionIngredients(data_) {
-  const ingredients_data = JSON.parse(data_.dataset.markers);
+  const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
   var radians, radius;
   radius = 250;
@@ -22,11 +22,17 @@ function positionIngredients(data_) {
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
     inhalt += "</span> <span class=\"caret\"></button>";
     inhalt += "<h5>"+ item_data.title +"</h5>"
-    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div  class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div class=\"input-group d-flex\">";
+    inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
 
+    inhalt += "</div>";
+
+    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\">";
     ingredients.forEach(function(ingredient) {
       inhalt += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
     });
+    inhalt += "</div>";
     inhalt += "</div>";
 
     x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80;

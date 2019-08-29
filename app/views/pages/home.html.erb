@@ -27,5 +27,5 @@
   @ingredient_types[index][:image] = asset_path(ingredient[:image])
 end
 %>
-<div id="ingredients_data" data-markers="<%= @ingredient_types.to_json %>"></div>
+<div id="ingredients_data" data-ingredients="<%= @ingredient_types.to_json %>"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
