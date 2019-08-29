@@ -1,0 +1,14 @@
+.ingredients-dropdown {
+  width: 300px;
+  border-radius: 6px;
+  border: 0px;
+
+  div {
+    margin: 15px;
+    display: ruby-base;
+
+    input {
+      margin-right: 5px;
+    }
+  }
+}
