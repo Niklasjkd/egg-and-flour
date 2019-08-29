@@ -102,7 +102,7 @@ INGREDIENT_TYPES = [
   { title: "vegetable", ingredients: VEGETABLES },
   { title: "dairy", ingredients: DAIRY },
   { title: "fruit", ingredients: FRUITS },
-  { title: "baking grains", ingredients: BAKING_GRAINS },
+  { title: "baking & grain", ingredients: BAKING_GRAINS },
   { title: "added sweetener", ingredients: ADDED_SWEETENERS },
   { title: "spice", ingredients: SPICES },
   { title: "meat", ingredients: MEATS },
@@ -111,10 +111,10 @@ INGREDIENT_TYPES = [
   { title: "condiment", ingredients: CONDIMENTS },
   { title: "oil", ingredients: OILS },
   { title: "seasoning", ingredients: SEASONINGS },
-  { title: "sauces", ingredients: SAUCES },
-  { title: "legumens", ingredients: LEGUMENS },
+  { title: "sauce", ingredients: SAUCES },
+  { title: "legume", ingredients: LEGUMENS },
   { title: "soup", ingredients: SOUP },
-  { title: "nuts", ingredients: NUTS }
+  { title: "nut", ingredients: NUTS }
 ]
 
 INGREDIENT_TYPES.each do |t|
@@ -132,36 +132,36 @@ end
 ingredients = [{
   name: "waxy potatoes",
   unit: "grammes",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "lemon",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "rye bread",
   unit: "75g slice",
-  category: "vegetables"
+  category: "vegetable"
 },{
   name: "pine nuts",
   unit: "teaspoon",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "tomato",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "lime",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "avocado",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "red chilli",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "Onion",
-  category: "vegetables"
+  category: "vegetable"
 }, {
   name: "Eggs",
-  category: "vegetables"
+  category: "vegetable"
 }]
 
 ingredients.each { |ingredient| Ingredient.new(ingredient).save!}
