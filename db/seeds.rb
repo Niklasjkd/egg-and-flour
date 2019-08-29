@@ -36,7 +36,7 @@ users = [{
   last_name: "example",
   password: "123456",
   image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
-  address: "Berlin, Alexanderplatz"
+  address: "Berlin, Rosenthalerplatz"
 }]
 
 users.each { |user| User.new(user).save! }
@@ -191,7 +191,12 @@ user_ingredients = [{
   user_id: User.where(email: "test2@example.com").first.id,
   ingredient_id: Ingredient.where(name: "Eggs").first.id,
   quantity: 4
-}]
+}, {
+  user_id: User.where(email: "test3@example.com").first.id,
+  ingredient_id: Ingredient.where(name: "red chilli").first.id,
+  quantity: 4
+}
+]
 
 user_ingredients.each { |user_ingredient| UserIngredient.new(user_ingredient).save! }
 
@@ -201,11 +206,11 @@ puts 'create requests'
 
 requests = [{
   recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
-  user_id: User.where(email: "test1@example.com").first.id,
-  host: true
-}, {
-  recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
   user_id: User.where(email: "test2@example.com").first.id,
+  host: false
+}, {
+  recipe_id: Recipe.where(name: "Mexican baked eggs").first.id,
+  user_id: User.where(email: "test3@example.com").first.id,
   host: false
 }]
 requests.each { |request| Request.new(request).save!}
