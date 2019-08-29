@@ -125,7 +125,7 @@ INGREDIENT_TYPES.each do |t|
       unit: "grammes",
       category: t[:title]
     )
-  ingredient.save!
+  ingredient.save
   end
 end
 
@@ -134,9 +134,9 @@ ingredients = [{
   unit: "grammes",
   category: "vegetable"
 }, {
-  name: "lemon",
-  category: "vegetable"
-}, {
+#   name: "lemon",
+#   category: "vegetable"
+# }, {
   name: "rye bread",
   unit: "75g slice",
   category: "vegetable"
@@ -162,10 +162,13 @@ ingredients = [{
 }, {
   name: "eggs",
   category: "vegetable"
-}]
+}
+]
 
-ingredients.each { |ingredient| Ingredient.new(ingredient).save!}
+ingredients.each { |ingredient| Ingredient.new(ingredient).save }
 
+
+puts 'Creating recipes...'
 
 recipe_ingredients = [{
   recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
