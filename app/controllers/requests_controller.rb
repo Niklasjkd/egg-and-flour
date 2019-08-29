@@ -36,5 +36,13 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
+    @requests = Request.where(user_id: @user.id)
+    @matches = []
+    @requests.each do |request|
+      requests = Request.where(recipe_id: request.recipe_id)
+      requests.each do |match|
+        @matches << match if match[:user_id] != @user.id
+      end
+    end
   end
 end

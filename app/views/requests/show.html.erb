@@ -1,0 +1,9 @@
+<%= render 'shared/dashboard' %>
+<div class="container" id="user-dashboard-button">
+<% if @user %>
+  <%= form_for @user, url: edit_user_registration_path(@user), method: :get do |f| %>
+    <%= f.hidden_field :recipes, value: [] %>
+    <%= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
+  <% end %>
+<% end %>
+</div>
