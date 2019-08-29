@@ -4,9 +4,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from "../components/init_mapbox";
 initMapbox();
 
-import { initPopover } from "../components/init_popover.js";
-initPopover();
-
 import { initIngredients } from "../components/init_ingredients_checkboxes";
 initIngredients();
 
@@ -15,3 +12,6 @@ initHighlight()
 
 import { initUpdateNavbarOnScroll } from '../components/init_navbar.js';
 initUpdateNavbarOnScroll();
+
+import { initCheckboxSearches } from '../components/init_checkbox_searchbar';
+initCheckboxSearches();

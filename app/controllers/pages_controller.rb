@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
     category_arr.each do |category|
       ingredients = Ingredient.where(category: category).order('name ASC').map { |ingredient| ingredient.name }.uniq
-      @ingredient_types << { title: category, image: "landing/#{category.gsub(/\s&\s/, '-').gsub(/\s/, '-')}.png", ingredients: ingredients }
+      @ingredient_types << { title: category.capitalize, image: "landing/#{category.gsub(/\s&\s/, '-').gsub(/\s/, '-')}.png", ingredients: ingredients }
     end
   end
 end

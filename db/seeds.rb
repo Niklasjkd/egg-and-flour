@@ -144,23 +144,23 @@ ingredients = [{
   name: "pine nuts",
   unit: "teaspoon",
   category: "vegetable"
-}, {
-  name: "tomato",
-  category: "vegetable"
+# }, {
+# name: "tomato",
+# category: "vegetable"
 }, {
   name: "lime",
   category: "vegetable"
-}, {
-  name: "avocado",
-  category: "vegetable"
+# }, {
+#  name: "avocado",
+#  category: "vegetable"
 }, {
   name: "red chilli",
   category: "vegetable"
+# }, {
+#  name: "onion",
+#  category: "vegetable"
 }, {
-  name: "Onion",
-  category: "vegetable"
-}, {
-  name: "Eggs",
+  name: "eggs",
   category: "vegetable"
 }]
 
@@ -174,15 +174,15 @@ recipe_ingredients = [{
 }, {
   recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
   quantity: 1,
-  ingredient_id: Ingredient.where(name: "Onion").first.id
+  ingredient_id: Ingredient.where(name: "onion").first.id
 }, {
   recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
   quantity: 5,
-  ingredient_id: Ingredient.where(name:"Eggs").first.id
+  ingredient_id: Ingredient.where(name:"eggs").first.id
 },{
   recipe_id: Recipe.where(name: "Mexican baked eggs").first.id,
   quantity: 4,
-  ingredient_id: Ingredient.where(name: "Eggs").first.id
+  ingredient_id: Ingredient.where(name: "eggs").first.id
 },{
   recipe_id: Recipe.where(name: "Mexican baked eggs").first.id,
   quantity: 1,
@@ -210,11 +210,11 @@ user_ingredients = [{
   quantity: 1
 }, {
   user_id: User.where(email: "test1@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "Eggs").first.id,
+  ingredient_id: Ingredient.where(name: "eggs").first.id,
   quantity: 3
 }, {
   user_id: User.where(email: "test2@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "Eggs").first.id,
+  ingredient_id: Ingredient.where(name: "eggs").first.id,
   quantity: 4
 }, {
   user_id: User.where(email: "test3@example.com").first.id,
