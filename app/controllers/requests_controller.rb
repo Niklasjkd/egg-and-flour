@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_user, only: [:index, :create]
+  before_action :set_user, only: [:index, :create, :show]
 
   def index
     @requests = Request.where(user_id: @user.id)
@@ -23,6 +23,8 @@ class RequestsController < ApplicationController
       }
   end
 
+
+
   def create
     recipes = params[:requests][:recipes].scan(/\w+/)
     recipes.each do |recipe|
@@ -30,5 +32,17 @@ class RequestsController < ApplicationController
       new_request.save!
     end
     redirect_to recipe_requests_path(@user)
+  end
+
+  def show
+    @request = Request.find(params[:id])
+    @requests = Request.where(user_id: @user.id)
+    @matches = []
+    @requests.each do |request|
+      requests = Request.where(recipe_id: request.recipe_id)
+      requests.each do |match|
+        @matches << match if match[:user_id] != @user.id
+      end
+    end
   end
 end
