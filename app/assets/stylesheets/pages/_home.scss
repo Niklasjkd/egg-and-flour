@@ -133,7 +133,8 @@
   margin: auto;
   flex-wrap: wrap;
   border-top: 1px solid #e3e3e3;
-  padding-top: 46px;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 46px;
 }
 
 .flex-expander {
@@ -144,6 +145,7 @@
   margin-bottom: 12px;
   font-weight: 700;
   letter-spacing: 1px;
+
 }
 
 .column {
