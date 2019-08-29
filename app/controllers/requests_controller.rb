@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
   def create
     recipes = params[:requests][:recipes].scan(/\w+/)
     recipes.each do |recipe|
-      new_request = Request.new(recipe_id: recipe, user_id: @user.id, host: false)
+      new_request = Request.new(recipe_id: recipe, user_id: @user.id, host: true)
       new_request.save!
     end
     redirect_to recipe_requests_path(@user)
