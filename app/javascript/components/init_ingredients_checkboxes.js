@@ -22,12 +22,12 @@ function positionIngredients(data_) {
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
     inhalt += "</span> <span class=\"caret\"></button>";
     inhalt += "<h5>"+ item_data.title +"</h5>"
-    inhalt += "<ul style=\"overflow:scroll; height:200px;\" class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"dropdown-menu ingredients-dropdown\">";
 
     ingredients.forEach(function(ingredient) {
-      inhalt += "<li><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></li>";
+      inhalt += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
     });
-    inhalt += "</ul>";
+    inhalt += "</div>";
 
     x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80;
     y = Math.round(height + radius * Math.sin(angle) - itemH/2) - 80;
