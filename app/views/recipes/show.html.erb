@@ -1,5 +1,15 @@
-  <div class="recipe-show-header"><h1><%= @recipe.name %></h1></div>
-<div class="container show">
-  <div class="recipe-show-image"><%= image_tag(@recipe.image)%></div>
-  <div class="recipe-show-method"><p> <%= @recipe.method %></p></div>
+<div class="container">
+  <div class="recipe-data d-flex">
+  <div class="info">
+    <div class="recipe-show-header"><h1><%= @recipe.name %></h1></div>
+    <h4><%= @recipe.category %></h4>
+    <div class="recipe-show-method"><p> <%= @recipe.method %></p></div>
+    <div>
+      <% @ingredients = @recipe.recipe_ingredients.map { |i| i.ingredient.name }%>
+      <% @last = @ingredients.pop() %>
+      <h5><%= @ingredients.join(", ") + " and " + @last %></h5>
+    </div>
+  </div>
+  <%= image_tag(@recipe.image)%>
+</div>
 </div>
