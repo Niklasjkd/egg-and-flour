@@ -11,7 +11,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= User.find_by(id: m.user_id).first_name%></h5>
                 <p class="card-text">
-                <% @requests.each do |request| %>
+                <% @requests.uniq.each do |request| %>
                   <%= link_to "Find out more about your match and confirm a meetup!", recipe_request_path(params[:recipe_id], request)%>
                   <%end%>
                   </p>
@@ -23,10 +23,7 @@
       <% end %>
     <% end %>
     </div>
-      <div class= "col-lg-9 col-md-10" id="map"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
+     <%= render 'shared/map' %>
 </div>
 
 
