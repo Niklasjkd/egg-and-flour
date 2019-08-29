@@ -20,11 +20,10 @@ function positionIngredients(data_) {
     var inhalt = "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\">";
     inhalt += "<img class=\"category-icon\" src="+ item_data.image +" alt=\"\">"
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
-    inhalt += "</span> <span class=\"caret\"></button>";
-    inhalt += "<h5>"+ item_data.title +"</h5>"
+    inhalt += "</span> <span class=\"caret\"><h5>"+ item_data.title +"</h5></button>";
     inhalt += "<div  class=\"dropdown-menu ingredients-dropdown\">";
     inhalt += "<div class=\"input-group d-flex\">";
-    inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
+    inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\""+ item_data.title +" ingredients\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
 
     inhalt += "</div>";
 

@@ -1,9 +1,12 @@
-function updateDOM(arr, btn) {
-  const div = btn.parentElement.parentElement.querySelector(".checkbox-ingredients");
-  div.innerHTML = "";
+function updateDOM(arr, input) {
+  const divCheckbox = input.parentElement.parentElement.querySelectorAll(".checkbox-ingredients div");
 
-  arr.forEach(function(ingredient) {
-      div.innerHTML += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
+  divCheckbox.forEach(function(div) {
+    if (arr.includes(div.querySelector("a").innerText)) {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
   });
 }
 
@@ -12,33 +15,30 @@ const filterItems = (arr, query) => {
   return arr.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) > -1);
 };
 
-function clickEvent(event) {
-  const eventBtn = event.target;
-  const ingredient_category = eventBtn.id;
-  const input_text = eventBtn.value;
+function changeEvent(event) {
+  const input = event.target;
+  const ingredientCategory = input.id;
+  const inputText = input.value;
 
   const data_ = document.getElementById('ingredients_data');
   const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
-  ingredients_data.forEach(function(ingredient_type) {
-    if (ingredient_type.title === ingredient_category) {
-      const result_arr = filterItems(ingredient_type.ingredients, input_text);
-      console.log(result_arr);
-      updateDOM(result_arr, eventBtn);
+  ingredients_data.forEach(function(ingredientType) {
+    if (ingredientType.title === ingredientCategory) {
+      const result_arr = filterItems(ingredientType.ingredients, inputText);
+      updateDOM(result_arr, input);
     }
   });
 }
 
 function initCheckboxSearches() {
-  const searchBtns = document.querySelectorAll(".input-group input");
+  const searchInputs = document.querySelectorAll(".input-group input");
 
-  if (searchBtns) {
-    searchBtns.forEach(function(btn) {
-      btn.addEventListener('change', clickEvent);
+  if (searchInputs) {
+    searchInputs.forEach(function(input) {
+      input.addEventListener('change', changeEvent);
     });
   }
 }
-
-
 
 export { initCheckboxSearches };
