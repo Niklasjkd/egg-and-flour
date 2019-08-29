@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     @ingredient_types = []
 
     category_arr.each do |category|
-      ingredients = Ingredient.where(category: category).order('name ASC').map { |ingredient| ingredient.name }
+      ingredients = Ingredient.where(category: category).order('name ASC').map { |ingredient| ingredient.name }.uniq
       @ingredient_types << { title: category, image: "landing/#{category}.png", ingredients: ingredients }
     end
 
