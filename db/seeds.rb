@@ -147,9 +147,9 @@ ingredients = [{
 # }, {
 # name: "tomato",
 # category: "vegetable"
-}, {
-  name: "lime",
-  category: "vegetable"
+# }, {
+#   name: "lime",
+#   category: "vegetable"
 # }, {
 #  name: "avocado",
 #  category: "vegetable"
@@ -165,7 +165,9 @@ ingredients = [{
 }
 ]
 
-ingredients.each { |ingredient| Ingredient.new(ingredient).save }
+ingredients.each { |ingredient|
+  puts ingredient
+  Ingredient.new(ingredient).save! }
 
 
 puts 'Creating recipes...'
