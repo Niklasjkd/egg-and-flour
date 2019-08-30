@@ -1,8 +1,8 @@
 function positionIngredients(data_) {
-  const ingredients_data = JSON.parse(data_.dataset.markers);
+  const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
   var radians, radius;
-  radius = 250;
+  radius = 300;
 
   var totalItems = ingredients_data.length;
   var item = 1;
@@ -20,21 +20,26 @@ function positionIngredients(data_) {
     var inhalt = "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\">";
     inhalt += "<img class=\"category-icon\" src="+ item_data.image +" alt=\"\">"
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
-    inhalt += "</span> <span class=\"caret\"></button>";
-    inhalt += "<h5>"+ item_data.title +"</h5>"
-    inhalt += "<ul style=\"overflow:scroll; height:200px;\" class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "</span> <span class=\"caret\"><h5>"+ item_data.title +"</h5></button>";
+    inhalt += "<div  class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div class=\"input-group d-flex\">";
+    inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\""+ item_data.title +" ingredients\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
 
+    inhalt += "</div>";
+
+    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\">";
     ingredients.forEach(function(ingredient) {
-      inhalt += "<li><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></li>";
+      inhalt += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
     });
-    inhalt += "</ul>";
+    inhalt += "</div>";
+    inhalt += "</div>";
 
     x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80;
     y = Math.round(height + radius * Math.sin(angle) - itemH/2) - 80;
 
     $('#category-circle').append('<div id="'+ item +'">'+ inhalt +'<div/>')
     $('div#'+item).css('position', 'absolute')
-      .css('width', 100+'px').css('height', 100+'px')
+      .css('width', 70+'px').css('height', 70+'px')
       .css('left', x+'px').css('top', y+'px')
       .css('transform-origin', x+'px' -y+'px')
 
@@ -54,17 +59,38 @@ function checkbox_click(event) {
   } else {
     clicked_ingredients.push(ingredient);
   }
+
+  updateBtn()
+}
+
+function updateBtnText(btn, ingredients_count) {
+  const btnText = btn.innerText.split(' ');
+  btnText.pop();
+  btn.innerText = btnText.join(' ') + " " + ingredients_count + "/5";
+}
+
+function updateBtn() {
+  const btn = document.getElementById("find-recipies");
+  const ingredients_count = clicked_ingredients.length;
+
+  if (ingredients_count >= 5) {
+    btn.classList.remove("disabled");
+  } else {
+    btn.classList.add("disabled");
+  }
+  updateBtnText(btn, ingredients_count);
 }
 
 function btn_click(event) {
-  const link = `/recipes?ingredients=${clicked_ingredients.join('+')}`;
-  console.log(link);
-  window.location = link;
+  if (clicked_ingredients.length >= 5) {
+    const link = `/recipes?ingredients=${clicked_ingredients.join('+')}`;
+    window.location = link;
+  }
 }
 
 function setEventListener() {
   const checkboxes = document.querySelectorAll("#category-circle input");
-  console.log(checkboxes);
+
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener("click", checkbox_click);
   });

@@ -1,0 +1,17 @@
+.ingredients-dropdown {
+  width: 300px;
+  border-radius: 6px;
+  border: 0px;
+  padding: 8px;
+
+  .input-group {
+    position: sticky;
+    margin-bottom: 5px;
+  }
+
+  .checkbox-ingredients {
+    input {
+      margin-right: 5px;
+    }
+  }
+}

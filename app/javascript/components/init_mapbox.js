@@ -6,65 +6,95 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
-const addMarkersToMap = (map, markers) => {
-  markers.forEach((marker) => {
-    const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
+const addMarkersToMap = (map, marker) => {
+  const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
 
-    new mapboxgl.Marker()
-    .setLngLat([ marker.lng, marker.lat ])
-      .setPopup(popup) // add this
-      .addTo(map);
-    });
+  new mapboxgl.Marker({color: 'red'})
+  .setLngLat([ marker.lng, marker.lat ])
+  .setPopup(popup)
+  .addTo(map);
 };
-
-// const drawLine = (map, markers) => {
-//   map.on('load', function () {
-//     map.addLayer({
-//       "id": "route",
-//       "type": "line",
-//       "source": {
-//         "type": "geojson",
-//         "data": {
-//           "type": "Feature",
-//           "properties": {},
-//           "geometry": {
-//             "type": "LineString",
-//             "coordinates": [
-//             [markers[0].lng, markers[0].lat],
-//             [markers[1].lng, markers[1].lat]
-//             ]
-//           }
-//         }
-//       },
-//       "layout": {
-//         "line-join": "round",
-//         "line-cap": "round"
-//       },
-//       "paint": {
-//         "line-color": "#888",
-//         "line-width": 8
-//       }
-//     });
-//   });
-// }
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
-  if (mapElement) { // only build a map if there's a div#map to inject into
+
+  if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-    const markers = JSON.parse(mapElement.dataset.markers);
-    console.log(markers);
-    addMarkersToMap(map, markers);
+    const markersUser = JSON.parse(mapElement.dataset.markersUser);
+    drawCircles(map, markersUser);
+    fitMapToMarkers(map, markersUser);
 
-    fitMapToMarkers(map, markers);
 
-    // drawLine(map, markers);
+    const markerLocal = JSON.parse(mapElement.dataset.markerLocal);
+    if (markerLocal) {
+      addMarkersToMap(map, markerLocal);
+      markersUser.push(markerLocal);
+      fitMapToMarkers(map, markersUser);
+    }
   }
+};
+
+const drawCircles = (map, markers) => {
+  map.on('load', function () {
+
+    markers.forEach(function(marker) {
+      map.addSource("polygon", createGeoJSONCircle([marker.lng, marker.lat], 0.5));
+      map.addLayer({
+        "id": "polygon",
+        "type": "fill",
+        "source": "polygon",
+        "layout": {},
+        "paint": {
+          "fill-color": "blue",
+          "fill-opacity": 0.6
+        }
+      });
+    });
+  });
+}
+
+var createGeoJSONCircle = function(center, radiusInKm, points) {
+  if(!points) points = 64;
+
+  var coords = {
+    latitude: center[1],
+    longitude: center[0]
+  };
+
+  var km = radiusInKm;
+
+  var ret = [];
+  var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
+  var distanceY = km/110.574;
+
+  var theta, x, y;
+  for(var i=0; i<points; i++) {
+    theta = (i/points)*(2*Math.PI);
+    x = distanceX*Math.cos(theta);
+    y = distanceY*Math.sin(theta);
+
+    ret.push([coords.longitude+x, coords.latitude+y]);
+  }
+  ret.push(ret[0]);
+
+  return {
+    "type": "geojson",
+    "data": {
+      "type": "FeatureCollection",
+      "features": [{
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [ret]
+        }
+      }]
+    }
+  };
 };
 
 export { initMapbox };

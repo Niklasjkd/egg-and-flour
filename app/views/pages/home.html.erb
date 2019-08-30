@@ -15,7 +15,7 @@
   <div id="category-circle">
     <div class="text-content">
         <h2>Select your ingredients and start Cooking.</h2>
-        <a class="btn btn-primary" id="find-recipies">Find Recipe</a>
+        <a  class="btn btn-primary disabled" id="find-recipies">Find Recipe 0/5</a>
       </div>
     <div class="checkboxes">
 
@@ -27,5 +27,23 @@
   @ingredient_types[index][:image] = asset_path(ingredient[:image])
 end
 %>
-<div id="ingredients_data" data-markers="<%= @ingredient_types.to_json %>"></div>
+<!-- Footer -->
+<div class="home-page-footer">
+  <div class="section-colums">
+    <div class="column">
+      <div class="footer-section">
+        <div class="title">About
+        </div>
+        Something
+      </div>
+    </div>
+    <div class="flex-expander"></div>
+    <div class="column">
+       <div class="footer-section">
+        Follow us
+      </div>
+    </div>
+  </div>
+</div>
+<div id="ingredients_data" data-ingredients="<%= @ingredient_types.to_json %>"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

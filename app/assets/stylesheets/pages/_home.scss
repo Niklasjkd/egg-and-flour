@@ -44,6 +44,10 @@
     position: absolute;
     left: 8.33%;
     top: 514px;
+
+     .disabled {
+      background-color: grey;
+     }
   }
 
   .images {
@@ -107,11 +111,11 @@
     width: 257px;
     height: 193px;
     margin: auto;
-    padding-top: 275px;
+    padding-top: 300px;
   }
 
   button {
-    height: 100px;
+    height: 70px;
   }
 
   a {
@@ -122,6 +126,32 @@
   }
 
   .category-icon {
-    width: 100px;
+    width: 70px;
   }
+}
+
+.section-colums {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 46px;
+}
+
+.flex-expander {
+  flex: 1;
+}
+.home-page-footer .title {
+  color: #bababa;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+}
+
+.column {
+  font-size: 18px;
 }

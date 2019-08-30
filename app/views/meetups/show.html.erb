@@ -1,9 +1,4 @@
-
-<div class="main-container">
-  <div class="cards col-lg-3 col-md-2 col-sm-12" id="recipe-index-cards">
-    <% @matches.uniq.each do |m, index| %>
-      <%= link_to recipe_request_path(id: m.id) do %>
-        <div class="card mb-3">
+   <div class="card mb-3">
           <div class="row no-gutters">
             <div>
             <%= image_tag User.find_by(id: m.user_id).image, class: "card-img"%>
@@ -12,7 +7,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= User.find_by(id: m.user_id).first_name%></h5>
                 <p class="card-text">
-                <% @requests.uniq.each do |request| %>
+                <% @requests.each do |request| %>
                   <%= link_to "Find out more about your match and confirm a meetup!", recipe_request_path(params[:recipe_id], request)%>
                   <%end%>
                   </p>
@@ -21,12 +16,19 @@
             </div>
           </div>
         </div>
-      <% end %>
-    <% end %>
-    </div>
-     <%= render 'shared/map' %>
+
+         <div class="cards col-lg-12">
+  <% @recipes.each do |recipe| %>
+    <div class="images card">
+      <div class="card-img-top">
+        <div class="recipe" data-id="<%= recipe.id %>">
+          <%= image_tag(recipe.image) %>
+          </div>
+        <div class="card-body">
+          <p><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></p>
+        </div>
+        </div>
+      </div>
+  <% end %>
 </div>
-
-
-
 

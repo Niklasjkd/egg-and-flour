@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :recipes, only: [:show, :index, :create]
-  resources :requests, only: [:index, :show]
-
-  resources :meetups, only: [:show]
-
+  
+   resources :requests, only: [:index, :show] do
+     resources :meetups, only: [:show, :create, :new]
+  end
+  
   resources :profiles, only: [] do
     member do
       get "dashboard"
