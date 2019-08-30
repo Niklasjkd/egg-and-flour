@@ -2,7 +2,7 @@ function positionIngredients(data_) {
   const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
   var radians, radius;
-  radius = 325;
+  radius = 300;
 
   var totalItems = ingredients_data.length;
   var item = 1;
@@ -39,7 +39,7 @@ function positionIngredients(data_) {
 
     $('#category-circle').append('<div id="'+ item +'">'+ inhalt +'<div/>')
     $('div#'+item).css('position', 'absolute')
-      .css('width', 100+'px').css('height', 100+'px')
+      .css('width', 70+'px').css('height', 70+'px')
       .css('left', x+'px').css('top', y+'px')
       .css('transform-origin', x+'px' -y+'px')
 
