@@ -94,31 +94,6 @@ end
 
 puts 'Creating recipes...'
 
-user_ingredients = [{
-  user_id: User.where(email: "test1@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "lime").first.id,
-  quantity: 1
-},{
-  user_id: User.where(email: "test1@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "avocado").first.id,
-  quantity: 1
-}, {
-  user_id: User.where(email: "test1@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "eggs").first.id,
-  quantity: 3
-}, {
-  user_id: User.where(email: "test2@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "eggs").first.id,
-  quantity: 4
-}, {
-  user_id: User.where(email: "test3@example.com").first.id,
-  ingredient_id: Ingredient.where(name: "red chilli").first.id,
-  quantity: 4
-}
-]
-
-user_ingredients.each { |user_ingredient| UserIngredient.new(user_ingredient).save! }
-
 
 puts 'create requests'
 
