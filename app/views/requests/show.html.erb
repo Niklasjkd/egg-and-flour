@@ -1,5 +1,7 @@
-<%= render 'shared/dashboard' %>
-<div class="container" id="user-dashboard-button">
+
+<!-- <div class="container" id="user-dashboard-button"> -->
+  <div class="container">
+  <%= render 'shared/dashboard' %>
   <% @requests.each do |request| %>
     <% if @user %>
       <%= form_for :meetups, url:  recipe_request_meetups_path(params[:recipe_id], request, @user) do |f| %>

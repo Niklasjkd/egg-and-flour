@@ -6,29 +6,18 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
-const addMarkersToMap = (map, markers) => {
-  const localUserMarker = markers.pop();
+const addMarkersToMap = (map, marker) => {
+  const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
 
-  // Meetups
-  markers.forEach((marker) => {
-    const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
-
-    new mapboxgl.Marker()
-    .setLngLat([ marker.lng, marker.lat ])
-      .setPopup(popup) // add this
-      .addTo(map);
-  });
-
-  // LocalUser
-  const popup = new mapboxgl.Popup().setHTML(localUserMarker.infoWindow); // add this
   new mapboxgl.Marker({color: 'red'})
-  .setLngLat([ localUserMarker.lng, localUserMarker.lat ])
-    .setPopup(popup)
-    .addTo(map);
+  .setLngLat([ marker.lng, marker.lat ])
+  .setPopup(popup)
+  .addTo(map);
 };
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
+
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
@@ -36,11 +25,76 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-    const markers = JSON.parse(mapElement.dataset.markers);
-    fitMapToMarkers(map, markers);
+    const markersUser = JSON.parse(mapElement.dataset.markersUser);
+    drawCircles(map, markersUser);
+    fitMapToMarkers(map, markersUser);
 
-    addMarkersToMap(map, markers);
+
+    const markerLocal = JSON.parse(mapElement.dataset.markerLocal);
+    if (markerLocal) {
+      addMarkersToMap(map, markerLocal);
+      markersUser.push(markerLocal);
+      fitMapToMarkers(map, markersUser);
+    }
   }
+};
+
+const drawCircles = (map, markers) => {
+  map.on('load', function () {
+
+    markers.forEach(function(marker) {
+      map.addSource("polygon", createGeoJSONCircle([marker.lng, marker.lat], 0.5));
+      map.addLayer({
+        "id": "polygon",
+        "type": "fill",
+        "source": "polygon",
+        "layout": {},
+        "paint": {
+          "fill-color": "blue",
+          "fill-opacity": 0.6
+        }
+      });
+    });
+  });
+}
+
+var createGeoJSONCircle = function(center, radiusInKm, points) {
+  if(!points) points = 64;
+
+  var coords = {
+    latitude: center[1],
+    longitude: center[0]
+  };
+
+  var km = radiusInKm;
+
+  var ret = [];
+  var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
+  var distanceY = km/110.574;
+
+  var theta, x, y;
+  for(var i=0; i<points; i++) {
+    theta = (i/points)*(2*Math.PI);
+    x = distanceX*Math.cos(theta);
+    y = distanceY*Math.sin(theta);
+
+    ret.push([coords.longitude+x, coords.latitude+y]);
+  }
+  ret.push(ret[0]);
+
+  return {
+    "type": "geojson",
+    "data": {
+      "type": "FeatureCollection",
+      "features": [{
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [ret]
+        }
+      }]
+    }
+  };
 };
 
 export { initMapbox };

@@ -1,4 +1,5 @@
 <div class= "col-lg-9 col-md-10" id="map"
-  data-markers="<%= @markers.to_json %>"
+  data-marker-local="<%= @markerLocal.to_json %>"
+  data-markers-user="<%= @markersUser.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
