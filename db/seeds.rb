@@ -237,11 +237,11 @@ puts 'create requests'
 
 requests = [{
   recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
-  user_id: User.where(email: "test2@example.com").first.id,
+  user_id: User.where(email: "test1@example.com").first.id,
   host: false
 }, {
-  recipe_id: Recipe.where(name: "Mexican baked eggs").first.id,
-  user_id: User.where(email: "test3@example.com").first.id,
+  recipe_id: Recipe.where(name: "Spanish tortilla").first.id,
+  user_id: User.where(email: "test2@example.com").first.id,
   host: false
 }]
 requests.each { |request| Request.new(request).save!}

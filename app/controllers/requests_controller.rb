@@ -28,8 +28,6 @@ class RequestsController < ApplicationController
     }
   end
 
-
-
   def create
     recipes = params[:requests][:recipes].scan(/\w+/)
     recipes.each do |recipe|
@@ -49,5 +47,12 @@ class RequestsController < ApplicationController
         @matches << match if match[:user_id] != @user.id
       end
     end
+
+    user = @request.user
+    @markers = [{
+      lat: user.latitude,
+      lng: user.longitude,
+      infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!" })
+    }]
   end
 end
