@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:show, :index] do
     resources :requests, only: [:index, :show, :create] do
-      resources :meetups, only: [:show, :create]
+      resources :meetups, only: [:show, :create, :new]
     end
   end
 
