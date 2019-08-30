@@ -1,18 +1,32 @@
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :create_user_ingredients]
 
   def index
+    # @recipes = [Recipe.find_by(name: "Spanish tortilla")]
     match
-    recipe_ids = []
-    @scores.each do |score|
-      recipe_ids << (score[:recipe_id] unless score[:score] == 0)
-    end
-    @recipes = Recipe.find(recipe_ids)
+    @combined_ingredients
   end
 
   def show
     @recipe = Recipe.find(params[:id])
   end
+
+  def create
+    recipes = JSON.parse(params[:recipes][:recipes])
+    selected_recipes = []
+    recipes.each do |recipe|
+      if Recipe.exists?(recipe["id"]) == false
+        selected_recipe = Recipe.new(name: recipe["title"], recipe_api_id: recipe["id"], image: recipe["image"])
+        selected_recipe.requests.build(user: current_user, host: false)
+        selected_recipe.save
+        selected_recipes << selected_recipe
+      end
+
+    end
+    # raise
+    redirect_to requests_path(selected_recipes: selected_recipes)
+  end
+
 
   private
 
@@ -31,51 +45,30 @@ class RecipesController < ApplicationController
       ingredients_by_user << {
         user_id: user.id,
         ingredients: UserIngredient.where(user_id: user.id).map do |ingredient|
-          ingredient.id
+          Ingredient.find(ingredient[:ingredient_id]).name
         end
       }
     end
     @ingredients_by_user = ingredients_by_user
   end
 
-  def recipes_by_ingredients
-    recipes = Recipe.all
-    recipes_by_ingredients = []
-    recipes.each do |recipe|
-      recipes_by_ingredients << {
-        recipe_id: recipe.id,
-        ingredients: RecipeIngredient.where(recipe_id: recipe.id).map do |ingredient|
-          ingredient.id
-        end
-      }
+  def match
+    ingredients_by_user
+    @ingredients = params[:ingredients].split
+    create_user_ingredients
+    @combined_ingredients = []
+    @ingredients_by_user.each do |user_ingredients|
+      @combined_ingredients << (@ingredients + user_ingredients[:ingredients])
     end
-    @recipes_by_ingredients = recipes_by_ingredients
   end
 
-  def match
-    recipes_by_ingredients
-    ingredients_by_user
-    #change to ingredients = params...
-    ingredients = [Ingredient.where(name: "avocado").first.id, Ingredient.where(name: "eggs").first.id]
-    @scores = []
-    @ingredients_by_user.each do |user_ingredients|
-      @recipes_by_ingredients.each do |recipe|
-        counter = 0
-        missing = []
-        recipe[:ingredients].each do |ingredient|
-          if (ingredients + user_ingredients[:ingredients]).include?(ingredient)
-            counter += 1
-          else
-            missing << ingredient
-          end
-        end
-        @scores << {
-          recipe_id: recipe[:recipe_id],
-          score: counter,
-          missing: missing
-        }
-      end
-      break
+  def create_user_ingredients
+    # if UserIngredient.exists?(user_id: current_user) == false
+      @ingredients.each do |ingredient|
+        user_ingredient = Ingredient.find_by(name: ingredient).id
+         a = UserIngredient.new(user: current_user, ingredient_id: user_ingredient)
+        a.save!
+
     end
   end
 end

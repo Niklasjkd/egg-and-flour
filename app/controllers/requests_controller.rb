@@ -5,9 +5,9 @@ class RequestsController < ApplicationController
     @requests = Request.where(user_id: @user.id)
     @matches = []
     @requests.each do |request|
-      requests = Request.where(recipe_id: request.recipe_id)
-      requests.each do |match|
-        @matches << match if match[:user_id] != @user.id
+      params[:selected_recipes].each do |selected_recipe|
+        requests = Request.find_by(recipe_id: selected_recipe.to_i)
+        @matches << requests if requests[:user_id] != @user.id
       end
     end
 
@@ -26,34 +26,5 @@ class RequestsController < ApplicationController
       lng: local_user.longitude,
       infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!" })
     }
-  end
-
-  def create
-    recipes = params[:requests][:recipes].scan(/\w+/)
-    recipes.each do |recipe|
-      new_request = Request.new(recipe_id: recipe, user_id: @user.id, host: true)
-      new_request.save!
-    end
-    redirect_to recipe_requests_path(@user)
-  end
-
-  def show
-    @request = Request.find(params[:id])
-    @requests = Request.where(user_id: @user.id)
-    @matches = []
-    @requests.each do |request|
-      requests = Request.where(recipe_id: request.recipe_id)
-      requests.each do |match|
-        @matches << match if match[:user_id] != @user.id
-      end
-    end
-
-    user = @request.user
-    @markerLocal = ""
-    @markersUser = [{
-      lat: user.latitude,
-      lng: user.longitude,
-      infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!" })
-    }]
   end
 end
