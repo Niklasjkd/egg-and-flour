@@ -92,8 +92,6 @@ INGREDIENT_TYPES.each do |t|
 end
 
 
-puts 'Creating recipes...'
-
 
 puts 'create requests'
 
