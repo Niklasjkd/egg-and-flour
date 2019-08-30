@@ -99,16 +99,16 @@ LEGUMENS = %w(green beans peas black beans chickpea lentil refried beans hummus 
 SOUP = %w(chicken broth mushroom soup beef broth tomato soup vegetable stock chicken soup onion soup vegetable soup celery soup dashi lamb stock pork stock veal stock)
 NUTS = %w(peanut butter almond walnut pecan peanut cashew flax pine nut pistachio almond meal hazelnut macadamia almond paste chestnut praline macaroon)
 INGREDIENT_TYPES = [
+  { title: "added sweetener", ingredients: ADDED_SWEETENERS },
   { title: "vegetable", ingredients: VEGETABLES },
   { title: "dairy", ingredients: DAIRY },
   { title: "fruit", ingredients: FRUITS },
-  { title: "baking & grain", ingredients: BAKING_GRAINS },
   { title: "spice", ingredients: SPICES },
   { title: "seafood", ingredients: SEAFOOD },
-  { title: "condiment", ingredients: CONDIMENTS },
   { title: "meat", ingredients: MEATS },
+  { title: "condiment", ingredients: CONDIMENTS },
+  { title: "baking & grain", ingredients: BAKING_GRAINS },
   { title: "fish", ingredients: FISH },
-  { title: "added sweetener", ingredients: ADDED_SWEETENERS },
   { title: "oil", ingredients: OILS },
   { title: "seasoning", ingredients: SEASONINGS },
   { title: "sauce", ingredients: SAUCES },
