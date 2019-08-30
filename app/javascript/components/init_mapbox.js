@@ -7,6 +7,9 @@ const fitMapToMarkers = (map, markers) => {
 };
 
 const addMarkersToMap = (map, markers) => {
+  const localUserMarker = markers.pop();
+
+  // Meetups
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
 
@@ -14,43 +17,19 @@ const addMarkersToMap = (map, markers) => {
     .setLngLat([ marker.lng, marker.lat ])
       .setPopup(popup) // add this
       .addTo(map);
-    });
-};
+  });
 
-// const drawLine = (map, markers) => {
-//   map.on('load', function () {
-//     map.addLayer({
-//       "id": "route",
-//       "type": "line",
-//       "source": {
-//         "type": "geojson",
-//         "data": {
-//           "type": "Feature",
-//           "properties": {},
-//           "geometry": {
-//             "type": "LineString",
-//             "coordinates": [
-//             [markers[0].lng, markers[0].lat],
-//             [markers[1].lng, markers[1].lat]
-//             ]
-//           }
-//         }
-//       },
-//       "layout": {
-//         "line-join": "round",
-//         "line-cap": "round"
-//       },
-//       "paint": {
-//         "line-color": "#888",
-//         "line-width": 8
-//       }
-//     });
-//   });
-// }
+  // LocalUser
+  const popup = new mapboxgl.Popup().setHTML(localUserMarker.infoWindow); // add this
+  new mapboxgl.Marker({color: 'red'})
+  .setLngLat([ localUserMarker.lng, localUserMarker.lat ])
+    .setPopup(popup)
+    .addTo(map);
+};
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
-  if (mapElement) { // only build a map if there's a div#map to inject into
+  if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
@@ -58,12 +37,9 @@ const initMapbox = () => {
     });
 
     const markers = JSON.parse(mapElement.dataset.markers);
-    console.log(markers);
-    addMarkersToMap(map, markers);
-
     fitMapToMarkers(map, markers);
 
-    // drawLine(map, markers);
+    addMarkersToMap(map, markers);
   }
 };
 
