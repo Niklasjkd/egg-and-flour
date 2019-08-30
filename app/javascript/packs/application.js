@@ -10,8 +10,14 @@ initPopover();
 import { initIngredients } from "../components/init_ingredients_checkboxes";
 initIngredients();
 
-import { initHighlight } from "../components/init_select.js";
-initHighlight()
+import { initDisplay } from "../components/init_select.js";
+initDisplay();
 
 import { initUpdateNavbarOnScroll } from '../components/init_navbar.js';
 initUpdateNavbarOnScroll();
+
+
+
+
+
+

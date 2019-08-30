@@ -5,9 +5,9 @@ class RequestsController < ApplicationController
     @requests = Request.where(user_id: @user.id)
     @matches = []
     @requests.each do |request|
-      requests = Request.where(recipe_id: request.recipe_id)
-      requests.each do |match|
-        @matches << match if match[:user_id] != @user.id
+      params[:selected_recipes].each do |selected_recipe|
+        requests = Request.find_by(recipe_id: selected_recipe.to_i)
+        @matches << requests if requests[:user_id] != @user.id
       end
     end
 
@@ -21,14 +21,5 @@ class RequestsController < ApplicationController
         lat: User.find_by(id: @user.id).latitude,
         lng: User.find_by(id: @user.id).longitude
       }
-  end
-
-  def create
-    recipes = params[:requests][:recipes].scan(/\w+/)
-    recipes.each do |recipe|
-      new_request = Request.new(recipe_id: recipe, user_id: @user.id, host: false)
-      new_request.save!
-    end
-    redirect_to recipe_requests_path(@user)
   end
 end

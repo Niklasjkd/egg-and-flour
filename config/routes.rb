@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :recipes, only: [:show, :index] do
-    resources :requests, only: [:index, :show, :create]
-  end
+  resources :recipes, only: [:show, :index, :create]
+  resources :requests, only: [:index, :show]
 
   resources :meetups, only: [:show]
 
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
     member do
       get "dashboard"
     end
-
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
