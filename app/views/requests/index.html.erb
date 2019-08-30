@@ -1,8 +1,8 @@
 
 <div class="main-container">
   <div class="cards col-lg-3 col-md-2 col-sm-12" id="recipe-index-cards">
-    <% @matches.uniq.each do |m, index| %>
-      <%= link_to recipe_request_path(id: m.id) do %>
+    <% @matches.flatten.uniq.each do |m, index| %>
+      <%= link_to request_path(m) do %>
         <div class="card mb-3">
           <div class="row no-gutters">
             <div>
@@ -11,11 +11,6 @@
             <div>
               <div class="card-body">
                 <h5 class="card-title"><%= User.find_by(id: m.user_id).first_name%></h5>
-                <p class="card-text">
-                <% @requests.uniq.each do |request| %>
-                  <%= link_to "Find out more about your match and confirm a meetup!", recipe_request_path(params[:recipe_id], request)%>
-                  <%end%>
-                  </p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>

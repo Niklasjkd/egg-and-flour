@@ -2,12 +2,11 @@
 <!-- <div class="container" id="user-dashboard-button"> -->
   <div class="container">
   <%= render 'shared/dashboard' %>
-  <% @requests.each do |request| %>
-    <% if @user %>
-      <%= form_for :meetups, url:  recipe_request_meetups_path(params[:recipe_id], request, @user) do |f| %>
-        <%= f.hidden_field :requests, value: [] %>
-        <%= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
-      <% end %>
-    <% end %>
-  <%end%>
+      <%#= form_for :meetups, url: "#" do |f| %>
+        <%#= f.hidden_field :requests, value: [] %>
+        <%#= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
+      <%# end %>
+
+      <button class="btn btn-primary" id="match_button">Meetup!</button>
+
 </div>

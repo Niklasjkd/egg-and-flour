@@ -15,13 +15,14 @@ class RecipesController < ApplicationController
     recipes = JSON.parse(params[:recipes][:recipes])
     selected_recipes = []
     recipes.each do |recipe|
-      if Recipe.exists?(recipe["id"]) == false
-        selected_recipe = Recipe.new(name: recipe["title"], recipe_api_id: recipe["id"], image: recipe["image"])
-        selected_recipe.requests.build(user: current_user, host: false)
-        selected_recipe.save
-        selected_recipes << selected_recipe
+      if Recipe.exists?(recipe_api_id: recipe["id"])
+        recipe = Recipe.find_by(recipe_api_id: recipe["id"])
+      else
+        recipe = Recipe.new(name: recipe["title"], recipe_api_id: recipe["id"], image: recipe["image"])
+        recipe.save
       end
-
+      recipe.requests.create(user: current_user, host: false)
+      selected_recipes << recipe
     end
     # raise
     redirect_to requests_path(selected_recipes: selected_recipes)
