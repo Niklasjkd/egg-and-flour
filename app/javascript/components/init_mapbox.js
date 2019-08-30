@@ -25,19 +25,24 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-    const markers = JSON.parse(mapElement.dataset.markers);
+    const markersUser = JSON.parse(mapElement.dataset.markersUser);
+    drawCircles(map, markersUser);
+    fitMapToMarkers(map, markersUser);
 
-    drawLine(map, markers);
-    fitMapToMarkers(map, markers);
-    addMarkersToMap(map, markers.slice(-1)[0]);
+
+    const markerLocal = JSON.parse(mapElement.dataset.markerLocal);
+    if (markerLocal) {
+      addMarkersToMap(map, markerLocal);
+      markersUser.push(markerLocal);
+      fitMapToMarkers(map, markersUser);
+    }
   }
 };
 
-const drawLine = (map, markers) => {
+const drawCircles = (map, markers) => {
   map.on('load', function () {
-    const meetupMarkers = markers.slice(0, markers.length - 1);
 
-    meetupMarkers.forEach(function(marker) {
+    markers.forEach(function(marker) {
       map.addSource("polygon", createGeoJSONCircle([marker.lng, marker.lat], 0.5));
       map.addLayer({
         "id": "polygon",

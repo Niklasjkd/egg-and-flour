@@ -11,7 +11,7 @@ class RequestsController < ApplicationController
       end
     end
 
-    @markers = @matches.map do |m|
+    @markersUser = @matches.map do |m|
       user = User.find_by(id: m.user_id)
       {
         lat: user.latitude,
@@ -21,7 +21,7 @@ class RequestsController < ApplicationController
     end
 
     local_user = User.find_by(id: @user.id)
-    @markers << {
+    @markerLocal = {
       lat: local_user.latitude,
       lng: local_user.longitude,
       infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!" })
@@ -49,7 +49,8 @@ class RequestsController < ApplicationController
     end
 
     user = @request.user
-    @markers = [{
+    @markerLocal = ""
+    @markersUser = [{
       lat: user.latitude,
       lng: user.longitude,
       infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!" })
