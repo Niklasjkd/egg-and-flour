@@ -28,27 +28,26 @@
 </div>
 
 <div class="recipe-index-title"><h1>Matched Recipes</h1></div>
-
 <div class= "container">
   <div class="cards col-lg-12" id="display-recipes">
-
+    <!-- div for recipes-cards -->
   </div>
+</div>
 
-
+<div class="sticky-bar">
+  <div class="container">
   <% if current_user %>
-    <%= form_for :recipes, url: recipes_path(recipe: params[:requests]), method: "post" do |f| %>
+    <%= form_for :recipes, url: recipes_path(recipe: params[:requests]), method: "post", :html => { class: "d-flex justify-content-end" } do |f| %>
       <%= f.hidden_field :ingredients, value: params[:ingredients] %>
       <%= f.hidden_field :recipes, value: [] %>
       <%= f.submit class: "btn btn-primary", id: "match_button" %>
       <% end %>
     <% else %>
-      <%= form_for :recipes, url: new_user_session_path, method: :post do |f| %>
+      <%= form_for :recipes, url: new_user_session_path, method: :post, :html => { class: "d-flex justify-content-end" } do |f| %>
       <%= f.hidden_field :ingredients, value: params[:ingredients] %>
       <%= f.hidden_field :recipes, value: [] %>
       <%= f.submit class: "btn btn-primary", id: "match_button" %>
       <% end %>
   <% end %>
+  </div>
 </div>
-
-
-

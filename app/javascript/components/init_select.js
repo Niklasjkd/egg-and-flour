@@ -7,7 +7,6 @@ const initDisplay = () => {
     .then(response => response.json())
     .then(({recipes}) => {
       recipes.slice(0, 5).forEach((r) => {
-
         if (r.recipe_id != null) {
           const recipesView =
           `<div class="images card">
@@ -20,7 +19,7 @@ const initDisplay = () => {
           </div>
           </div>
           </div>`;
-          displayRecipes.insertAdjacentHTML("afterbegin", recipesView);
+          displayRecipes.insertAdjacentHTML("beforeend", recipesView);
         };
       });
 
@@ -33,10 +32,10 @@ const initDisplay = () => {
 const initHighlight = () => {
   const recipes = document.querySelectorAll(".recipe")
   const requests_recipes = document.querySelector('#recipes_recipes');
-  console.log(requests_recipes.value)
   let recipeArray = [];
   recipes.forEach(recipe => {
     recipe.addEventListener('click', (event) => {
+        event.preventDefault()
         event.currentTarget.classList.toggle("highlight")
         const recipesA = [...recipes]
         const highlightedRecipes = recipesA.filter(recipe => recipe.classList.contains("highlight"));
@@ -45,7 +44,7 @@ const initHighlight = () => {
           return {id, image, title }
         });
 
-        requests_recipes.value = JSON.stringify(recipeArray);
+      requests_recipes.value = JSON.stringify(recipeArray);
       console.log(recipeArray)
     })
   });

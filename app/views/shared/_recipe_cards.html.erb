@@ -1,0 +1,12 @@
+  <% @recipes.each do |recipe| %>
+    <div class="images card">
+      <div class="card-img-top">
+        <div class="recipe" data-id="<%= recipe.id %>">
+          <%= image_tag(recipe.image) %>
+          </div>
+        <div class="card-body">
+          <p><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></p>
+        </div>
+        </div>
+      </div>
+  <% end %>

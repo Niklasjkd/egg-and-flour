@@ -13,6 +13,8 @@ const addMarkersToMap = (map, marker) => {
   .setLngLat([ marker.lng, marker.lat ])
   .setPopup(popup)
   .addTo(map);
+
+
 };
 
 const initMapbox = () => {
@@ -25,10 +27,11 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-    const markersUser = JSON.parse(mapElement.dataset.markersUser);
-    drawCircles(map, markersUser);
-    fitMapToMarkers(map, markersUser);
-
+    var markersUser = JSON.parse(mapElement.dataset.markersUser);
+    if (Array.isArray(markersUser) && markersUser.length) {
+      drawCircles(map, markersUser);
+      fitMapToMarkers(map, markersUser);
+    }
 
     const markerLocal = JSON.parse(mapElement.dataset.markerLocal);
     if (markerLocal) {
@@ -41,20 +44,41 @@ const initMapbox = () => {
 
 const drawCircles = (map, markers) => {
   map.on('load', function () {
+    console.log(markers)
 
-    markers.forEach(function(marker) {
-      map.addSource("polygon", createGeoJSONCircle([marker.lng, marker.lat], 0.5));
-      map.addLayer({
-        "id": "polygon",
-        "type": "fill",
-        "source": "polygon",
-        "layout": {},
-        "paint": {
-          "fill-color": "blue",
-          "fill-opacity": 0.6
-        }
+    markers.forEach(function(marker, index) {
+      if (marker.user != marker.current_user) {
+        map.addSource("polygon" + index, createGeoJSONCircle([marker.lng, marker.lat], 0.5));
+        map.addLayer({
+          "id": "polygon" + index,
+          "type": "fill",
+          "source": "polygon" + index,
+          "layout": {},
+          "paint": {
+            "fill-color": "blue",
+            "fill-opacity": 0.4
+          }
+        });
+      console.log(marker)
+
+      map.on('click', 'polygon' + index, function (e) {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(marker.infoWindow)
+          .addTo(map);
       });
-    });
+
+      // Change the cursor to a pointer when the mouse is over the states layer.
+      map.on('mouseenter', 'polygon' + index, function () {
+      map.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      map.on('mouseleave', 'polygon' + index, function () {
+      map.getCanvas().style.cursor = '';
+      });
+    };
+  });
   });
 }
 
