@@ -1,0 +1,19 @@
+.btn-secondary {
+  color: $green;
+  background-color: white !important;
+  border-color: $green !important;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(56, 145, 166, 0.25);
+
+  &:hover {
+    background-color: #f9f9f9 !important;
+    color: $green !important;
+    border-color: $green !important;
+  }
+
+  &:not([href]):not([tabindex]) {
+    color: $green !important;
+  }
+}

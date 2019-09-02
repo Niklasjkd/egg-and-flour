@@ -3,8 +3,7 @@ const displayRecipes = document.querySelector("#display-recipes");
 
 const initDisplay = () => {
   results.forEach((result) => {
-
-    fetch(`https://www.food2fork.com/api/search?key=33bfb81d6faa1aa602b4959da149881d&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=26f7b22fb219b5a30816b2f68c726786&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       recipes.slice(0, 5).forEach((r) => {
@@ -12,11 +11,11 @@ const initDisplay = () => {
           const recipesView =
           `<div class="images card">
           <div class="card-img-top">
-          <div class="recipe" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
+          <div class="recipe" id="recipe${r.recipe_id}" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
           <img src="${r.image_url}" alt="">
           </div>
-          <div class="card-body">
-          <p><a href="recipe_path(${r.id})">${r.title}</a></p>
+          <div class="card-body" data-id="${r.recipe_id}">
+          <p data-id="${r.recipe_id}">${r.title}</p>
           </div>
           </div>
           </div>`;
@@ -25,7 +24,7 @@ const initDisplay = () => {
       });
 
     })
-    .then(() => initHighlight());
+    .then(() => [ initHighlight(), initClickForPopover()]);
 
   });
 };
@@ -54,3 +53,7 @@ const initHighlight = () => {
 // update value of input with recipeArray
 
 export { initDisplay };
+
+import { initClickForPopover } from '../components/init_recipe_popover';
+initClickForPopover();
+
