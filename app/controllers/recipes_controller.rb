@@ -57,7 +57,7 @@ class RecipesController < ApplicationController
 
   def match
     ingredients_by_user
-    # UserIngredient.where(user_id: current_user).destroy_all
+    UserIngredient.where(user_id: current_user).destroy_all
     @ingredients = params[:ingredients].split
     create_user_ingredients
     @combined_ingredients = []
