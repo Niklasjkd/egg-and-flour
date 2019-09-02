@@ -3,7 +3,7 @@ const displayRecipes = document.querySelector("#display-recipes");
 
 const initDisplay = () => {
   results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=19f385f7e132f6d2ce8d668c0061cb30&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=2d39cd2573a495f14330d45aeb2a5f88&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       recipes.slice(0, 5).forEach((r) => {
@@ -38,6 +38,7 @@ const initHighlight = () => {
   let recipeArray = [];
   recipes.forEach(recipe => {
     recipe.addEventListener('click', (event) => {
+        event.preventDefault()
         event.currentTarget.classList.toggle("highlight")
         const recipesA = [...recipes]
         const highlightedRecipes = recipesA.filter(recipe => recipe.classList.contains("highlight"));
@@ -46,7 +47,7 @@ const initHighlight = () => {
           return {id, image, title }
         });
 
-        requests_recipes.value = JSON.stringify(recipeArray);
+      requests_recipes.value = JSON.stringify(recipeArray);
       console.log(recipeArray)
     })
   });
