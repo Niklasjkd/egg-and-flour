@@ -1,12 +1,26 @@
 
 <!-- <div class="container" id="user-dashboard-button"> -->
   <div class="container">
+
   <%= render 'shared/dashboard' %>
       <%#= form_for :meetups, url: "#" do |f| %>
         <%#= f.hidden_field :requests, value: [] %>
         <%#= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
       <%# end %>
-
+  <div class="cards col-lg-12" id="display-recipes">
+    <div class="recipe-index-title"><h1>Matched Recipes</h1></div>
+    <% params[:recipes].each do |recipe| %>
+    <div class="images card">
+      <div class="card-img-top">
+        <div class="recipe">
+          <%= image_tag Recipe.find_by(id: recipe).image, class: "card-img"%>
+        </div>
+        <div class="card-body">
+         <p><%= link_to "#{Recipe.find(recipe).name}", recipe_path(recipe) %></p>
+        </div>
+      </div>
+    </div>
+     <% end %>
+</div>
       <button class="btn btn-primary" id="match_button">Meetup!</button>
-
 </div>

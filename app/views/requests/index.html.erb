@@ -1,16 +1,20 @@
 
 <div class="main-container">
   <div class="cards col-lg-3 col-md-2 col-sm-12" id="recipe-index-cards">
+    <% @user = [] %>
     <% @matches.flatten.uniq.each do |m, index| %>
-      <%= link_to request_path(m) do %>
+      <% @user << m.user_id%>
+    <% end %>
+    <% @user.uniq.each do |user| %>
+      <%= link_to request_path(User.find_by(id: user), recipes: @matches.select {|r| r = user}) do %>
         <div class="card mb-3">
           <div class="row no-gutters">
             <div>
-            <%= image_tag User.find_by(id: m.user_id).image, class: "card-img"%>
+            <%= image_tag User.find_by(id: user).image, class: "card-img"%>
             </div>
             <div>
               <div class="card-body">
-                <h5 class="card-title"><%= User.find_by(id: m.user_id).first_name%></h5>
+                <h5 class="card-title"><%= User.find_by(id: user).first_name%></h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
