@@ -25,10 +25,11 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-    const markersUser = JSON.parse(mapElement.dataset.markersUser);
-    drawCircles(map, markersUser);
-    fitMapToMarkers(map, markersUser);
-
+    var markersUser = JSON.parse(mapElement.dataset.markersUser);
+    if (Array.isArray(markersUser) && markersUser.length) {
+      drawCircles(map, markersUser);
+      fitMapToMarkers(map, markersUser);
+    }
 
     const markerLocal = JSON.parse(mapElement.dataset.markerLocal);
     if (markerLocal) {
