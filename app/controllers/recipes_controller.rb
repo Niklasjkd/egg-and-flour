@@ -7,10 +7,6 @@ class RecipesController < ApplicationController
     @combined_ingredients
   end
 
-  def show
-    @recipe = Recipe.find(params[:id])
-  end
-
   def create
     recipes = JSON.parse(params[:recipes][:recipes])
     selected_recipes = []
