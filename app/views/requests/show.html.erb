@@ -13,10 +13,10 @@
     <div class="images card">
       <div class="card-img-top">
         <div class="recipe">
-          <%= image_tag Recipe.find_by(id: recipe).image, class: "card-img"%>
+          <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
         </div>
         <div class="card-body">
-         <p><%= link_to "#{Recipe.find(recipe).name}", recipe_path(recipe) %></p>
+         <p><%= link_to "#{Recipe.find(Request.find(recipe).recipe_id).name}", recipe_path(recipe) %></p>
         </div>
       </div>
     </div>
