@@ -1,3 +1,7 @@
+<% if(defined? params[:id]) %>
+  <% current_user = User.find_by(id: params[:id])%>
+<% end %>
+
 <div class="d-flex justify-content-around" id="profile">
   <div class="" id="contact-info">
     <div class="d-flex" id="image">
