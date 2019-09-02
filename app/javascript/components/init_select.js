@@ -11,11 +11,11 @@ const initDisplay = () => {
           const recipesView =
           `<div class="images card">
           <div class="card-img-top">
-          <div class="recipe" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
+          <div class="recipe" id="recipe${r.recipe_id}" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
           <img src="${r.image_url}" alt="">
           </div>
-          <div class="card-body">
-          <p><a href="recipe_path(${r.id})">${r.title}</a></p>
+          <div class="card-body" data-id="${r.recipe_id}">
+          <p data-id="${r.recipe_id}">${r.title}</p>
           </div>
           </div>
           </div>`;
@@ -24,7 +24,7 @@ const initDisplay = () => {
       });
 
     })
-    .then(() => initHighlight());
+    .then(() => [ initHighlight(), initClickForPopover()]);
 
   });
 };
@@ -53,3 +53,7 @@ const initHighlight = () => {
 // update value of input with recipeArray
 
 export { initDisplay };
+
+import { initClickForPopover } from '../components/init_recipe_popover';
+initClickForPopover();
+
