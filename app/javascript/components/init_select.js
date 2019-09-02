@@ -22,7 +22,7 @@ const initDisplay = () => {
           </div>
           </div>
           </div>`;
-          displayRecipes.insertAdjacentHTML("afterbegin", recipesView);
+          displayRecipes.insertAdjacentHTML("beforeend", recipesView);
         };
       });
 
@@ -35,7 +35,6 @@ const initDisplay = () => {
 const initHighlight = () => {
   const recipes = document.querySelectorAll(".recipe")
   const requests_recipes = document.querySelector('#recipes_recipes');
-  console.log(requests_recipes.value)
   let recipeArray = [];
   recipes.forEach(recipe => {
     recipe.addEventListener('click', (event) => {
