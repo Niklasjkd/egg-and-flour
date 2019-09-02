@@ -7,10 +7,10 @@
         <%#= f.hidden_field :requests, value: [] %>
         <%#= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
       <%# end %>
-  <div class="cards col-lg-12" id="display-recipes">
+  <div class="col-lg-12" id="matched-recipes">
     <div class="recipe-index-title"><h1>Matched Recipes</h1></div>
-    <% params[:recipes].each do |recipe| %>
-    <div class="images card">
+    <div class="col-lg-6" id="images-card-matched">
+    <% params[:recipes].uniq.each do |recipe| %>
       <div class="card-img-top">
         <div class="recipe">
           <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
