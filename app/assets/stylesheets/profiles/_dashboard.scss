@@ -39,8 +39,10 @@
   }
 
   #map {
-    width: 430px !important;
+    object-fit: cover;
     height: 400px;
     border-radius: 6px;
+    grid-column: 1 / span 6 !important;
+    padding: 0px !important;
   }
 }
