@@ -1,26 +1,28 @@
 
 <!-- <div class="container" id="user-dashboard-button"> -->
-  <div class="container">
-
+<div class="container">
   <%= render 'shared/dashboard' %>
       <%#= form_for :meetups, url: "#" do |f| %>
         <%#= f.hidden_field :requests, value: [] %>
         <%#= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
       <%# end %>
-  <div class="col-lg-12" id="matched-recipes">
+  <div id="matched-recipes">
     <div class="recipe-index-title"><h1>Matched Recipes</h1></div>
-    <div class="col-lg-6" id="images-card-matched">
-    <% params[:recipes].uniq.each do |recipe| %>
-      <div class="card-img-top">
-        <div class="recipe">
-          <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
+      <div class="cards images card" id="matched-recipes-cards">
+          <% params[:recipes].uniq.each do |recipe| %>
+          <div class="card-img-top">
+            <div class="recipe">
+              <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
+            </div>
+            <div class="card-body">
+             <p><%= link_to "#{Recipe.find(Request.find(recipe).recipe_id).name}", recipe_path(recipe) %></p>
+            </div>
         </div>
-        <div class="card-body">
-         <p><%= link_to "#{Recipe.find(Request.find(recipe).recipe_id).name}", recipe_path(recipe) %></p>
-        </div>
-      </div>
+        <% end %>
     </div>
-     <% end %>
-</div>
+    <div >
       <button class="btn btn-primary" id="match_button">Meetup!</button>
-</div>
+    </div>
+  </div>
+
+
