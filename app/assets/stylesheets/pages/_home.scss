@@ -172,3 +172,50 @@
 .column {
   font-size: 18px;
 }
+
+.icons {
+  height: 90px;
+  width: auto;
+  padding-bottom: 8px;
+}
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5rem;
+  text-align: center;
+}
+
+.landing-icons {
+  padding: 6px;
+  p {
+    text-align: justify;
+  }
+}
+
+
+
+#icons-header {
+  font-family: Roboto;
+  display: block;
+  padding-bottom: 24px;
+  font-weight: 900;
+  text-align: center;
+
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+.bottom-line {
+    height: 2px;
+    width: 3rem;
+    background: grey;
+    display: block;
+    margin: 0 auto 1rem auto;
+}
+
+
+
+
