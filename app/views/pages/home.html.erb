@@ -1,50 +1,86 @@
-<div class="landing bg-white">
-  <div class="images">
-    <%=  image_tag("landing/img1.jpg", id: "img1") %>
-    <%=  image_tag("landing/img2.jpg", id: "img2") %>
-    <%=  image_tag("landing/img3.jpg", id: "img3") %>
-    <%=  image_tag("landing/img4.jpg", id: "img4") %>
-  </div>
-  <div class="text">
-    <h1>Egg & Flour</h1>
-    <h2>Like to cook?</h2>
-    <h3>Input your ingredients and cook with people around you!</h3>
-    <a class="btn btn-primary" href="#choose-ingredients">Start Cooking</a>
-  </div>
-</div>
-<div id="choose-ingredients">
-  <div id="category-circle">
-    <div class="text-content">
-        <h2>Select your ingredients and start Cooking.</h2>
-        <a  class="btn btn-primary" id="find-recipies">Find Recipe</a>
+<section>
+    <div class="landing bg-white">
+      <div class="images">
+        <%=  image_tag("landing/img1.jpg", id: "img1") %>
+        <%=  image_tag("landing/img2.jpg", id: "img2") %>
+        <%=  image_tag("landing/egg_img5.png", id: "img3") %>
+        <%=  image_tag("landing/img4.jpg", id: "img4") %>
       </div>
-    <div class="checkboxes">
+      <div class="text">
+        <h1>Egg & Flour</h1>
+        <h2>Like to cook?</h2>
+        <h3>Input your ingredients and cook with people around you!</h3>
+        <a class="btn btn-primary" href="#choose-ingredients">Start Cooking</a>
+      </div>
+    </div>
+</section>
 
-    </div>
-  </div>
+<section>
+<div class="container">
+  <h2 id="icons-header">How do we do it?</h2>
+  <div class="bottom-line"></div>
+ <div class="process">
+    <div class="landing-icons">
+     <%= image_tag "landing/landing_icon1.png", alt: "choose your basket!", class: "icons" %>
+     <h3>Pick your basket</h3>
+     <p>Choose the ingredients you have at home and want to cook with!</p>
+   </div>
+   <div class="landing-icons">
+     <%= image_tag "landing/whisk.png", alt: "alttext", class: "icons" %>
+     <h3>Whisking Magic</h3>
+     <p>Based on the ingredients you've chosen, we'll give you some recipes you can cook with other people around your area! </p>
+   </div>
+   <div class="landing-icons">
+     <%= image_tag "landing/spaghetti.png", alt: "alttext", class: "icons" %>
+     <h3>Make some pasta</h3>
+     <p>When we combine their eggs and your flour, you can make some great recipes together!</p>
+   </div>
+   <div class="landing-icons">
+     <%= image_tag "landing/dinner.png", alt: "alttext", class: "icons" %>
+     <h3>Cook a meal</h3>
+     <p>You've both chosen some of the same recipes and we've brought you together, cook a bomb meal!</p>
+   </div>
+ </div>
 </div>
-<%
-@ingredient_types.each_with_index do |ingredient, index|
-  @ingredient_types[index][:image] = asset_path(ingredient[:image])
-end
-%>
-<!-- Footer -->
-<div class="home-page-footer">
-  <div class="section-colums">
-    <div class="column">
-      <div class="footer-section">
-        <div class="title">About
+</section>
+
+<section>
+  <div id="choose-ingredients">
+    <div id="category-circle">
+      <div class="text-content">
+          <h2>Select your ingredients and start Cooking.</h2>
+          <a  class="btn btn-primary" id="find-recipies">Find Recipe</a>
         </div>
-        Something
-      </div>
-    </div>
-    <div class="flex-expander"></div>
-    <div class="column">
-       <div class="footer-section">
-        Follow us
+      <div class="checkboxes">
+
       </div>
     </div>
   </div>
-</div>
+<%
+  @ingredient_types.each_with_index do |ingredient, index|
+    @ingredient_types[index][:image] = asset_path(ingredient[:image])
+  end
+%>
+</section>
+<!-- Footer -->
+<section>
+  <div class="home-page-footer">
+    <div class="section-colums">
+      <div class="column">
+        <div class="footer-section">
+          <div class="title">About
+          </div>
+          Something
+        </div>
+      </div>
+      <div class="flex-expander"></div>
+      <div class="column">
+         <div class="footer-section">
+          Follow us
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <div id="ingredients_data" data-ingredients="<%= @ingredient_types.to_json %>"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

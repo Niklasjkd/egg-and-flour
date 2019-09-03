@@ -1,28 +1,58 @@
+<%= render 'shared/popover' %>
 
-<!-- <div class="container" id="user-dashboard-button"> -->
 <div class="container">
-  <%= render 'shared/dashboard' %>
-      <%#= form_for :meetups, url: "#" do |f| %>
-        <%#= f.hidden_field :requests, value: [] %>
-        <%#= f.submit "Meetup!", class: "btn btn-primary", id: "match_button" %>
-      <%# end %>
-  <div id="matched-recipes">
-    <div class="recipe-index-title"><h1>Matched Recipes</h1></div>
-      <div class="cards images card" id="matched-recipes-cards">
-          <% params[:recipes].uniq.each do |recipe| %>
-          <div class="card-img-top">
-            <div class="recipe">
-              <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
-            </div>
-            <div class="card-body">
-             <p><%= link_to "#{Recipe.find(Request.find(recipe).recipe_id).name}", recipe_path(recipe) %></p>
-            </div>
-        </div>
-        <% end %>
+  <% if(defined? params[:id]) %>
+  <% current_user = User.find_by(id: params[:id])%>
+<% end %>
+
+<div class="d-flex justify-content-around" id="profile">
+  <div class="" id="contact-info">
+    <div class="d-flex" id="image">
+      <% if current_user.image? %>
+      <%= image_tag(current_user.image, class: "dashboard-avatar")%>
+      <% else %>
+      <%= image_tag("http://morrisinsurancegroup.com/wp-content/uploads/2018/01/blank-avatar.png", class: "dashboard-avatar") %>
+      <% end %>
     </div>
-    <div>
-  <%= link_to "Meetup", request_meetups_url(request_id: params[:id]), method: :post  %>
-    </div>
+    <div class="mx-4" id="info">
+      <div class="recipe-index-title"><h3>Matched Recipes</h3></div>
+      <div id="matched-recipes">
+            <div class="cards images card" id="matched-recipes-cards">
+                <% params[:recipes].uniq.each do |recipe| %>
+                <div class="card-img-top">
+                  <div class="recipe">
+                    <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
+                  </div>
+                  <div class="card-body">
+                    <p><%=  Recipe.find(Request.find(recipe).recipe_id).name%></p>
+                  </div>
+              </div>
+              <% end %>
+          </div>
+      </div>
+  </div>
   </div>
 
+    <div class="d-flex flex-column" id="info-table">
+      <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+      <div><p>Member since <%= current_user.created_at.year %></p></div>
+      <div id="basic-info">
+        <h2>Bio</h2>
+        <p>
+        I traded Canada for Berlin when I was 25 because I had a desire to never have to return to " reality" after vacationing again. Germany proved to be a wonderful place to live.
 
+        For 15 years I worked in all the top luxury hotels as concierge / guest services and I learned many things that can help you have a fabulous experience. I'm here full time, not an absentee owner.
+
+        The desire to vacation never went away and Peter & I  travel frequently, I'm intrigued with how beautiful the world is . Plus my experience as a guest helps me find  ways to serve you better ~ I love what we do .
+
+        Sincerely, <%= current_user.first_name.capitalize %></p>
+        <div><p><i class="fas fa-home"></i> Lives in <%= current_user.address %></p></div>
+        <div class="col-lg-12 px-0">
+        <%= render 'shared/map' %>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <%= link_to "Meetup", request_meetups_url(request_id: params[:id]), method: :post  %>
+    </div>
