@@ -1,5 +1,21 @@
 var recipe_id = 0;
 
+function ingredientsUnpack(ingredientString) {
+  var unpacked_ingredients = [];
+  ingredientString.forEach(function(ingredient) {
+    const arr = ingredient.split(" ");
+    const amount = arr.shift();
+
+    var new_property = {
+      amount: amount,
+      ingredient: arr.join(" ")
+    }
+
+    unpacked_ingredients.push(new_property);
+  });
+  return unpacked_ingredients
+}
+
 function click(event) {
   recipe_id = event.target.dataset.id;
 
@@ -17,12 +33,17 @@ function click(event) {
     const category_ele = document.querySelector(".recipe-popover .category");
     category_ele.innerText = "Vegan";
 
-    const method_ele = document.querySelector(".recipe-popover .method");
-    method_ele.innerText = "Wait ten minutes.";
+    const description_ele = document.querySelector(".recipe-popover .ingredients");
+    const ingredients = ingredientsUnpack(data.recipe.ingredients);
+    console.log(ingredients);
+    ingredients.forEach(function(ingredient) {
+      const movie = `<div class="row">
+        <p class="col-10">${ingredient["ingredient"]}</p>
+        <p class="col-1">${ingredient["amount"]}</p>
+        </div>`;
+      description_ele.insertAdjacentHTML("beforeend", movie);
+    });
 
-    const description_ele = document.querySelector(".recipe-popover .description");
-    description_ele.innerText = data.recipe.ingredients;
-    console.log(data.recipe.ingredients);
 
     const popover = document.querySelector(".recipe-popover");
     popover.style.display = "inline";
