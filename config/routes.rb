@@ -7,7 +7,7 @@ Rails.application.routes.draw do
    resources :requests, only: [:index, :show] do
      resources :meetups, only: [:show, :create, :new]
   end
-
+  resources :meetups, only: [:update, :destroy]
   resources :profiles, only: [] do
     member do
       get "dashboard"

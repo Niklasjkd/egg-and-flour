@@ -41,8 +41,11 @@
     .btn-content {
       bottom: 0;
       position: absolute;
-      margin: 20px 40px;
-      right: 0;
+      margin: 20px 0;
+
+      .close-btn {
+        margin-right: 20px;
+      }
     }
   }
 

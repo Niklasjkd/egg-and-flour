@@ -7,14 +7,30 @@ class MeetupsController < ApplicationController
   def new
   end
 
+  def destroy
+    @meetup = Meetup.find(params[:meetup_id])
+    @meetup.destroy
+    redirect_to dashboard_profile_path(current_user)
+
+  end
+
+  def update
+    @meetup = Meetup.find(params[:meetup_id])
+    @meetup.update(meetup_params)
+
+    redirect_to dashboard_profile_path(current_user)
+  end
+
   def create
-    raise
-    requests = params[:meetups][:requests], params[:meetups][:recipes]
-    requests.each do |request, recipe|
-      new_meetup = Meetup.new(host_id: request, guest_id: request, recipe_id: recipe)
-      new_meetup.save!
-      raise
-    end
-    redirect_to recipe_request_meetup_path(params[:recipe_id], request, @user)
+    new_meetup = Meetup.new(host_id: current_user.id, guest_id: params[:request_id], status: "pending", recipes: params[:recipes].join)
+    new_meetup.save!
+
+    redirect_to request_path(id: params[:request_id], recipes: params[:recipes])
+  end
+
+  private
+
+  def meetup_params
+    params.permit(:status)
   end
 end

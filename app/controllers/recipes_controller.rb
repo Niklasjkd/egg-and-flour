@@ -2,7 +2,6 @@ class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :create_user_ingredients]
 
   def index
-    # @recipes = [Recipe.find_by(name: "Spanish tortilla")]
     match
     @combined_ingredients
   end
@@ -20,16 +19,12 @@ class RecipesController < ApplicationController
       recipe.requests.create(user: current_user, host: false)
       selected_recipes << recipe
     end
-    # raise
+
     redirect_to requests_path(selected_recipes: selected_recipes)
   end
 
 
   private
-
-  # def set_recipe
-
-  # end
 
   def recipes_params
     params.require(:recipes).permit(:id)
@@ -55,12 +50,12 @@ class RecipesController < ApplicationController
     ingredients_by_user
     UserIngredient.where(user_id: current_user).destroy_all
     @ingredients = params[:ingredients].split
+
     create_user_ingredients
     @combined_ingredients = []
     @ingredients_by_user.each do |user_ingredients|
-      @combined_ingredients << (@ingredients.uniq + user_ingredients[:ingredients].uniq).uniq
+      @combined_ingredients << (@ingredients.uniq + user_ingredients[:ingredients].uniq).uniq unless user_ingredients[:ingredients].empty?
     end
-
   end
 
   def create_user_ingredients
