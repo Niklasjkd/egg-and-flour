@@ -15,12 +15,7 @@ const initDisplay = () => {
           <img src="${r.image_url}" alt="">
           </div>
           <div class="card-body" data-id="${r.recipe_id}">
-          <div class="row">
           <p data-id="${r.recipe_id}">${r.title}</p>
-          </div>
-          <div class="row">
-          <p>${r.social_rank}</p>
-          </div>
           </div>
           </div>
           </div>`;
