@@ -17,6 +17,7 @@ class RequestsController < ApplicationController
         end
       end
       @matches = @matches.flatten.uniq
+
       @markersUser = @matches.map do |m|
       user = User.find_by(id: m.user_id)
       {
@@ -26,8 +27,8 @@ class RequestsController < ApplicationController
         user: user.id,
         current_user: current_user.id
       }
-      local_marker
       end
+      local_marker
     end
   end
 
