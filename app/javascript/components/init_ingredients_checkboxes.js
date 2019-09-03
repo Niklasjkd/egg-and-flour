@@ -107,6 +107,6 @@ function initIngredients() {
     positionIngredients(data_);
     setEventListener();
   }
-}
+};
 
 export { initIngredients };

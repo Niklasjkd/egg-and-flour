@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
       {
         lat: user.latitude,
         lng: user.longitude,
-        infoWindow: render_to_string(partial: "info_window_map", locals: { name: user.first_name + " " + user.last_name, place_type: "Meetup" }),
+        infoWindow: render_to_string(partial: "info_window_map", locals: { name: user.first_name, place_type: "Meetup", image: user.image }),
         user: user.id,
         current_user: current_user.id
       }
@@ -33,13 +33,14 @@ class RequestsController < ApplicationController
     @markerLocal = {
       lat: local_user.latitude,
       lng: local_user.longitude,
-      infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!" }),
+      infoWindow: render_to_string(partial: "info_window_map", locals: { name: "You", place_type: "This is your location!", image: local_user.image }),
       user: local_user.id,
       current_user: current_user.id
     }
     end
 
     def show
+
       @request = Request.find params[:id]
       @meetup = Meetup.new
     end
