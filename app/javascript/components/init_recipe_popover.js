@@ -1,4 +1,6 @@
 var recipe_id = 0;
+var image_url = "";
+var title = "";
 
 function ingredientsUnpack(ingredientString) {
   var unpacked_ingredients = [];
@@ -21,23 +23,24 @@ function click(event) {
   fetch(`https://www.food2fork.com/api/get?key=b9c1717fd230b07dbc4fab0db260def9&rId=${recipe_id}`)
   .then(response => response.json())
   .then((data) => {
-    console.log(data);
 
     const image_ele = document.querySelector(".recipe-popover .image");
-    image_ele.src = data.recipe.image_url;
+    image_url =  data.recipe.image_url;
+    image_ele.src = image_url;
 
     const title_ele = document.querySelector(".recipe-popover .header");
-    title_ele.innerText = data.recipe.title;
+    title = data.recipe.title;
+    title_ele.innerText = title;
 
     const category_ele = document.querySelector(".recipe-popover .category");
     category_ele.innerText = "Vegan";
 
     const description_ele = document.querySelector(".recipe-popover .ingredients");
     const ingredients = ingredientsUnpack(data.recipe.ingredients);
-    console.log(ingredients);
+    description_ele.innerText = "";
     ingredients.forEach(function(ingredient) {
       const movie = `<div class="row">
-        <p class="col-10">${ingredient["ingredient"]}</p>
+        <p class="col-9">${ingredient["ingredient"]}</p>
         <p class="col-1">${ingredient["amount"]}</p>
         </div>`;
       description_ele.insertAdjacentHTML("beforeend", movie);
@@ -56,13 +59,21 @@ function clickClose() {
 
 function clickSelect() {
   const recipeCard = document.getElementById(`recipe${recipe_id}`);
+  const requests_recipes = document.querySelector('#recipes_recipes');
+  const recipes_arr = JSON.parse(requests_recipes.value);
+  recipes_arr.push({
+    "id" : recipe_id,
+    "image" :image_url,
+    "title": title
+  })
+
+  requests_recipes.value = JSON.stringify(recipes_arr);
   recipeCard.classList.add("highlight");
   clickClose();
 }
 
 function initClickForPopover() {
   const btnClose = document.querySelector(".recipe-popover .close-btn");
-  console.log(btnClose);
 
   if (btnClose) {
     btnClose.addEventListener("click", clickClose);
