@@ -16,11 +16,21 @@ body {
 
 #display-recipes {
   margin-bottom: 60px;
-}
 
-.card {
-  border: 0px;
-  box-shadow: unset !important;
+  .card {
+    border: 0px;
+    box-shadow: unset !important;
+  }
+
+  .highlight {
+    border: solid #3891A6 4px;
+    border-radius: 11px;
+
+    img {
+      height: 192px !important;
+    }
+  }
+
 }
 
 .cards {
@@ -32,6 +42,11 @@ body {
   .recipe {
     width: auto;
 
+    .card-body {
+      padding: 0px;
+      box-shadow: unset !important;
+    }
+
     img {
       width: 100%;
       height: 200px;
@@ -39,30 +54,11 @@ body {
       border-radius: 6px;
     }
   }
-}
-
-.card-body {
-  padding: 0px;
-  box-shadow: unset !important;
 
   p {
-    margin: 12px 0 24px 0;
-  }
-}
-.highlight {
-  border: solid #3891A6 4px;
-  border-radius: 11px;
-
-  img {
-    height: 192px !important;
-  }
-}
-
-a {
-  color: black;
-  &:hover {
-    text-decoration: none;
-    color: $green;
+    &:hover {
+      color: $green;
+    }
   }
 }
 
