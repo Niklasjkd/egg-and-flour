@@ -33,7 +33,6 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @request = Request.find params[:id]
     @meetup = Meetup.new
 
     user = User.find_by(id: params[:id])
