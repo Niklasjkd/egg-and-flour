@@ -3,7 +3,7 @@ const displayRecipes = document.querySelector("#display-recipes");
 
 const initDisplay = () => {
   results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=26f7b22fb219b5a30816b2f68c726786&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=2a797d85569544f3e47353eae0670c5a&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       recipes.slice(0, 5).forEach((r) => {
@@ -15,7 +15,12 @@ const initDisplay = () => {
           <img src="${r.image_url}" alt="">
           </div>
           <div class="card-body" data-id="${r.recipe_id}">
+          <div class="row">
           <p data-id="${r.recipe_id}">${r.title}</p>
+          </div>
+          <div class="row">
+          <p>${r.social_rank}</p>
+          </div>
           </div>
           </div>
           </div>`;
