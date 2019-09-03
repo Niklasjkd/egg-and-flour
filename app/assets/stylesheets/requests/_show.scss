@@ -3,11 +3,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(100%, 1fr));
     grid-gap: 30px;
+    border: 0px;
+    text-align: center;
   }
   .recipe-index-title {
     text-align: center;
   }
-  
+
   #match_button {
     margin-left: 500px;
     margin-bottom: 50px;
