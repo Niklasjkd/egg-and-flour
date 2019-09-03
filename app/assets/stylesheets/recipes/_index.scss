@@ -1,1 +1,88 @@
-@import "home";
+h1 {
+  font-family: "Montserrat";
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+body {
+  font-family: "Roboto";
+  font-weight: 300;
+  background-color: white;
+}
+.recipe-index-title {
+  text-align: center;
+}
+
+#display-recipes {
+  margin-bottom: 60px;
+}
+
+.card {
+  border: 0px;
+  box-shadow: unset !important;
+}
+
+.cards {
+  flex-direction: row;
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+
+  .recipe {
+    width: auto;
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+  }
+}
+
+.card-body {
+  padding: 0px;
+  box-shadow: unset !important;
+
+  p {
+    margin: 12px 0 24px 0;
+  }
+}
+.highlight {
+  border: solid #3891A6 4px;
+  border-radius: 11px;
+
+  img {
+    height: 192px !important;
+  }
+}
+
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: $green;
+  }
+}
+
+.hide-ingredient {
+  display: none;
+}
+
+.sticky-bar {
+  padding: 10px;
+  background-color: white;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+
+  #match_button {
+    color: #fff;
+    background: $green;
+    border-radius: 10px;
+    display: inline-block;
+    height: 40px;
+    text-align: center;
+    margin: 0 16px;
+  }
+}

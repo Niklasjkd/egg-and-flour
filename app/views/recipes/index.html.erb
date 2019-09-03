@@ -1,22 +1,22 @@
 <div class="recipe-popover">
   <div class="container">
-  <div class="recipe-data d-flex">
-<img class="image" src="https://www.drdavidludwig.com/wp-content/uploads/2017/01/1-RIS_6IbCLYv1X3bzYW1lmA.jpeg" alt="">
-  <div class="info flex-grow-1">
-    <div><h1 class="header">TITLE</h1></div>
-    <h4 class="category">CATEGORY</h4>
-    <div><p class="method">METHOD</p></div>
-    <div>
-      <h5 class="description">INGREDIENTS</h5>
-    </div>
-    <div class="btn-content">
-      <button class="btn btn-secondary close-btn">Close</button>
-      <button class="btn btn-primary select-btn">Select</button>
+    <div class="recipe-data d-flex">
+      <img class="image" src="https://www.drdavidludwig.com/wp-content/uploads/2017/01/1-RIS_6IbCLYv1X3bzYW1lmA.jpeg" alt="">
+      <div class="info flex-grow-1">
+        <div><h1 class="header">TITLE</h1></div>
+        <h4 class="category">CATEGORY</h4>
+        <div><p>Ingredients</p></div>
+        <div style="overflow:scroll; height:170px;">
+          <h5 class="ingredients"></h5>
+        </div>
+        <div class="btn-content">
+          <button class="btn btn-secondary close-btn">Close</button>
+          <button class="btn btn-primary select-btn">Select</button>
+        </div>
+      </div>
+
     </div>
   </div>
-
-</div>
-</div>
 </div>
 
 <div>
@@ -36,18 +36,18 @@
 
 <div class="sticky-bar">
   <div class="container">
-  <% if current_user %>
+    <% if current_user %>
     <%= form_for :recipes, url: recipes_path(recipe: params[:requests]), method: "post", :html => { class: "d-flex justify-content-end" } do |f| %>
-      <%= f.hidden_field :ingredients, value: params[:ingredients] %>
-      <%= f.hidden_field :recipes, value: [] %>
-      <%= f.submit class: "btn btn-primary", id: "match_button" %>
-      <% end %>
+    <%= f.hidden_field :ingredients, value: params[:ingredients] %>
+    <%= f.hidden_field :recipes, value: [] %>
+    <%= f.submit class: "btn btn-primary", id: "match_button" %>
+    <% end %>
     <% else %>
-      <%= form_for :recipes, url: new_user_session_path, method: :post, :html => { class: "d-flex justify-content-end" } do |f| %>
-      <%= f.hidden_field :ingredients, value: params[:ingredients] %>
-      <%= f.hidden_field :recipes, value: [] %>
-      <%= f.submit class: "btn btn-primary", id: "match_button" %>
-      <% end %>
-  <% end %>
+    <%= form_for :recipes, url: new_user_session_path, method: :post, :html => { class: "d-flex justify-content-end" } do |f| %>
+    <%= f.hidden_field :ingredients, value: params[:ingredients] %>
+    <%= f.hidden_field :recipes, value: [] %>
+    <%= f.submit class: "btn btn-primary", id: "match_button" %>
+    <% end %>
+    <% end %>
   </div>
 </div>
