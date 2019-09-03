@@ -20,8 +20,8 @@
         </div>
         <% end %>
     </div>
-    <div >
-      <button class="btn btn-primary" id="match_button">Meetup!</button>
+    <div>
+  <%= link_to "Meetup", request_meetups_url(request_id: params[:id]), method: :post  %>
     </div>
   </div>
 
