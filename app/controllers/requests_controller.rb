@@ -17,7 +17,6 @@ class RequestsController < ApplicationController
         end
       end
       @matches = @matches.flatten.uniq
-
       @markersUser = @matches.map do |m|
       user = User.find_by(id: m.user_id)
       {
@@ -27,8 +26,31 @@ class RequestsController < ApplicationController
         user: user.id,
         current_user: current_user.id
       }
+      local_marker
+      end
     end
+  end
 
+  def show
+    @request = Request.find params[:id]
+    @meetup = Meetup.new
+
+    user = User.find_by(id: params[:id])
+    @markersUser = []
+    match_user = {
+        lat: user.latitude,
+        lng: user.longitude,
+        infoWindow: render_to_string(partial: "info_window_map", locals: { name: user.first_name, place_type: "Meetup", image: user.image }),
+        user: user.id,
+        current_user: current_user.id
+      }
+      @markersUser << match_user
+    local_marker
+  end
+
+  private
+
+  def local_marker
     local_user = User.find_by(id: @user.id)
     @markerLocal = {
       lat: local_user.latitude,
@@ -37,12 +59,5 @@ class RequestsController < ApplicationController
       user: local_user.id,
       current_user: current_user.id
     }
-    end
-
-    def show
-
-      @request = Request.find params[:id]
-      @meetup = Meetup.new
-    end
   end
 end

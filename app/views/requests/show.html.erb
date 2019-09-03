@@ -15,7 +15,7 @@
               <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
             </div>
             <div class="card-body">
-             <p><%= link_to "#{Recipe.find(Request.find(recipe).recipe_id).name}", recipe_path(recipe) %></p>
+             <p><%#= link_to "#{Recipe.find(Request.find(recipe).recipe_id).name}", recipe_path(recipe) %></p>
             </div>
         </div>
         <% end %>
