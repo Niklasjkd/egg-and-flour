@@ -52,7 +52,13 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
+  <div>
+    <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
 
-  <%= link_to "Meetup", request_meetups_url(request_id: params[:id]), method: :post  %>
-    </div>
+      <p>Meetup requested</p>
+    <% else %>
+      <%= link_to "Meetup", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post  %>
+    <% end %>
+  </div>
+</div>
