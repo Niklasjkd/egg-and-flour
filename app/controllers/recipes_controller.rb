@@ -37,10 +37,10 @@ class RecipesController < ApplicationController
 
   def ingredients_by_user
     users = User.all
-    UserIngredient.where(['created_at < ?', 2.days.ago]).destroy_all
+    # UserIngredient.where(['created_at < ?', 2.days.ago]).destroy_all
     ingredients_by_user = []
     users.each do |user|
-      next unless user == current_user
+      next unless user != current_user
         ingredients_by_user << {
           user_id: user.id,
           ingredients: UserIngredient.where(user_id: user.id).map do |ingredient|
@@ -58,8 +58,9 @@ class RecipesController < ApplicationController
     create_user_ingredients
     @combined_ingredients = []
     @ingredients_by_user.each do |user_ingredients|
-      @combined_ingredients << (@ingredients.uniq + user_ingredients[:ingredients].uniq)
+      @combined_ingredients << (@ingredients.uniq + user_ingredients[:ingredients].uniq).uniq
     end
+
   end
 
   def create_user_ingredients
