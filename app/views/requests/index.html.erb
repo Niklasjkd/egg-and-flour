@@ -1,33 +1,36 @@
-
 <div class="main-container">
-  <div class="cards col-lg-3 col-md-2 col-sm-12" id="recipe-index-cards">
+  <div class="request-cards col-lg-6 col-md-5 col-sm-12" id="recipe-index-cards">
     <% @user = [] %>
     <% @matches.flatten.uniq.each do |m, index| %>
-      <% @user << m.user_id%>
+    <% p @matches.first.recipe %>
+    <% @user << m.user_id%>
     <% end %>
-    <% @user.uniq.each do |user| %>
-      <%= link_to request_path(User.find_by(id: user), recipes: @matches.select {|r| r = user}) do %>
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div>
-            <%= image_tag User.find_by(id: user).image, class: "card-img"%>
-            </div>
-            <div>
-              <div class="card-body">
-                <h5 class="card-title"><%= User.find_by(id: user).first_name%></h5>
-                <p class="card-text"><small class="text-muted"><%"Matched recipes:"  %></small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+
+    <% @user.uniq.each do |user_id| %>
+    <% user = User.find_by(id: user_id) %>
+    <% matches = @matches.select {|r| r = user_id} %>
+    <% matches_recipes = matches.map{|r| r.recipe.name}.uniq %>
+    <% last_match_recipe = matches_recipes.pop() %>
+    <%= link_to request_path(user, recipes: matches), class: "recipe-link" do %>
+    <div class="request-card mb-3 d-flex">
+      <div class="image">
+        <%= image_tag user.image, class: "card-img"%>
+      </div>
+      <div class="card-body flex-grow-1">
+        <h5 class="title"><%= user.first_name%> <%= user.last_name%></h5>
+        <h6 class="address"><%= user.address %></h6>
+        <p class="bio">Bio: "Ich bin sehr cool."</p>
+        <% if matches_recipes.size == 0 %>
+        <p class="recipes">Matches: <%= "#{last_match_recipe}"%></p>
+        <% else %>
+        <p class="recipes">Matches: <%= "#{matches_recipes.join(', ')} and #{last_match_recipe}"%></p>
+        <% end %>
+      </div>
     </div>
-    <div class="col-lg-9 col-md-10">
-     <%= render 'shared/map' %>
-    </div>
+  </div>
+  <% end %>
+  <% end %>
+  <div class="col-lg-6 col-md-7 px-0">
+   <%= render 'shared/map' %>
+ </div>
 </div>
-
-
-
-

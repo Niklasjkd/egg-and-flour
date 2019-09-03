@@ -1,13 +1,10 @@
-#recipe-index-cards {
-  display: flex;
-  flex-direction: column;
-}
-
 .main-container {
   display: flex;
   margin-top: 65px;
-}
 
+  #recipe-index-cards {
+  margin-top: 10px;
+}
 #map {
   width: 100%;
   height: calc(100vh - 66px);
@@ -15,35 +12,5 @@
   top: 0;
 }
 
-#avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%
-}
 
-.card {
-  border-radius: 1px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.card-body {
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  object-fit: cover;
-}
-
-.card-img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-postion: 50% 50%;
 }

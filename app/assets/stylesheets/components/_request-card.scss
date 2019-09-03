@@ -1,0 +1,60 @@
+.recipe-link {
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .request-card {
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+    display: flex;
+    -webkit-transition: 0.2s; /* Safari prior 6.1 */
+    transition: 0.2s;
+
+    .card-body {
+      object-fit: cover;
+      padding: 5px;
+      text-decoration: none;
+
+      .title {
+        font-weight: 412;
+        margin-bottom: 0px;
+        color: black;
+
+        &:hover {
+          color: #3891A6;
+        }
+      }
+
+      .address {
+        color: #5b5b5b;
+      }
+
+      .bio {
+        margin-bottom: 7px;
+        color: grey;
+        text-decoration: none;
+      }
+
+      .recipes {
+        color: #5b5b5b;
+        margin: 0;
+      }
+    }
+
+    .card-img {
+      height: 160px;
+      width: 160px;
+      margin: 5px;
+      object-fit: cover;
+      object-postion: 50% 50%;
+      border-radius: 6px;
+    }
+
+    &:hover {
+      -webkit-box-shadow: 0px 0px 20px -14px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 0px 20px -14px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 20px -14px rgba(0,0,0,0.75);
+    }
+  }
+}
