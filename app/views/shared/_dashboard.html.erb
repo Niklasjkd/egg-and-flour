@@ -24,11 +24,11 @@
 
                 <% @outgoing.each do |meetup| %>
                   <% if meetup.status == "pending" %>
-                    <div class="card-img-top">
+                    <div class="card-img-top meetup-column">
                       <div class="recipe">
                         <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
                       </div>
-                      <div class="card-body">
+                      <div class="card-body meetup-column">
                         <%= "Status: #{meetup.status.capitalize}" %>
                       </div>
                         <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
@@ -37,7 +37,7 @@
                 <% end %>
                 <% @incoming.each do |meetup| %>
                  <% if meetup.status == "pending" %>
-                    <div class="card-img-top">
+                    <div class="card-img-top meetup-column">
                       <div class="recipe">
                         <%="You got a request from #{User.find(meetup.host_id).first_name.capitalize}"  %>
                       </div>
@@ -50,7 +50,7 @@
                   <% end %>
                 <% end %>
               <% @past.each do |meetup| %>
-                <div class="card-img-top">
+                <div class="card-img-top meetup-column">
                   <div class="recipe">
                     <%= meetup.recipes %>
                   </div>
