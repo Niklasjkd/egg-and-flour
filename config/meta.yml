@@ -1,0 +1,5 @@
+meta_product_name: "Eggs&Flour"
+meta_title: "Eggs&Flour - Find people around you to cook with"
+meta_description: "Choose the ingredients you have at home and want to cook with! Based on the ingredients you've chosen, we'll give you some recipes you can cook with other people around your area!"
+meta_image: "eggs_and_flour.jpeg" # should exist in `app/assets/images/`
+
