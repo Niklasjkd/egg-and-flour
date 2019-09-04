@@ -3,17 +3,15 @@ const displayRecipes = document.querySelector("#display-recipes");
 
 const initDisplay = () => {
   results.forEach((result) => {
-
-
-
-
-    fetch(`https://www.food2fork.com/api/search?key=93488d5bf3c7be216c567cbfd6786429&q=${result.innerText}`)
-
-
-
+    fetch(`https://www.food2fork.com/api/search?key=26f7b22fb219b5a30816b2f68c726786&q=${result.innerText}`)
 
     .then(response => response.json())
     .then(({recipes}) => {
+      console.log(recipes)
+      if (recipes == null || recipes === false || recipes.length == 0) {
+        viewIfNoRecipesFound()
+      }
+
       recipes.slice(0, 10).forEach((r) => {
         if (r.recipe_id != null) {
           const recipesView =
@@ -30,12 +28,19 @@ const initDisplay = () => {
           displayRecipes.insertAdjacentHTML("beforeend", recipesView);
         };
       });
-
     })
     .then(() => [ initHighlight(), initClickForPopover()]);
-
   });
 };
+
+function viewIfNoRecipesFound() {
+  const mainContainer = document.getElementById("main-container");
+  const noRecipesView = `<div class="my-5" style="text-align: center">
+  <h3>Sorry, your ingredients are very exotic!<br>We could not find any recipes.</h3>
+  <a class="btn btn-primary" href="/#choose-ingredients">Let me do it again!</a>
+  </div>`;
+  mainContainer.insertAdjacentHTML("beforeend", noRecipesView);
+}
 
 const initHighlight = () => {
   const recipes = document.querySelectorAll(".recipe")
@@ -43,14 +48,14 @@ const initHighlight = () => {
   let recipeArray = [];
   recipes.forEach(recipe => {
     recipe.addEventListener('click', (event) => {
-        event.preventDefault()
-        event.currentTarget.classList.toggle("highlight")
-        const recipesA = [...recipes]
-        const highlightedRecipes = recipesA.filter(recipe => recipe.classList.contains("highlight"));
+      event.preventDefault()
+      event.currentTarget.classList.toggle("highlight")
+      const recipesA = [...recipes]
+      const highlightedRecipes = recipesA.filter(recipe => recipe.classList.contains("highlight"));
 
-        recipeArray = highlightedRecipes.map(({dataset: {id, image, title}}) => {
-          return {id, image, title }
-        });
+      recipeArray = highlightedRecipes.map(({dataset: {id, image, title}}) => {
+        return {id, image, title }
+      });
 
       requests_recipes.value = JSON.stringify(recipeArray);
       console.log(recipeArray)
