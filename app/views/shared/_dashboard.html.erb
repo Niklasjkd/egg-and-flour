@@ -26,7 +26,7 @@
                   <% if meetup.status == "pending" %>
                     <div class="card-img-top">
                       <div class="recipe">
-                        <%="You send a request to: #{User.find(meetup.guest_id).first_name }"%>
+                        <%="You sent a request to: #{User.find(meetup.guest_id).first_name }"%>
                       </div>
                       <div class="card-body">
                         <%= "Status: #{meetup.status}" %>
