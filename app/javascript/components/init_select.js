@@ -6,6 +6,7 @@ const initDisplay = () => {
 
 
 
+
     fetch(`https://www.food2fork.com/api/search?key=93488d5bf3c7be216c567cbfd6786429&q=${result.innerText}`)
 
 
@@ -13,7 +14,7 @@ const initDisplay = () => {
 
     .then(response => response.json())
     .then(({recipes}) => {
-      recipes.slice(0, 5).forEach((r) => {
+      recipes.slice(0, 10).forEach((r) => {
         if (r.recipe_id != null) {
           const recipesView =
           `<div class="images card">
@@ -53,13 +54,18 @@ const initHighlight = () => {
 
       requests_recipes.value = JSON.stringify(recipeArray);
       console.log(recipeArray)
+
+      updateBtnRecipeArr(recipeArray)
     })
   });
 };
+
 // QUERY THE input (look at the id)
 // update value of input with recipeArray
 
 export { initDisplay };
+
+import { updateBtnRecipeArr } from '../components/init_recipe_btn';
 
 import { initClickForPopover } from '../components/init_recipe_popover';
 initClickForPopover();

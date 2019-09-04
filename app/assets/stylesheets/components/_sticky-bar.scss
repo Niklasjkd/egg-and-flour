@@ -4,4 +4,16 @@
   bottom: 0;
   position: fixed;
   width: 100%;
+
+  .text-container {
+    overflow-y: scroll;
+    width: 1004px;
+    max-height: 80px;
+  }
+
+  .display {
+    color: gray;
+    margin: 7px 15px;
+    text-align: end;
+  }
 }
