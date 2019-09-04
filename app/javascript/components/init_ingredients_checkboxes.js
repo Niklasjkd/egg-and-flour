@@ -21,13 +21,13 @@ function positionIngredients(data_) {
     inhalt += "<img class=\"category-icon\" src="+ item_data.image +" alt=\"\">"
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
     inhalt += "</span> <span class=\"caret\"><h5>"+ item_data.title +"</h5></button>";
-    inhalt += "<div  class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div  style=\"border: 0.8px solid;\" class=\"dropdown-menu ingredients-dropdown\">";
     inhalt += "<div class=\"input-group d-flex\">";
     inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\""+ item_data.title +" ingredients\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
 
     inhalt += "</div>";
 
-    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\">";
+    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\" id=\"ingredients-checkbox-list\">";
     ingredients.forEach(function(ingredient) {
       inhalt += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
     });
@@ -64,12 +64,12 @@ function checkbox_click(event) {
 }
 
 function updateDisplayIngredients() {
-  const ingredientsLabel = document.querySelector(".display-ingredients");
+  const ingredientsLabel = document.querySelector(".display");
 
   if (clicked_ingredients.length == 1) {
     ingredientsLabel.innerText = `${clicked_ingredients.slice(-1)}`;
 
-  } else if (clicked_ingredients.length == 1) {
+  } else if (clicked_ingredients.length == 0) {
     ingredientsLabel.innerText = ``;
 
   } else {
@@ -85,7 +85,6 @@ function updateBtnText(btn, ingredients_count) {
 
 function updateBtn() {
   const btn = document.getElementById("find-recipies");
-  console.log(clicked_ingredients);
   const ingredients_count = clicked_ingredients.length;
 
   if (ingredients_count >= 2) {
