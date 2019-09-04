@@ -7,8 +7,10 @@ const initDisplay = () => {
 
     .then(response => response.json())
     .then(({recipes}) => {
+      deactivateSpinner()
+
       console.log(recipes)
-      if (recipes == null || recipes === false || recipes.length == 0) {
+      if (recipes == null || recipes === false || recipes.length== 0) {
         viewIfNoRecipesFound()
       }
 
@@ -32,6 +34,12 @@ const initDisplay = () => {
     .then(() => [ initHighlight(), initClickForPopover()]);
   });
 };
+
+function deactivateSpinner() {
+  const spinner = document.getElementById("spinner");
+  const parentContainer = spinner.parentElement;
+  parentContainer.removeChild(spinner);
+}
 
 function viewIfNoRecipesFound() {
   const mainContainer = document.getElementById("main-container");
