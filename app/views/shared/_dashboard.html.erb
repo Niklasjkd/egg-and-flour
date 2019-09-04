@@ -14,7 +14,7 @@
     <div class="mx-4" id="info">
       <h2>Contact me</h2>
       <div><%= current_user.email %></div>
-      <div>004917290903217</div>
+      <div>+4917290903217</div>
       <div class="recipe-index-title"><h3>Meetups</h3></div>
       <div id="matched-recipes">
             <div class="cards images card" id="matched-recipes-cards">
@@ -26,12 +26,12 @@
                   <% if meetup.status == "pending" %>
                     <div class="card-img-top">
                       <div class="recipe">
-                        <%="You send a request to: #{User.find(meetup.guest_id).first_name }"%>
+                        <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
                       </div>
                       <div class="card-body">
-                        <%= "Status: #{meetup.status}" %>
-                        <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete %>
+                        <%= "Status: #{meetup.status.capitalize}" %>
                       </div>
+                        <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
                     </div>
                   <% end %>
                 <% end %>
@@ -39,13 +39,13 @@
                  <% if meetup.status == "pending" %>
                     <div class="card-img-top">
                       <div class="recipe">
-                        <%="You got a request from: #{User.find(meetup.host_id).first_name}"  %>
+                        <%="You got a request from #{User.find(meetup.host_id).first_name.capitalize}"  %>
                       </div>
                       <div class="card-body">
-                        <%= "Status: #{meetup.status } " %>
-                        <%= link_to "Decline", meetup_path(status: "declined",  meetup_id: meetup.id), method: :patch %>
-                        <%= link_to "Accept", meetup_path(status: "accepted", meetup_id: meetup.id), method: :patch %>
+                        <%= "Status: #{meetup.status} " %>
                       </div>
+                        <%= link_to "Decline", meetup_path(status: "declined",  meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
+                        <%= link_to "Accept", meetup_path(status: "accepted", meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
                     </div>
                   <% end %>
                 <% end %>
