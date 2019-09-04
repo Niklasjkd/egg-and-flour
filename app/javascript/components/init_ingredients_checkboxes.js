@@ -63,29 +63,53 @@ function checkbox_click(event) {
   updateBtn()
 }
 
+function updateDisplayIngredients() {
+  const ingredientsLabel = document.querySelector(".display-ingredients");
+
+  if (clicked_ingredients.length == 1) {
+    ingredientsLabel.innerText = `${clicked_ingredients.slice(-1)}`;
+
+  } else if (clicked_ingredients.length == 1) {
+    ingredientsLabel.innerText = ``;
+
+  } else {
+    ingredientsLabel.innerText = `${clicked_ingredients.slice(0,-1).join(', ')} and ${clicked_ingredients.slice(-1)}`;
+  }
+}
+
 function updateBtnText(btn, ingredients_count) {
   const btnText = btn.innerText.split(' ');
   btnText.pop();
-  btn.innerText = btnText.join(' ') + " " + ingredients_count;
+  btn.innerText = btnText.join(' ') + " (" + ingredients_count + "/2)";
 }
 
 function updateBtn() {
   const btn = document.getElementById("find-recipies");
+  console.log(clicked_ingredients);
   const ingredients_count = clicked_ingredients.length;
 
-  // if (ingredients_count >= 5) {
+  if (ingredients_count >= 2) {
     btn.classList.remove("disabled");
-  // } else {
-  //   btn.classList.add("disabled");
-  // }
+  } else {
+    btn.classList.add("disabled");
+  }
   updateBtnText(btn, ingredients_count);
+
+  if (ingredients_count == 0) {
+    $(".sticky-bar").slideUp();
+
+  } else if (ingredients_count == 1) {
+    $(".sticky-bar").slideDown();
+  }
+
+  updateDisplayIngredients()
 }
 
 function btn_click(event) {
-  // if (clicked_ingredients.length >= 5) {
+  if (clicked_ingredients.length >= 2) {
     const link = `/recipes?ingredients=${clicked_ingredients.join('+')}`;
     window.location = link;
-  // }
+  }
 }
 
 function setEventListener() {
