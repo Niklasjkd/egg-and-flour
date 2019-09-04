@@ -6,7 +6,7 @@ const initDisplay = () => {
 
 
 
-    fetch(`https://www.food2fork.com/api/search?key=04195dc7d0d7e88dde4f5d0b899b1724&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=93488d5bf3c7be216c567cbfd6786429&q=${result.innerText}`)
 
 
 

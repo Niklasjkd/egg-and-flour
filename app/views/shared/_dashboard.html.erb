@@ -26,15 +26,8 @@
                   <% if meetup.status == "pending" %>
                     <div class="card-img-top">
                       <div class="recipe">
-<<<<<<< HEAD
-                        <%="You sent a request to: #{User.find(meetup.guest_id).first_name }"%>
-=======
-<<<<<<< HEAD
-                        <%="You sent a request to: #{User.find(meetup.guest_id).first_name }"%>
-=======
+
                         <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
->>>>>>> 6d1db98d0a9682bb1ae55dc85e73e18a1d5f9d7e
->>>>>>> master
                       </div>
                       <div class="card-body">
                         <%= "Status: #{meetup.status}" %>
@@ -66,7 +59,11 @@
                     <%= "Status: #{meetup.status}" %>
                     <%= link_to "Delete", meetup_path(meetup_id: meetup.id), method: :delete %>
                     <% if meetup.status == "accepted" %>
-                    <%= link_to "Write review",  %>
+                      <% if meetup.guest_id == current_user.id %>
+                        <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.host_id) %>
+                      <% else %>
+                        <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.guest_id) %>
+                        <% end %>
                     <% end %>
                   </div>
                 </div>
