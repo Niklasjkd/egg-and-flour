@@ -35,7 +35,7 @@
   <% else %>
   <div class="my-5" style="text-align: center">
     <h3>Sorry, your taste is very exotic!<br>You don't have any matches.</h3>
-    <%=link_to "Let me do it again!", root_path, class: "btn btn-primary" %>
+    <%=link_to "Let me do it again!", root_path(:anchor => "choose-ingredients"), class: "btn btn-primary" %>
     </div>
   <% end %>
 
