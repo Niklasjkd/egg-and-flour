@@ -56,3 +56,32 @@
     }
   }
 }
+
+.request-button {
+    color: white;
+    background-color: $green!important;
+    box-shadow: 0 0 0 0px !important;
+    justify-content: center;
+    display: flex;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+#matched-recipes {
+  border: dashed 1px;
+  padding: 27px;
+  box-shadow: 1px 3px 5px grey;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+

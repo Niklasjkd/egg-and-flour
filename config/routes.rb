@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :recipes, only: [:index, :create]
+  resources :reviews, only: [:create, :new, :destroy]
 
    resources :requests, only: [:index, :show] do
      resources :meetups, only: [:show, :create, :new]
+
   end
   resources :meetups, only: [:update, :destroy]
   resources :profiles, only: [] do

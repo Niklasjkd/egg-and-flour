@@ -57,6 +57,9 @@
                   <div class="card-body">
                     <%= "Status: #{meetup.status}" %>
                     <%= link_to "Delete", meetup_path(meetup_id: meetup.id), method: :delete %>
+                    <% if meetup.status == "accepted" %>
+                    <%= link_to "Write review",  %>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
