@@ -92,5 +92,27 @@
       </div>
     </div>
   </div>
+  <div class="mx-4" id="info">
+    <div class="recipe-index-title"><h3>Reviews</h3></div>
+        <div id="matched-recipes">
+        <% Review.where(user_id: current_user.id).each do |review| %>
+          <div class="cards images card" id="matched-recipes-cards">
+            <div >
+              <% if current_user.id == Meetup.find(review.meetup_id).host_id %>
+                <%= "From: #{User.find(Meetup.find(review.meetup_id).guest_id).first_name}"%>
+              <% else %>
+                <%= "From: #{User.find(Meetup.find(review.meetup_id).host_id).first_name}" %>
+              <% end %>
+            </div>
+            <div class="card-body flex-grow-1">
+              <h5 class="title"><%= review.content%></h5>
+              <h5 class="title">Rating: <%= review.rating%></h5>
+              <p>You cooked: <%= "#{Recipe.find(Meetup.find(review.meetup_id).recipes[0]).name}"%></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
