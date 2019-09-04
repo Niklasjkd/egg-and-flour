@@ -2,21 +2,43 @@ const results = document.querySelectorAll("#results");
 const displayRecipes = document.querySelector("#display-recipes");
 
 const initDisplay = () => {
-  results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=26f7b22fb219b5a30816b2f68c726786&q=${result.innerText}`)
+  var finalRecipes = [];
+  var itemsProcessed = 0;
 
+  console.log(results);
+  console.log(results.length);
+
+  results.forEach((result) => {
+    fetch(`https://www.food2fork.com/api/search?key=33bfb81d6faa1aa602b4959da149881d&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
-      deactivateSpinner()
+      itemsProcessed++;
+      console.log("hwsdsdl2");
+      console.log(recipes);
 
-      console.log(recipes)
-      if (recipes == null || recipes === false || recipes.length== 0) {
-        viewIfNoRecipesFound()
+      recipes.slice(0, 10).forEach((r, index) => {
+        if (r.recipe_id != null) { finalRecipes.push(r); };
+      });
+
+      if (itemsProcessed == results.length) {
+        showRecipes(finalRecipes)
+        initClickForPopover()
+        console.log("hwl");
+        console.log(finalRecipes);
       }
+    })
+  });
+};
 
-      recipes.slice(0, 10).forEach((r) => {
-        if (r.recipe_id != null) {
-          const recipesView =
+function showRecipes(recipes) {
+  deactivateSpinner()
+
+  if (recipes == null || recipes === false || recipes.length== 0) {
+    viewIfNoRecipesFound()
+  }
+
+  recipes.forEach(function(r) {
+    const recipesView =
           `<div class="images card">
           <div class="card-img-top">
           <div class="recipe" id="recipe${r.recipe_id}" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
@@ -28,12 +50,10 @@ const initDisplay = () => {
           </div>
           </div>`;
           displayRecipes.insertAdjacentHTML("beforeend", recipesView);
-        };
-      });
-    })
-    .then(() => [ initHighlight(), initClickForPopover()]);
   });
-};
+
+  initHighlight()
+}
 
 function deactivateSpinner() {
   const spinner = document.getElementById("spinner");
