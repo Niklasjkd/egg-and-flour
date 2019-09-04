@@ -125,8 +125,8 @@ function setEventListener() {
 
   // prevents popover close on popover click
   $('.dropdown-menu').click(function(e) {
-      e.stopPropagation();
-    });
+    e.stopPropagation();
+  });
 };
 
 
