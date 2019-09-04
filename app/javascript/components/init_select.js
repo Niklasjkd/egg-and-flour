@@ -6,8 +6,10 @@ const initDisplay = () => {
     fetch(`https://www.food2fork.com/api/search?key=691e7d1ff06017763aadad6cfc4a8b28&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
+      deactivateSpinner()
+
       console.log(recipes)
-      if (recipes == null || recipes === false || recipes.length == 0) {
+      if (recipes == null || recipes === false || recipes.length== 0) {
         viewIfNoRecipesFound()
       }
 
@@ -31,6 +33,12 @@ const initDisplay = () => {
     .then(() => [ initHighlight(), initClickForPopover()]);
   });
 };
+
+function deactivateSpinner() {
+  const spinner = document.getElementById("spinner");
+  const parentContainer = spinner.parentElement;
+  parentContainer.removeChild(spinner);
+}
 
 function viewIfNoRecipesFound() {
   const mainContainer = document.getElementById("main-container");
