@@ -5,30 +5,27 @@ const initDisplay = () => {
   var finalRecipes = [];
   var itemsProcessed = 0;
 
-  console.log(results);
-  console.log(results.length);
-
   results.forEach((result) => {
     fetch(`https://www.food2fork.com/api/search?key=33bfb81d6faa1aa602b4959da149881d&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       itemsProcessed++;
-      console.log("hwsdsdl2");
-      console.log(recipes);
 
       recipes.slice(0, 10).forEach((r, index) => {
         if (r.recipe_id != null) { finalRecipes.push(r); };
       });
 
       if (itemsProcessed == results.length) {
-        showRecipes(finalRecipes)
-        initClickForPopover()
-        console.log("hwl");
-        console.log(finalRecipes);
+        showRecipes(finalRecipes.filter( onlyUnique ))
+        initClickForPopover();
       }
     })
   });
 };
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 
 function showRecipes(recipes) {
   deactivateSpinner()
