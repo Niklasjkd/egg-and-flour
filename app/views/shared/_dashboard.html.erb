@@ -92,7 +92,9 @@
       </div>
     </div>
   </div>
-  <div class="mx-4" id="info">
+
+</div>
+<div class="mx-4" id="info">
     <div class="recipe-index-title"><h3>Reviews</h3></div>
         <div id="matched-recipes">
         <% Review.where(user_id: current_user.id).each do |review| %>
@@ -113,6 +115,3 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>
-
