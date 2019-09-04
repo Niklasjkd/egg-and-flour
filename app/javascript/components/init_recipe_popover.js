@@ -20,8 +20,8 @@ function ingredientsUnpack(ingredientString) {
 
 function click(event) {
   recipe_id = event.target.dataset.id;
-  
-  fetch(`https://www.food2fork.com/api/get?key=8b8ae15fe8d57531cd193adbd9b50b15&rId=${recipe_id}`)
+
+  fetch(`https://www.food2fork.com/api/get?key=9595ebcd4b807977574c7fd27abda5c1&rId=${recipe_id}`)
 
   .then(response => response.json())
   .then((data) => {
@@ -51,12 +51,14 @@ function click(event) {
 
     const popover = document.querySelector(".recipe-popover");
     popover.style.display = "inline";
+    $(".recipe-data").slideToggle();
   })
 }
 
 function clickClose() {
   const popupView = document.querySelector(".recipe-popover");
   popupView.style.display = "none";
+  $(".recipe-data").slideToggle();
 }
 
 function clickSelect() {
