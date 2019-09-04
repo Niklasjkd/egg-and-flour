@@ -1,0 +1,10 @@
+Searching 248 files for "eggs_and_flour"
+
+/Users/sal-don/code/dsalsali/egg-and-flour/config/meta.yml:
+    2  meta_title: "Eggs&Flour - Find people around you to cook with"
+    3  meta_description: "Choose the ingredients you have at home and want to cook with! Based on the ingredients you've chosen, we'll give you some recipes you can cook with other people around your area!"
+    4: meta_image: "eggs_and_flour.png" # should exist in `app/assets/images/`
+    5
+    6
+
+1 match in 1 file
