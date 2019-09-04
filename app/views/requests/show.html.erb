@@ -30,19 +30,21 @@
               <% end %>
           </div>
       </div>
-  <div class="meetup-request">
-    <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
-      <h4 id="meetup-requested">Meetup requested!</h4>
-      <p> Please wait for the user to accept</p>
-          <% else %>
-      <%= link_to "Send meetup request", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post, id: "meetup-button", class: "btn btn-primary"  %>
-    <% end %>
-  </div>
   </div>
   </div>
 
     <div class="d-flex flex-column" id="info-table">
+      <div id="meetup-request-layout">
       <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+      <div class="meetup-request">
+        <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
+          <h4 id="meetup-requested">Meetup requested!</h4>
+          <p> Please wait for the user to accept</p>
+              <% else %>
+          <%= link_to "Send meetup request", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post, id: "meetup-button", class: "btn btn-primary"  %>
+        <% end %>
+      </div>
+      </div>
       <div><p>Member since <%= current_user.created_at.year %></p></div>
       <div id="basic-info">
         <h2>Bio</h2>
