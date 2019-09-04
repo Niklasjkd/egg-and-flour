@@ -16,15 +16,21 @@
   }
 }
 
-#meetup-button {
-  color: white;
-  background-color: $green!important;
-  box-shadow: 0 0 0 0px !important;
-  justify-content: center;
+#meetup-request-layout {
   display: flex;
+  justify-content: space-between;
 
-  &:hover {
-    text-decoration: none;
+  #meetup-button {
+    color: white;
+    background-color: $green!important;
+    box-shadow: 0 0 0 0px !important;
+    justify-content: center;
+    display: flex;
+    margin-top: 15px;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -35,9 +41,6 @@
   color: $green;
 }
 
-
-
-
 .meetup-request {
   p {
     text-align: center;
@@ -45,3 +48,8 @@
     font-weight: 400;
   }
 }
+
+
+
+
+
