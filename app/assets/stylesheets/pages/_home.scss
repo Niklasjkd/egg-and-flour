@@ -62,9 +62,9 @@
     left: 8.33%;
     top: 514px;
 
-     .disabled {
+    .disabled {
       background-color: grey;
-     }
+    }
   }
 
   .images {
@@ -209,13 +209,23 @@ section {
 }
 
 .bottom-line {
-    height: 2px;
-    width: 3rem;
-    background: grey;
-    display: block;
-    margin: 0 auto 1rem auto;
+  height: 2px;
+  width: 3rem;
+  background: grey;
+  display: block;
+  margin: 0 auto 1rem auto;
 }
 
+.sticky-bar {
+  #find-recipies {
+    height: 38px;
+    width: 215px;
+  }
 
+  .display-ingredients {
+    color: gray;
+    margin: 7px 15px;
+  }
+}
 
 
