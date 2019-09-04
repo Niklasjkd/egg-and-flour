@@ -4,7 +4,7 @@ const displayRecipes = document.querySelector("#display-recipes");
 const initDisplay = () => {
   results.forEach((result) => {
 
-    fetch(`https://www.food2fork.com/api/search?key=19f385f7e132f6d2ce8d668c0061cb30&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=2d39cd2573a495f14330d45aeb2a5f88&q=${result.innerText}`)
 
     .then(response => response.json())
     .then(({recipes}) => {
