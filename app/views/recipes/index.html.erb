@@ -1,7 +1,7 @@
 <%= render 'shared/popover' %>
 
 <div>
-  <% @combined_ingredients.each do |ingredient| %>
+  <% @combined_ingredients.uniq.each do |ingredient| %>
   <ul id="results" class="hide-ingredient">
     <li><%= ingredient.join(",") %></li>
   </ul>
