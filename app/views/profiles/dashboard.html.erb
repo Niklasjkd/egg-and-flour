@@ -3,7 +3,8 @@
 <% if @user %>
   <%= form_for @user, url: edit_user_registration_path(@user), method: :get do |f| %>
     <%= f.hidden_field :recipes, value: [] %>
-    <%= f.submit "Edit your profile", class: "btn btn-primary", id: "match_button" %>
+    <%= f.submit "Edit your profile", class: "btn btn-primary", id: "match_button", style: " margin-top: 10px;
+    margin-left: 123px;" %>
   <% end %>
 <% end %>
 </div>
