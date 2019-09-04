@@ -8,7 +8,7 @@ const initDisplay = () => {
 
     .then(response => response.json())
     .then(({recipes}) => {
-      recipes.slice(0, 5).forEach((r) => {
+      recipes.slice(0, 10).forEach((r) => {
         if (r.recipe_id != null) {
           const recipesView =
           `<div class="images card">
