@@ -16,9 +16,32 @@
   }
 }
 
+#meetup-button {
+  color: white;
+  background-color: $green!important;
+  box-shadow: 0 0 0 0px !important;
+  justify-content: center;
+  display: flex;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+#meetup-requested {
+  text-align: center;
+  font-family: Roboto;
+  font-weight: 500;
+  color: $green;
+}
 
 
 
 
-
-
+.meetup-request {
+  p {
+    text-align: center;
+    font-family: Roboto;
+    font-weight: 400;
+  }
+}

@@ -30,6 +30,14 @@
               <% end %>
           </div>
       </div>
+  <div class="meetup-request">
+    <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
+      <h4 id="meetup-requested">Meetup requested!</h4>
+      <p> Please wait for the user to accept</p>
+          <% else %>
+      <%= link_to "Send meetup request", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post, id: "meetup-button", class: "btn btn-primary"  %>
+    <% end %>
+  </div>
   </div>
   </div>
 
@@ -54,11 +62,5 @@
     </div>
   </div>
   <div>
-    <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
-
-      <p>Meetup requested</p>
-    <% else %>
-      <%= link_to "Meetup", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post  %>
-    <% end %>
   </div>
 </div>
