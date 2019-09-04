@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { host: ENV["DOMAIN"] || "www.eggsandflour.co" }
+    { host: ENV["DOMAIN"] || "localhost" }
   end
 
   private

@@ -21,6 +21,11 @@
       <div class="card-body flex-grow-1">
         <h5 class="title"><%= user.first_name%> <%= user.last_name%></h5>
         <h6 class="address"><%= user.address %></h6>
+
+
+        <% @ratings = Review.where(for_user_id: user_id).map {|review| review.rating}%>
+        <%= "Rating: #{@ratings.reduce(:+).to_f / @ratings.size }"%>
+
         <p class="bio">Bio: "Ich bin sehr cool."</p>
         <% if matches_recipes.size == 0 %>
         <p class="recipes">Matches: <%= "#{last_match_recipe}"%></p>

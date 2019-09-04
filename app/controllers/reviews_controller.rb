@@ -14,6 +14,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params[:review].permit(:meetup_id, :user_id, :content, :rating)
+    params[:review].permit(:meetup_id, :user_id, :content, :rating, :for_user_id)
   end
 end
