@@ -48,13 +48,18 @@ const initHighlight = () => {
 
       requests_recipes.value = JSON.stringify(recipeArray);
       console.log(recipeArray)
+
+      updateBtnRecipeArr(recipeArray)
     })
   });
 };
+
 // QUERY THE input (look at the id)
 // update value of input with recipeArray
 
 export { initDisplay };
+
+import { updateBtnRecipeArr } from '../components/init_recipe_btn';
 
 import { initClickForPopover } from '../components/init_recipe_popover';
 initClickForPopover();

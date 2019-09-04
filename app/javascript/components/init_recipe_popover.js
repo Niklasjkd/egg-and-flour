@@ -72,6 +72,12 @@ function clickSelect() {
   requests_recipes.value = JSON.stringify(recipes_arr);
   recipeCard.classList.add("highlight");
   clickClose();
+
+  var recipeName = [];
+  recipes_arr.forEach(function(r) {
+    recipeName.push(r["title"]);
+  });
+  updateBtnRecipeNamesArr(recipeName);
 }
 
 function initClickForPopover() {
@@ -89,5 +95,7 @@ function initClickForPopover() {
     });
   }
 }
+
+import { updateBtnRecipeNamesArr } from "../components/init_recipe_btn";
 
 export { initClickForPopover };

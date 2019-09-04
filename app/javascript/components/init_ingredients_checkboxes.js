@@ -64,12 +64,12 @@ function checkbox_click(event) {
 }
 
 function updateDisplayIngredients() {
-  const ingredientsLabel = document.querySelector(".display-ingredients");
+  const ingredientsLabel = document.querySelector(".display");
 
   if (clicked_ingredients.length == 1) {
     ingredientsLabel.innerText = `${clicked_ingredients.slice(-1)}`;
 
-  } else if (clicked_ingredients.length == 1) {
+  } else if (clicked_ingredients.length == 0) {
     ingredientsLabel.innerText = ``;
 
   } else {
@@ -85,7 +85,6 @@ function updateBtnText(btn, ingredients_count) {
 
 function updateBtn() {
   const btn = document.getElementById("find-recipies");
-  console.log(clicked_ingredients);
   const ingredients_count = clicked_ingredients.length;
 
   if (ingredients_count >= 2) {
