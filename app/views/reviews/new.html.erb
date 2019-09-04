@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center flex-column align-items-center text-center" id="sign-up-form">
+  <div class="p-3"><h2>Your review</h2></div>
+
+
+  <%= simple_form_for @review do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs p-3">
+        <%= f.input :content, placeholder: "How was your meetup?", label: false,
+                    required: true %>
+        <%= f.input :rating, as: :radio_buttons, collection: 1..5, class: "inline" %>
+        <%= f.hidden_field :user_id, value: params[:user_id]%>
+        <%= f.hidden_field :meetup_id, value: params[:meetup_id]%>
+
+    </div>
+
+    <div class="form-actions my-3" id="sign-up-button">
+      <%= f.button :submit, "submit" %>
+    </div>
+  <% end %>
+
+
+</div>

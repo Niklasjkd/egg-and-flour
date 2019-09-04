@@ -26,12 +26,13 @@
                   <% if meetup.status == "pending" %>
                     <div class="card-img-top meetup-column">
                       <div class="recipe">
+
                         <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
                       </div>
                       <div class="card-body meetup-column">
-                        <%= "Status: #{meetup.status.capitalize}" %>
-                      </div>
+                         <%= "Status: #{meetup.status.capitalize}" %>
                         <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
+                      </div>
                     </div>
                   <% end %>
                 <% end %>
@@ -39,13 +40,13 @@
                  <% if meetup.status == "pending" %>
                     <div class="card-img-top meetup-column">
                       <div class="recipe">
-                        <%="You got a request from #{User.find(meetup.host_id).first_name.capitalize}"  %>
+                        <%="You got a request from: #{User.find(meetup.host_id).first_name.capitalize}"  %>
                       </div>
                       <div class="card-body">
                         <%= "Status: #{meetup.status} " %>
-                      </div>
                         <%= link_to "Decline", meetup_path(status: "declined",  meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
                         <%= link_to "Accept", meetup_path(status: "accepted", meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
+                      </div>
                     </div>
                   <% end %>
                 <% end %>
@@ -56,7 +57,14 @@
                   </div>
                   <div class="card-body">
                     <%= "Status: #{meetup.status}" %>
-                    <%= link_to "Delete", meetup_path(meetup_id: meetup.id), method: :delete %>
+                    <%= link_to "Delete", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
+                    <% if meetup.status == "accepted" %>
+                      <% if meetup.guest_id == current_user.id %>
+                        <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.host_id), class: "btn btn-primary request-button" %>
+                      <% else %>
+                        <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.guest_id), class: "btn btn-primary request-button" %>
+                        <% end %>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
@@ -84,5 +92,26 @@
       </div>
     </div>
   </div>
-</div>
 
+</div>
+<div class="mx-4" id="info">
+    <div class="recipe-index-title"><h3>Reviews</h3></div>
+        <div id="matched-recipes">
+        <% Review.where(user_id: current_user.id).each do |review| %>
+          <div class="cards images card" id="matched-recipes-cards">
+            <div >
+              <% if current_user.id == Meetup.find(review.meetup_id).host_id %>
+                <%= "From: #{User.find(Meetup.find(review.meetup_id).guest_id).first_name}"%>
+              <% else %>
+                <%= "From: #{User.find(Meetup.find(review.meetup_id).host_id).first_name}" %>
+              <% end %>
+            </div>
+            <div class="card-body flex-grow-1">
+              <h5 class="title"><%= review.content%></h5>
+              <h5 class="title">Rating: <%= review.rating%></h5>
+              <p>You cooked: <%= "#{Recipe.find(Meetup.find(review.meetup_id).recipes[0]).name}"%></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
