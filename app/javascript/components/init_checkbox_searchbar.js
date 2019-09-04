@@ -2,7 +2,7 @@ function updateDOM(arr, input) {
   const divCheckbox = input.parentElement.parentElement.querySelectorAll(".checkbox-ingredients div");
 
   divCheckbox.forEach(function(div) {
-    if (arr.includes(div.querySelector("a").innerText)) {
+    if (arr.includes(div.querySelector("label").innerText)) {
       div.style.display = "block";
     } else {
       div.style.display = "none";
@@ -24,7 +24,7 @@ function changeEvent(event) {
   const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
   ingredients_data.forEach(function(ingredientType) {
-    if (ingredientType.title === ingredientCategory) {
+    if (ingredientType.title.split(" ")[0] === ingredientCategory) {
       const result_arr = filterItems(ingredientType.ingredients, inputText);
       updateDOM(result_arr, input);
     }
@@ -33,7 +33,7 @@ function changeEvent(event) {
 
 function initCheckboxSearches() {
   const searchInputs = document.querySelectorAll(".input-group input");
-
+  console.log(searchInputs);
   if (searchInputs) {
     searchInputs.forEach(function(input) {
       input.addEventListener('input', changeEvent);

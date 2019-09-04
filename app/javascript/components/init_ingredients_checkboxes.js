@@ -21,7 +21,7 @@ function positionIngredients(data_) {
     inhalt += "<img class=\"category-icon\" src="+ item_data.image +" alt=\"\">"
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
     inhalt += "</span> <span class=\"caret\"><h5>"+ item_data.title +"</h5></button>";
-    inhalt += "<div  style=\"border: 0.8px solid;\" class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div  style=\"border: 0.8px solid #ced4da;\" class=\"dropdown-menu ingredients-dropdown\">";
     inhalt += "<div class=\"input-group d-flex\">";
     inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\""+ item_data.title +" ingredients\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
 
@@ -29,7 +29,7 @@ function positionIngredients(data_) {
 
     inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\" id=\"ingredients-checkbox-list\">";
     ingredients.forEach(function(ingredient) {
-      inhalt += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
+      inhalt += "<div><label for=\"ingredient="+ ingredient +"\" class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input id=\"ingredient="+ ingredient +"\" type=\"checkbox\"/>"+ ingredient +"</label></div>";
     });
     inhalt += "</div>";
     inhalt += "</div>";
@@ -54,13 +54,15 @@ const clicked_ingredients = []
 function checkbox_click(event) {
   const ingredient = event.target.parentElement.innerText
 
-  if (clicked_ingredients.includes(ingredient)) {
-    clicked_ingredients.pop(clicked_ingredients.indexOf(ingredient));
-  } else {
-    clicked_ingredients.push(ingredient);
-  }
+  if (ingredient != "") {
+    if (clicked_ingredients.includes(ingredient)) {
+      clicked_ingredients.pop(clicked_ingredients.indexOf(ingredient));
+    } else {
+      clicked_ingredients.push(ingredient);
+    }
 
-  updateBtn()
+    updateBtn()
+  }
 }
 
 function updateDisplayIngredients() {
@@ -120,6 +122,11 @@ function setEventListener() {
 
   const btn = document.getElementById("find-recipies");
   btn.addEventListener("click", btn_click);
+
+  // prevents popover close on popover click
+  $('.dropdown-menu').click(function(e) {
+      e.stopPropagation();
+    });
 };
 
 
