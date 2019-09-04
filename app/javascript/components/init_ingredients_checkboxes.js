@@ -21,13 +21,13 @@ function positionIngredients(data_) {
     inhalt += "<img class=\"category-icon\" src="+ item_data.image +" alt=\"\">"
     inhalt += "<span class=\"glyphicon glyphicon-cog\">";
     inhalt += "</span> <span class=\"caret\"><h5>"+ item_data.title +"</h5></button>";
-    inhalt += "<div  class=\"dropdown-menu ingredients-dropdown\">";
+    inhalt += "<div  style=\"border: 0.8px solid;\" class=\"dropdown-menu ingredients-dropdown\">";
     inhalt += "<div class=\"input-group d-flex\">";
     inhalt += "<input id="+ item_data.title +" type=\"text\" class=\"form-control\" placeholder=\""+ item_data.title +" ingredients\" aria-label=\"Recipient's username\" aria-describedby=\"button-addon2\">";
 
     inhalt += "</div>";
 
-    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\">";
+    inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\" id=\"ingredients-checkbox-list\">";
     ingredients.forEach(function(ingredient) {
       inhalt += "<div><a class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input type=\"checkbox\"/>"+ ingredient +"</a></div>";
     });

@@ -133,13 +133,12 @@
 
   button {
     height: 70px;
+    box-shadow: none;
   }
 
   a {
-
-    &:hover {
-      color: black;
-    }
+    text-decoration: none;
+    color: #167FFB;
   }
 
   .category-icon {
@@ -219,5 +218,6 @@ section {
     width: 215px;
   }
 }
+
 
 
