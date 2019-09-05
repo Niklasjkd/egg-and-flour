@@ -19,28 +19,28 @@ User.destroy_all
 puts 'Creating user...'
 
 users = [{
-  email: "test1@example.com",
+  email: "andrew@rea.com",
   first_name: "Andrew",
   last_name: "Rea",
   password: "123456",
   image: "https://uproxx.com/wp-content/uploads/2019/02/andrewreafranks.jpg",
   address: "Berlin, Checkpoint Charlie"
 }, {
-  email: "test2@example.com",
+  email: "sammy@lynn.com",
   first_name: "Sammy",
   last_name: "Lynn",
   password: "123456",
   image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
   address: "Berlin, Alexanderplatz"
 },{
-  email: "test3@example.com",
+  email: "ted@morris.com",
   first_name: "Ted",
   last_name: "Morris",
   password: "123456",
   image: "https://centsai.com/wp-content/uploads/2017/11/iStock-521614808-715x464.jpg",
   address: "Berlin, Rosenthalerplatz"
 },{
-  email: "test4@example.com",
+  email: "cathy@burkhovsky.com",
   first_name: "Cathy",
   last_name: "Burkhovsky",
   password: "123456",

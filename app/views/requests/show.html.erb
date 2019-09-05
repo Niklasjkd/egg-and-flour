@@ -18,13 +18,14 @@
         <div class="recipe-index-title"><h3>Matched Recipes</h3></div>
         <div id="matched-recipes">
           <div class="cards images card" id="matched-recipes-cards">
-            <% params[:recipes].uniq.each do |recipe| %>
-            <div class="card-img-top">
+            <% @recipes.each do |recipe| %>
+            <div class="card-img-top" style="position: relative;" data-id="<%= recipe.recipe_api_id %>">
               <div class="recipe">
-                <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
+                <%= image_tag recipe.image, class: "card-img", :data => { :id => recipe.recipe_api_id }%>
+                <a data-id="<%= recipe.recipe_api_id %>" class="badge badge-pill badge-light info-btn" style="position: absolute;top: 0;right: 0;margin: 10px;font-size: larger;">i</a>
               </div>
               <div class="card-body">
-                <p><%=  Recipe.find(Request.find(recipe).recipe_id).name%></p>
+                <p  data-id="<%= recipe.recipe_api_id %>"><%=  recipe.name%></p>
               </div>
             </div>
             <% end %>
@@ -36,15 +37,15 @@
 
     <div class="d-flex flex-column" id="info-table">
       <div id="meetup-request-layout">
-      <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
-      <div class="meetup-request">
-        <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
+        <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+        <div class="meetup-request">
+          <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
           <h4 id="meetup-requested">Meetup requested!</h4>
           <p> Please wait for the user to accept</p>
-              <% else %>
+          <% else %>
           <%= link_to "Send meetup request", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post, id: "meetup-button", class: "btn btn-primary"  %>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
       </div>
       <div><p>Member since <%= current_user.created_at.year %></p></div>
       <div id="basic-info">
@@ -67,26 +68,25 @@
     <div>
     </div>
   </div>
-  <div class="mx-4" id="info">
-  <div class="recipe-index-title"><h3>Reviews</h3></div>
-  <div id="matched-recipes">
-    <% @reviews = Review.where(for_user_id: current_user.id) %>
+  <div class="mx-4">
+    <div id="review-container">
+      <div id="title"><h3>Reviews</h3></div>
+      <% @reviews = Review.where(for_user_id: current_user.id) %>
 
-    <% @reviews.each do |review| %>
-    <div class="cards images card" id="matched-recipes-cards">
-      <div >
-        <%= "From: #{User.find(review.user_id).first_name}"%>
+      <% @reviews.each do |review| %>
+      <div class="card" id="review-card">
+        <div class="card-body flex-grow-1">
+          <div class="d-flex">
+            <h6> <%= User.find(review.user_id).first_name %> </h6>
+            <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating', id: "") %>
+            </h5>
+          </div>
+          <h5 class="title"><%= review.content%></h5>
+        </div>
       </div>
-      <div class="card-body flex-grow-1">
-        <h5 class="title"><%= review.content%></h5>
-        <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating', id: "") %>
-        </h5>
-
-      </div>
-    </div>
-    <% end %>
-    <% if @reviews.size == 0%>
+      <% end %>
+      <% if @reviews.size == 0%>
       <h6 style="font-style: italic; font-weight: 100; text-align: center;">You don't have any reviews.</h6>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>

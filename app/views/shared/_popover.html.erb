@@ -11,7 +11,9 @@
         </div>
         <div class="btn-content d-flex justify-content-start">
           <button class="btn btn-secondary close-btn">Close</button>
-          <button class="btn btn-primary select-btn">Select</button>
+          <% if @showSelectBtn %>
+            <button class="btn btn-primary select-btn">Select</button>
+          <% end %>
         </div>
       </div>
 
