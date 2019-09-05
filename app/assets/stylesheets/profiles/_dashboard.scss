@@ -1,12 +1,18 @@
 #profile {
   margin-top: 100px;
   text-align: left;
+  margin-bottom: 100px;
 
   #info-table {
     width: 650px;
     padding: 0 8px;
     min-height: 1px !important;
     padding-bottom: 50px;
+  }
+
+  #edit-button-layout {
+    display: flex;
+    justify-content: space-between;
   }
 
   #contact-info {

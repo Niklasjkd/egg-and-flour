@@ -21,7 +21,7 @@ function ingredientsUnpack(ingredientString) {
 function click(event) {
   recipe_id = event.target.dataset.id;
 
-  fetch(`https://www.food2fork.com/api/get?key=9595ebcd4b807977574c7fd27abda5c1&rId=${recipe_id}`)
+  fetch(`https://www.food2fork.com/api/get?key=a744fe9495ff4531a0930d795fb0bb09&rId=${recipe_id}`)
 
   .then(response => response.json())
   .then((data) => {

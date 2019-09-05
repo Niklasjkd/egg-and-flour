@@ -4,9 +4,9 @@ const displayRecipes = document.querySelector("#display-recipes");
 const initDisplay = () => {
   var finalRecipes = [];
   var itemsProcessed = 0;
-  
+
   results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=c44d37368092aaac047c94555292a763&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=a744fe9495ff4531a0930d795fb0bb09&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       itemsProcessed++;

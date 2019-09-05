@@ -79,13 +79,23 @@
   </div>
 </div>
 
-<div class="d-flex flex-column" id="info-table">
-  <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
-  <div><p>Member since <%= current_user.created_at.year %></p></div>
-  <div id="basic-info">
-    <h2>Bio</h2>
-    <p>
+  <div class="d-flex flex-column" id="info-table">
+    <div id="edit-button-layout">
+    <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+    <% if @user %>
+      <%= form_for @user, url: edit_user_registration_path(@user), method: :get do |f| %>
+        <%= f.hidden_field :recipes, value: [] %>
+        <%= f.submit "Edit your profile", class: "btn btn-primary", id: "edit_button", style: " margin-top: 15px;
+        margin-left: 123px;" %>
+      <% end %>
+    <% end %>
+    </div>
+    <div><p>Member since <%= current_user.created_at.year %></p></div>
+    <div id="basic-info">
+      <h2>Bio</h2>
+      <p>
       I've been living in Berlin for the past three years, and I cannot get enough. Between the food, people, and the music, I can't ask for anything better. Sadly though, I haven't been able to cook at home as much as I'd like to. That's why I signed up on Egg & Flour! I love to cook, but have trouble doing it just for myself.
+        
 
       I'd love to show you my home culture with my food, so I hope that we get to experience that together!
 
