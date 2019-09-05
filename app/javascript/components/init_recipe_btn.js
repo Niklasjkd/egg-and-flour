@@ -14,7 +14,9 @@ function updateDisplay(recipeNames) {
 
 function updateBtnRecipeNamesArr(recipeNames) {
   const recipes_count = recipeNames.length;
+  const btn = document.getElementById("match_button");
 
+  btn.value = `Save ${recipes_count} Recipes`;
   if (recipes_count == 0) {
     $(".sticky-bar").slideUp();
 
@@ -22,8 +24,7 @@ function updateBtnRecipeNamesArr(recipeNames) {
     $(".sticky-bar").slideDown();
   }
 
-  updateDisplay
-(recipeNames);
+  updateDisplay(recipeNames);
 }
 
 function updateBtnRecipeArr(requests_recipes) {
@@ -31,7 +32,5 @@ function updateBtnRecipeArr(requests_recipes) {
   requests_recipes.forEach(function(r) { recipeNames.push(r["title"]); });
   updateBtnRecipeNamesArr(recipeNames);
 }
-
-
 
 export { updateBtnRecipeArr, updateBtnRecipeNamesArr };
