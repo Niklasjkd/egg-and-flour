@@ -32,7 +32,7 @@
                       </div>
                       <div class="card-body meetup-column">
                          <%= "Status: #{meetup.status.capitalize}" %>
-                        <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
+                        <%= link_to "Cancel meetup", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
                       </div>
                     </div>
                   <% end %>
@@ -97,7 +97,7 @@
       <h2>Bio</h2>
       <p>
       I've been living in Berlin for the past three years, and I cannot get enough. Between the food, people, and the music, I can't ask for anything better. Sadly though, I haven't been able to cook at home as much as I'd like to. That's why I signed up on Egg & Flour! I love to cook, but have trouble doing it just for myself.
-        
+
 
       I'd love to show you my home culture with my food, so I hope that we get to experience that together!
 
