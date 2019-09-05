@@ -36,7 +36,7 @@ function click(event) {
     title_ele.innerText = title;
 
     const category_ele = document.querySelector(".recipe-popover .category");
-    category_ele.innerText = "Vegan";
+    category_ele.innerText = "Home-made";
 
     const description_ele = document.querySelector(".recipe-popover .ingredients");
     const ingredients = ingredientsUnpack(data.recipe.ingredients);
