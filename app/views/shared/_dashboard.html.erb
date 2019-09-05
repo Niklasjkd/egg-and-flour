@@ -97,7 +97,7 @@
       <h2>Bio</h2>
       <p>
       I've been living in Berlin for the past three years, and I cannot get enough. Between the food, people, and the music, I can't ask for anything better. Sadly though, I haven't been able to cook at home as much as I'd like to. That's why I signed up on Egg & Flour! I love to cook, but have trouble doing it just for myself.
-        
+
 
       I'd love to show you my home culture with my food, so I hope that we get to experience that together!
 
@@ -113,20 +113,18 @@
 <div class="mx-4" id="info">
   <div class="recipe-index-title"><h3>Reviews</h3></div>
   <div id="matched-recipes">
-    <% @reviews = Review.where(user_id: current_user.id) %>
+    <% @reviews = Review.where(for_user_id: current_user.id) %>
+
     <% @reviews.each do |review| %>
     <div class="cards images card" id="matched-recipes-cards">
       <div >
-        <% if current_user.id == Meetup.find(review.meetup_id).host_id %>
-        <%= "From: #{User.find(Meetup.find(review.meetup_id).guest_id).first_name}"%>
-        <% else %>
-        <%= "From: #{User.find(Meetup.find(review.meetup_id).host_id).first_name}" %>
-        <% end %>
+        <%= "From: #{User.find(review.user_id).first_name}"%>
       </div>
       <div class="card-body flex-grow-1">
         <h5 class="title"><%= review.content%></h5>
-        <h5 class="title">Rating: <%= review.rating%></h5>
-        <p>You cooked: <%= "#{Recipe.find(Meetup.find(review.meetup_id).recipes[0]).name}"%></p>
+        <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating title') %>
+        </h5>
+
       </div>
     </div>
     <% end %>
