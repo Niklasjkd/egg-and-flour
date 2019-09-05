@@ -20,18 +20,32 @@ body {
   .card {
     border: 0px;
     box-shadow: unset !important;
-  }
+    font-weight: 400;
 
-  .highlight {
-    border: solid #3891A6 4px;
-    border-radius: 11px;
-    opacity: 0.8;
+    .info-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 10px;
+      font-size: larger;
+      cursor: pointer;
+      padding: 5px 12px;
+      border-radius: 9px;
+    }
 
-    img {
-      height: 192px !important;
+    .highlight {
+
+      img {
+        border: solid #3891A6 4px;
+        border-radius: 11px;
+        opacity: 0.8;
+      }
+
+      p {
+        color: $green;
+      }
     }
   }
-
 }
 
 .cards {
@@ -53,12 +67,14 @@ body {
       height: 200px;
       object-fit: cover;
       border-radius: 6px;
+      cursor: pointer;
     }
   }
 
   p {
     &:hover {
       color: $green;
+      cursor: pointer;
     }
   }
 }

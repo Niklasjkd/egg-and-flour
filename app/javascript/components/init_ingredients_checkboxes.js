@@ -2,7 +2,7 @@ function positionIngredients(data_) {
   const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
   var radians, radius;
-  radius = 300;
+  radius = 250;
 
   var totalItems = ingredients_data.length;
   var item = 1;
@@ -29,7 +29,7 @@ function positionIngredients(data_) {
 
     inhalt += "<div style=\"overflow:scroll; height:200px;\" class=\"checkbox-ingredients\" id=\"ingredients-checkbox-list\">";
     ingredients.forEach(function(ingredient) {
-      inhalt += "<div><label for=\"ingredient="+ ingredient +"\" class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input id=\"ingredient="+ ingredient +"\" type=\"checkbox\"/>"+ ingredient +"</label></div>";
+      inhalt += "<div for=\"ingredient="+ ingredient +"\"><label class=\"small\" data-value=\"option1\" tabIndex=\"-1\"><input id=\"ingredient="+ ingredient +"\" type=\"checkbox\"/>"+ ingredient +"</label></div>";
     });
     inhalt += "</div>";
     inhalt += "</div>";

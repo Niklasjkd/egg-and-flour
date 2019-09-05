@@ -1,15 +1,20 @@
-const results = document.querySelectorAll("#results");
 const displayRecipes = document.querySelector("#display-recipes");
 
-const initDisplay = () => {
+function initDisplay() {
+  const resultsId = document.getElementById("results-arr");
+
+  if (resultsId) {
+    const results = resultsId.querySelectorAll("#results");
+    fetchData(results);
+  }
+}
+
+const fetchData = (results) => {
   var finalRecipes = [];
   var itemsProcessed = 0;
 
   results.forEach((result) => {
-
-    fetch(`https://www.food2fork.com/api/search?key=fe65b98eaefe9b9f40dd2e517fc70dc7&q=${result.innerText}`)
-
-
+    fetch(`https://www.food2fork.com/api/search?key=26f7b22fb219b5a30816b2f68c726786&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       itemsProcessed++;
@@ -24,7 +29,12 @@ const initDisplay = () => {
       }
     })
   });
-};
+
+  if (itemsProcessed == results.length) {
+    showRecipes(finalRecipes.filter( onlyUnique ))
+    initClickForPopover();
+  }
+}
 
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
@@ -40,14 +50,15 @@ function showRecipes(recipes) {
   recipes.forEach(function(r) {
     const recipesView =
           `<div class="images card">
-          <div class="card-img-top">
-          <div class="recipe" id="recipe${r.recipe_id}" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
-          <img src="${r.image_url}" alt="">
-          </div>
-          <div class="card-body" data-id="${r.recipe_id}">
-          <p data-id="${r.recipe_id}">${r.title}</p>
-          </div>
-          </div>
+            <div class="card-img-top" id="recipe${r.recipe_id}" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
+              <div class="recipe">
+                <img src="${r.image_url}" alt="">
+                <a data-id="${r.recipe_id}" class="badge badge-pill badge-light info-btn" style="position: absolute;top: 0;right: 0;margin: 10px;font-size: larger;">i</a>
+              </div>
+              <div class="card-body">
+                <p>${r.title}</p>
+              </div>
+            </div>
           </div>`;
           displayRecipes.insertAdjacentHTML("beforeend", recipesView);
   });
@@ -70,26 +81,23 @@ function viewIfNoRecipesFound() {
   mainContainer.insertAdjacentHTML("beforeend", noRecipesView);
 }
 
+
 const initHighlight = () => {
-  const recipes = document.querySelectorAll(".recipe")
-  const requests_recipes = document.querySelector('#recipes_recipes');
-  let recipeArray = [];
+  const recipes = document.querySelectorAll(".card-img-top")
+
   recipes.forEach(recipe => {
-    recipe.addEventListener('click', (event) => {
-      event.preventDefault()
-      event.currentTarget.classList.toggle("highlight")
-      const recipesA = [...recipes]
-      const highlightedRecipes = recipesA.filter(recipe => recipe.classList.contains("highlight"));
 
-      recipeArray = highlightedRecipes.map(({dataset: {id, image, title}}) => {
-        return {id, image, title }
-      });
+    const image = recipe.querySelector("img");
+    image.addEventListener('click', (event) => {
+      const clickedCard = event.target.parentElement.parentElement
+      clickOnRecipe(clickedCard, recipes);
+    });
 
-      requests_recipes.value = JSON.stringify(recipeArray);
-      console.log(recipeArray)
-
-      updateBtnRecipeArr(recipeArray)
-    })
+    const paragraph = recipe.querySelector("p");
+    paragraph.addEventListener('click', (event) => {
+      const clickedCard = event.target.parentElement.parentElement
+      clickOnRecipe(clickedCard, recipes);
+    });
   });
 };
 
@@ -98,8 +106,6 @@ const initHighlight = () => {
 
 export { initDisplay };
 
-import { updateBtnRecipeArr } from '../components/init_recipe_btn';
-
-import { initClickForPopover } from '../components/init_recipe_popover';
+import { initClickForPopover, clickOnRecipe } from '../components/init_recipe_popover';
 initClickForPopover();
 

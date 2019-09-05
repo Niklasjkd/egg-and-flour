@@ -21,7 +21,7 @@ function ingredientsUnpack(ingredientString) {
 function click(event) {
   recipe_id = event.target.dataset.id;
 
-  fetch(`https://www.food2fork.com/api/get?key=e3dd7319146611f94f40d742afb393ec&rId=${recipe_id}`)
+  fetch(`https://www.food2fork.com/api/get?key=26f7b22fb219b5a30816b2f68c726786&rId=${recipe_id}`)
 
 
   .then(response => response.json())
@@ -36,16 +36,16 @@ function click(event) {
     title_ele.innerText = title;
 
     const category_ele = document.querySelector(".recipe-popover .category");
-    category_ele.innerText = "Vegan";
+    category_ele.innerText = "Home-made";
 
     const description_ele = document.querySelector(".recipe-popover .ingredients");
     const ingredients = ingredientsUnpack(data.recipe.ingredients);
     description_ele.innerText = "";
     ingredients.forEach(function(ingredient) {
       const movie = `<div class="row">
-        <p class="col-9">${ingredient["ingredient"]}</p>
-        <p class="col-1">${ingredient["amount"]}</p>
-        </div>`;
+      <p class="col-9">${ingredient["ingredient"]}</p>
+      <p class="col-1">${ingredient["amount"]}</p>
+      </div>`;
       description_ele.insertAdjacentHTML("beforeend", movie);
     });
 
@@ -62,25 +62,31 @@ function clickClose() {
   $(".recipe-data").slideToggle();
 }
 
-function clickSelect() {
-  const recipeCard = document.getElementById(`recipe${recipe_id}`);
-  const requests_recipes = document.querySelector('#recipes_recipes');
-  const recipes_arr = JSON.parse(requests_recipes.value);
-  recipes_arr.push({
-    "id" : recipe_id,
-    "image" :image_url,
-    "title": title
-  })
+function checkForUniqueness(recipes, recipe) {
+  var itemsProcessed = 0;
 
-  requests_recipes.value = JSON.stringify(recipes_arr);
-  recipeCard.classList.add("highlight");
-  clickClose();
+  recipes.forEach(function(recipeIndex) {
+    itemsProcessed++;
+    if (recipe["id"] === recipeIndex["id"]) {
+      return false
+    }
 
-  var recipeName = [];
-  recipes_arr.forEach(function(r) {
-    recipeName.push(r["title"]);
+    if (itemsProcessed == recipes.length) {
+      return true
+    }
   });
-  updateBtnRecipeNamesArr(recipeName);
+  if (itemsProcessed == recipes.length) {
+      return true
+    }
+}
+
+function clickSelect() {
+  const clickedCard = document.getElementById(`recipe${recipe_id}`);
+  clickedCard.classList.remove("highlight")
+
+  const recipes = document.querySelectorAll(".card-img-top")
+  clickOnRecipe(clickedCard, recipes)
+  clickClose();
 }
 
 function initClickForPopover() {
@@ -92,13 +98,33 @@ function initClickForPopover() {
     const btnSelect = document.querySelector(".recipe-popover .select-btn");
     btnSelect.addEventListener("click", clickSelect);
 
-    const member_cards = document.querySelectorAll("#display-recipes .card-body");
+    const member_cards = document.querySelectorAll("#display-recipes .info-btn");
     member_cards.forEach(function(card) {
       card.addEventListener("click", click);
     });
   }
 }
 
-import { updateBtnRecipeNamesArr } from "../components/init_recipe_btn";
+function clickOnRecipe(clickedCard, recipes) {
+  const requests_recipes = document.querySelector('#recipes_recipes');
+  let recipeArray = [];
 
-export { initClickForPopover };
+  event.preventDefault()
+
+  clickedCard.classList.toggle("highlight")
+  const recipesA = [...recipes]
+  const highlightedRecipes = recipesA.filter(recipe => recipe.classList.contains("highlight"));
+
+  recipeArray = highlightedRecipes.map(({dataset: {id, image, title}}) => {
+    return {id, image, title }
+  });
+
+  requests_recipes.value = JSON.stringify(recipeArray);
+  console.log(recipeArray)
+
+  updateBtnRecipeArr(recipeArray)
+}
+
+import { updateBtnRecipeNamesArr, updateBtnRecipeArr } from "../components/init_recipe_btn";
+
+export { initClickForPopover, clickOnRecipe };
