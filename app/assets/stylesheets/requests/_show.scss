@@ -16,12 +16,12 @@
   }
 }
 
+
 #meetup-button {
   color: white;
   background-color: $green!important;
   box-shadow: 0 0 0 0px !important;
-  justify-content: center;
-  display: flex;
+  margin: auto;
 
   &:hover {
     text-decoration: none;
@@ -35,9 +35,6 @@
   color: $green;
 }
 
-
-
-
 .meetup-request {
   p {
     text-align: center;
@@ -45,3 +42,8 @@
     font-weight: 400;
   }
 }
+
+
+
+
+

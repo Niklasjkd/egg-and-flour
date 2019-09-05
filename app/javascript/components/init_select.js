@@ -2,6 +2,9 @@ const results = document.querySelectorAll("#results");
 const displayRecipes = document.querySelector("#display-recipes");
 
 const initDisplay = () => {
+  var finalRecipes = [];
+  var itemsProcessed = 0;
+
   results.forEach((result) => {
 
     fetch(`https://www.food2fork.com/api/search?key=fe65b98eaefe9b9f40dd2e517fc70dc7&q=${result.innerText}`)
@@ -9,16 +12,33 @@ const initDisplay = () => {
 
     .then(response => response.json())
     .then(({recipes}) => {
-      deactivateSpinner()
+      itemsProcessed++;
 
-      console.log(recipes)
-      if (recipes == null || recipes === false || recipes.length== 0) {
-        viewIfNoRecipesFound()
+      recipes.slice(0, 10).forEach((r, index) => {
+        if (r.recipe_id != null) { finalRecipes.push(r); };
+      });
+
+      if (itemsProcessed == results.length) {
+        showRecipes(finalRecipes.filter( onlyUnique ))
+        initClickForPopover();
       }
+    })
+  });
+};
 
-      recipes.slice(0, 10).forEach((r) => {
-        if (r.recipe_id != null) {
-          const recipesView =
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
+function showRecipes(recipes) {
+  deactivateSpinner()
+
+  if (recipes == null || recipes === false || recipes.length== 0) {
+    viewIfNoRecipesFound()
+  }
+
+  recipes.forEach(function(r) {
+    const recipesView =
           `<div class="images card">
           <div class="card-img-top">
           <div class="recipe" id="recipe${r.recipe_id}" data-id="${r.recipe_id}" data-title="${r.title}" data-image="${r.image_url}">
@@ -30,12 +50,10 @@ const initDisplay = () => {
           </div>
           </div>`;
           displayRecipes.insertAdjacentHTML("beforeend", recipesView);
-        };
-      });
-    })
-    .then(() => [ initHighlight(), initClickForPopover()]);
   });
-};
+
+  initHighlight()
+}
 
 function deactivateSpinner() {
   const spinner = document.getElementById("spinner");

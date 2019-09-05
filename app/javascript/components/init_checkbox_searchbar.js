@@ -33,7 +33,7 @@ function changeEvent(event) {
 
 function initCheckboxSearches() {
   const searchInputs = document.querySelectorAll(".input-group input");
-  console.log(searchInputs);
+
   if (searchInputs) {
     searchInputs.forEach(function(input) {
       input.addEventListener('input', changeEvent);

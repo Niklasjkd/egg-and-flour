@@ -23,6 +23,7 @@ function click(event) {
 
   fetch(`https://www.food2fork.com/api/get?key=e3dd7319146611f94f40d742afb393ec&rId=${recipe_id}`)
 
+
   .then(response => response.json())
   .then((data) => {
 
