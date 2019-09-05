@@ -15,14 +15,6 @@
         <% end %>
       </div>
       <div class="mx-4" id="info">
-        <div class="meetup-request d-flex">
-          <% if Meetup.exists?(guest_id: current_user.id, recipes: params[:recipes].join)%>
-          <h4 id="meetup-requested">Meetup requested!</h4>
-          <p> Please wait for the user to accept</p>
-          <% else %>
-          <%= link_to "Send meetup request", request_meetups_url(request_id: params[:id], recipes: params[:recipes]), method: :post, id: "meetup-button", class: "btn btn-primary"  %>
-          <% end %>
-        </div>
         <div class="recipe-index-title"><h3>Matched Recipes</h3></div>
         <div id="matched-recipes">
           <div class="cards images card" id="matched-recipes-cards">
