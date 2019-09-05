@@ -4,6 +4,8 @@ class RecipesController < ApplicationController
   def index
     match
     @combined_ingredients
+
+    @showSelectBtn = true
   end
 
   def create

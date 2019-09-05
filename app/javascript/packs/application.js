@@ -18,3 +18,6 @@ initCheckboxSearches();
 
 import { initStarRating } from '../plugins/init_star_rating';
 initStarRating();
+
+import { initClickForPopover } from '../components/init_recipe_popover';
+initClickForPopover();

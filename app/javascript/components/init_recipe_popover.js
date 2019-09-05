@@ -7,7 +7,6 @@ function ingredientsUnpack(ingredientString) {
   ingredientString.forEach(function(ingredient) {
     const arr = ingredient.split(" ");
     const amount = arr.shift();
-
     var new_property = {
       amount: amount,
       ingredient: arr.join(" ")
@@ -20,10 +19,9 @@ function ingredientsUnpack(ingredientString) {
 
 function click(event) {
   recipe_id = event.target.dataset.id;
+  console.log(recipe_id);
 
-  fetch(`https://www.food2fork.com/api/get?key=04195dc7d0d7e88dde4f5d0b899b1724&rId=${recipe_id}`)
-
-
+  fetch(`https://www.food2fork.com/api/get?key=578f7f12bdb6dd279a954b7386722b0a&rId=${recipe_id}`)
   .then(response => response.json())
   .then((data) => {
 
@@ -48,7 +46,6 @@ function click(event) {
       </div>`;
       description_ele.insertAdjacentHTML("beforeend", movie);
     });
-
 
     const popover = document.querySelector(".recipe-popover");
     popover.style.display = "inline";
@@ -96,9 +93,12 @@ function initClickForPopover() {
     btnClose.addEventListener("click", clickClose);
 
     const btnSelect = document.querySelector(".recipe-popover .select-btn");
-    btnSelect.addEventListener("click", clickSelect);
+    if (btnSelect) {
+      btnSelect.addEventListener("click", clickSelect);
+    }
 
-    const member_cards = document.querySelectorAll("#display-recipes .info-btn");
+    const member_cards = document.querySelectorAll(".recipe .info-btn");
+    console.log(member_cards);
     member_cards.forEach(function(card) {
       card.addEventListener("click", click);
     });

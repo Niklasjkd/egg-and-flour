@@ -14,7 +14,7 @@ const fetchData = (results) => {
   var itemsProcessed = 0;
 
   results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=691e7d1ff06017763aadad6cfc4a8b28&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=578f7f12bdb6dd279a954b7386722b0a&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       itemsProcessed++;
@@ -107,5 +107,3 @@ const initHighlight = () => {
 export { initDisplay };
 
 import { initClickForPopover, clickOnRecipe } from '../components/init_recipe_popover';
-initClickForPopover();
-
