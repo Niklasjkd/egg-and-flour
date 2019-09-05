@@ -80,7 +80,15 @@
 </div>
 
 <div class="d-flex flex-column" id="info-table">
+  <div id="edit-button-layout">
   <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+  <% if @user %>
+    <%= form_for @user, url: edit_user_registration_path(@user), method: :get do |f| %>
+      <%= f.hidden_field :recipes, value: [] %>
+      <%= f.submit "Edit your profile", class: "btn btn-primary", id: "edit_button" %>
+    <% end %>
+  <% end %>
+  </div>
   <div><p>Member since <%= current_user.created_at.year %></p></div>
   <div id="basic-info">
     <h2>Bio</h2>
