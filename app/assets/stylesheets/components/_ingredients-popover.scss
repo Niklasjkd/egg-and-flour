@@ -12,6 +12,12 @@
   .checkbox-ingredients {
     input {
       margin-right: 5px;
+      cursor: pointer;
+    }
+
+    label {
+      cursor: pointer;
+      width: 100px;
     }
   }
 }
