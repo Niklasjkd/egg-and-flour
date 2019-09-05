@@ -34,6 +34,11 @@ class RequestsController < ApplicationController
   end
 
   def show
+    @recipes = []
+    params[:recipes].uniq.each { |r| @recipes << Recipe.find(Request.find(r).recipe_id) }
+    @recipes = @recipes.uniq
+
+
     @meetup = Meetup.new
 
     user = User.find_by(id: params[:id])
