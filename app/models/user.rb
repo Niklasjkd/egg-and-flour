@@ -11,4 +11,10 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   has_many :reviews
+
+  def average_rating
+    reviews = Review.where(for_user_id: id)
+    all_ratings = reviews.map { |review| review.rating }
+    (all_ratings.reduce(:+).to_f / all_ratings.size) if all_ratings.any?
+  end
 end

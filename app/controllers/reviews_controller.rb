@@ -6,9 +6,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.save!
-
-    redirect_to dashboard_profile_path(current_user)
+    if @review.save
+      redirect_to dashboard_profile_path(current_user)
+    else
+      render :new
+    end
   end
 
   private
