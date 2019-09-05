@@ -1,7 +1,15 @@
-const results = document.querySelectorAll("#results");
 const displayRecipes = document.querySelector("#display-recipes");
 
-const initDisplay = () => {
+function initDisplay() {
+  const resultsId = document.getElementById("results-arr");
+
+  if (resultsId) {
+    const results = resultsId.querySelectorAll("#results");
+    fetchData(results);
+  }
+}
+
+const fetchData = (results) => {
   var finalRecipes = [];
   var itemsProcessed = 0;
 
@@ -21,6 +29,11 @@ const initDisplay = () => {
       }
     })
   });
+
+  if (itemsProcessed == results.length) {
+    showRecipes(finalRecipes.filter( onlyUnique ))
+    initClickForPopover();
+  }
 }
 
 function onlyUnique(value, index, self) {
