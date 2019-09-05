@@ -31,7 +31,7 @@
             </div>
             <div class="card-body meetup-column">
              <%= "Status: #{meetup.status.capitalize}" %>
-             <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
+             <%= link_to "Cancel Meetup request", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
            </div>
          </div>
          <% end %>
