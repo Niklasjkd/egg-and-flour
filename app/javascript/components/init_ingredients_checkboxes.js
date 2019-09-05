@@ -2,7 +2,7 @@ function positionIngredients(data_) {
   const ingredients_data = JSON.parse(data_.dataset.ingredients);
 
   var radians, radius;
-  radius = 300;
+  radius = 250;
 
   var totalItems = ingredients_data.length;
   var item = 1;
