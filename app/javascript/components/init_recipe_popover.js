@@ -21,7 +21,7 @@ function ingredientsUnpack(ingredientString) {
 function click(event) {
   recipe_id = event.target.dataset.id;
 
-  fetch(`https://www.food2fork.com/api/get?key=e3dd7319146611f94f40d742afb393ec&rId=${recipe_id}`)
+  fetch(`https://www.food2fork.com/api/get?key=26f7b22fb219b5a30816b2f68c726786&rId=${recipe_id}`)
 
 
   .then(response => response.json())
@@ -106,8 +106,6 @@ function initClickForPopover() {
 }
 
 function clickOnRecipe(clickedCard, recipes) {
-  console.log(clickedCard);
-
   const requests_recipes = document.querySelector('#recipes_recipes');
   let recipeArray = [];
 
