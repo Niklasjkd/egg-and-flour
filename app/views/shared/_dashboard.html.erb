@@ -122,7 +122,7 @@
       </div>
       <div class="card-body flex-grow-1">
         <h5 class="title"><%= review.content%></h5>
-        <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating title') %>
+        <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating', id: "") %>
         </h5>
 
       </div>
