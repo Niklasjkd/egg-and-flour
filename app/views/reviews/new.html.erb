@@ -8,10 +8,10 @@
     <div class="form-inputs p-3">
         <%= f.input :content, placeholder: "How was your meetup?", label: false,
                     required: true %>
-        <%= f.input :rating, as: :radio_buttons, collection: 1..5, class: "inline" %>
+        <%= f.input :rating, collection: 1..5, label: "Rate your experience", id: "review_rating" %>
         <%= f.hidden_field :user_id, value: params[:user_id]%>
         <%= f.hidden_field :meetup_id, value: params[:meetup_id]%>
-
+        <%= f.hidden_field :for_user_id, value: params[:for_user_id]%>
     </div>
 
     <div class="form-actions my-3" id="sign-up-button">

@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   before_action :set_user, only: [:index, :create, :show]
 
   def index
+    @review = Review.new()
     @requests = Request.where(user: current_user)
     @matches = []
     @requests.each do |request|

@@ -27,47 +27,49 @@
           <div class="card-img-top meetup-column">
             <div class="recipe">
 
-              <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
-            </div>
-            <div class="card-body meetup-column">
-             <%= "Status: #{meetup.status.capitalize}" %>
-             <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
-           </div>
-         </div>
-         <% end %>
-         <% end %>
-         <% @incoming.each do |meetup| %>
-         <% if meetup.status == "pending" %>
-         <div class="card-img-top meetup-column">
-          <div class="recipe">
-            <%="You got a request from: #{User.find(meetup.host_id).first_name.capitalize}"  %>
-          </div>
-          <div class="card-body">
-            <%= "Status: #{meetup.status} " %>
-            <%= link_to "Decline", meetup_path(status: "declined",  meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
-            <%= link_to "Accept", meetup_path(status: "accepted", meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
-          </div>
-        </div>
-        <% end %>
-        <% end %>
-        <% @past.each do |meetup| %>
-        <div class="card-img-top meetup-column">
-          <div class="recipe">
-            <%= meetup.recipes %>
-          </div>
-          <div class="card-body">
-            <%= "Status: #{meetup.status}" %>
-            <%= link_to "Delete", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
-            <% if meetup.status == "accepted" %>
-            <% if meetup.guest_id == current_user.id %>
-            <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.host_id), class: "btn btn-primary request-button" %>
-            <% else %>
-            <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.guest_id), class: "btn btn-primary request-button" %>
-            <% end %>
-            <% end %>
-          </div>
-        </div>
-        <% end %>
+
+                        <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
+                      </div>
+                      <div class="card-body meetup-column">
+                         <%= "Status: #{meetup.status.capitalize}" %>
+                        <%= link_to "Withdraw", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+                <% @incoming.each do |meetup| %>
+                 <% if meetup.status == "pending" %>
+                    <div class="card-img-top meetup-column">
+                      <div class="recipe">
+                        <%="You got a request from: #{User.find(meetup.host_id).first_name.capitalize}"  %>
+                      </div>
+                      <div class="card-body">
+                        <%= "Status: #{meetup.status} " %>
+                        <%= link_to "Decline", meetup_path(status: "declined",  meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
+                        <%= link_to "Accept", meetup_path(status: "accepted", meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% @past.each do |meetup| %>
+                <div class="card-img-top meetup-column">
+                  <div class="recipe">
+                    <%= meetup.recipes %>
+                  </div>
+                  <div class="card-body">
+                    <%= "Status: #{meetup.status}" %>
+                    <%= link_to "Delete", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-primary request-button" %>
+                    <% if meetup.status == "accepted" %>
+                      <% if meetup.guest_id == current_user.id %>
+                        <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.host_id, for_user_id: meetup.guest_id), class: "btn btn-primary request-button" %>
+                      <% else %>
+                        <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.guest_id, for_user_id: meetup.host_id), class: "btn btn-primary request-button" %>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+
         <% if (@past.size == 0 || @incoming.size == 0 || @outgoing.size == 0)  %>
         <div>
           <h6>No meetups yet!</h6>

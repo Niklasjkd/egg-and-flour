@@ -2,45 +2,48 @@
   <div class="request-cards col-lg-6 col-md-5 col-sm-12" id="recipe-index-cards">
     <% @user = [] %>
     <% @matches.flatten.uniq.each do |m, index| %>
-    <% p @matches.first.recipe %>
-    <% @user << m.user_id%>
+      <% p @matches.first.recipe %>
+      <% @user << m.user_id%>
     <% end %>
 
     <% if @user.uniq.size != 0 %>
 
-    <% @user.uniq.each do |user_id| %>
-    <% user = User.find_by(id: user_id) %>
-    <% matches = @matches.select {|r| r = user_id} %>
-    <% matches_recipes = matches.map{|r| r.recipe.name}.uniq %>
-    <% last_match_recipe = matches_recipes.pop() %>
-    <%= link_to request_path(user, recipes: matches), class: "recipe-link" do %>
-    <div class="request-card mb-3 d-flex">
-      <div class="image">
-        <%= image_tag user.image, class: "card-img"%>
-      </div>
-      <div class="card-body flex-grow-1">
-        <h5 class="title"><%= user.first_name%> <%= user.last_name%></h5>
-        <h6 class="address"><%= user.address %></h6>
-        <p class="bio">Bio: "Ich bin sehr cool."</p>
-        <% if matches_recipes.size == 0 %>
-        <p class="recipes">Matches: <%= "#{last_match_recipe}"%></p>
-        <% else %>
-        <p class="recipes">Matches: <%= "#{matches_recipes.join(', ')} and #{last_match_recipe}"%></p>
+        <% @user.uniq.each do |user_id| %>
+          <% user = User.find_by(id: user_id) %>
+          <% matches = @matches.select {|r| r = user_id} %>
+          <% matches_recipes = matches.map{|r| r.recipe.name}.uniq %>
+          <% last_match_recipe = matches_recipes.pop() %>
+          <%= link_to request_path(user, recipes: matches), class: "recipe-link" do %>
+              <div class="request-card mb-3 d-flex">
+              <div class="image">
+                <%= image_tag user.image, class: "card-img"%>
+              </div>
+              <div class="card-body flex-grow-1">
+              <h5 class="title"><%= user.first_name%> <%= user.last_name%></h5>
+              <h6 class="address"><%= user.address %></h6>
+              <% if user.average_rating %>
+
+                <%= select_tag(:rating, options_for_select((1..5).to_a  , user.average_rating.round), class: 'review_rating') %>
+              <% end %>
+
+                <p class="bio">Bio: "Ich bin sehr cool."</p>
+              <% if matches_recipes.size == 0 %>
+                <p class="recipes">Matches: <%= "#{last_match_recipe}"%></p>
+              <% else %>
+                <p class="recipes">Matches: <%= "#{matches_recipes.join(', ')} and #{last_match_recipe}"%></p>
+              <% end %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
+
+    <% else %>
+      <div class="my-5" style="text-align: center">
+      <h3>Sorry, your taste is very exotic!<br>You don't have any matches.</h3>
+      <%= link_to "Let me do it again!", root_path(:anchor => "choose-ingredients"), class: "btn btn-primary" %>
       </div>
-    </div>
-<% end %>
-  <% end %>
-
-  <% else %>
-  <div class="my-5" style="text-align: center">
-    <h3>Sorry, your taste is very exotic!<br>You don't have any matches.</h3>
-    <%=link_to "Let me do it again!", root_path(:anchor => "choose-ingredients"), class: "btn btn-primary" %>
-    </div>
-  <% end %>
-
+    <% end %>
   </div>
-
   <div class="col-lg-6 col-md-7 px-0">
    <%= render 'shared/map' %>
  </div>
