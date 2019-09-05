@@ -19,5 +19,5 @@ initCheckboxSearches();
 import { initStarRating } from '../plugins/init_star_rating';
 initStarRating();
 
-import { initDashboardPopover } from '../components/init_recipe_popover';
-initDashboardPopover();
+import { initClickForPopover } from '../components/init_recipe_popover';
+initClickForPopover();

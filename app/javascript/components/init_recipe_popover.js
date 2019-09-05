@@ -21,7 +21,7 @@ function click(event) {
   recipe_id = event.target.dataset.id;
   console.log(recipe_id);
 
-  fetch(`https://www.food2fork.com/api/get?key=26f7b22fb219b5a30816b2f68c726786&rId=${recipe_id}`)
+  fetch(`https://www.food2fork.com/api/get?key=578f7f12bdb6dd279a954b7386722b0a&rId=${recipe_id}`)
   .then(response => response.json())
   .then((data) => {
 
@@ -93,9 +93,12 @@ function initClickForPopover() {
     btnClose.addEventListener("click", clickClose);
 
     const btnSelect = document.querySelector(".recipe-popover .select-btn");
-    btnSelect.addEventListener("click", clickSelect);
+    if (btnSelect) {
+      btnSelect.addEventListener("click", clickSelect);
+    }
 
-    const member_cards = document.querySelectorAll("#display-recipes .info-btn");
+    const member_cards = document.querySelectorAll(".recipe .info-btn");
+    console.log(member_cards);
     member_cards.forEach(function(card) {
       card.addEventListener("click", click);
     });
@@ -122,17 +125,6 @@ function clickOnRecipe(clickedCard, recipes) {
   updateBtnRecipeArr(recipeArray)
 }
 
-function initDashboardPopover() {
-  const title = document.querySelector(".recipe-index-title");
-
-  if (title) {
-    const member_cards = document.querySelectorAll(".card-img-top");
-    member_cards.forEach(function(card) {
-      card.addEventListener("click", click);
-    });
-  }
-}
-
 import { updateBtnRecipeNamesArr, updateBtnRecipeArr } from "../components/init_recipe_btn";
 
-export { initClickForPopover, clickOnRecipe, initDashboardPopover };
+export { initClickForPopover, clickOnRecipe };
