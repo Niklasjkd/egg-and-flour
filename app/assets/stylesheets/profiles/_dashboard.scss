@@ -38,6 +38,8 @@
     margin-top: 16px;
     height: 603px;
     overflow: scroll;
+    text-align: center;
+
   }
 
   #basic-info {
@@ -79,4 +81,44 @@
 
 #edit_button {
   margin-top: 15px;
+}
+
+.badge-warning {
+  font-weight: 300;
+  color: #fff;
+  background-color: #E67E22;
+  font-size: 17px;
+  border-radius: 56px;
+  font-family: Roboto;
+  width: 200px;
+  height: 36px;
+  padding: 10px;
+
+}
+
+.badge-success {
+  font-weight: 300;
+  color: #fff;
+  background-color: #4BB543;
+  font-size: 17px;
+  border-radius: 56px;
+  font-family: Roboto;
+  width: 200px;
+  height: 36px;
+  padding: 10px;
+
+}
+
+.btn-failure {
+  background-color: #BB1F24!important;
+  color: white;
+  box-shadow: 0 0 0 0px !important;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 8px;
+  border-radius: 20px;
+}
+
+.hidden {
+  display: none;
 }
