@@ -27,14 +27,14 @@ const fetchData = (results) => {
         showRecipes(finalRecipes.filter( onlyUnique ))
         initClickForPopover();
       }
-    });
+    })
   });
 
   if (itemsProcessed == results.length) {
     showRecipes(finalRecipes.filter( onlyUnique ))
     initClickForPopover();
   }
-};
+}
 
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
