@@ -218,6 +218,23 @@ section {
     width: 215px;
   }
 }
+.footer-section {
+display: flex;
+flex-direction: column;
+}
+.footer-link {
+  margin-top: 10px;
+  text-decoration: none;
+  color: black;
+    &:hover {
+      color: $green;
+      text-decoration: none;
+  }
+}
 
-
+.egg-footer {
+  height: 100px;
+  position: absolute;
+  left: 617px;
+}
 
