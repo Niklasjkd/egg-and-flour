@@ -68,18 +68,17 @@
     <div>
     </div>
   </div>
-  <div class="mx-4" id="info">
-  <div class="recipe-index-title"><h3>Reviews</h3></div>
-  <div id="matched-recipes">
+  <div class="mx-4">
+  <div id="review-container">
+    <div id="title"><h3>Reviews</h3></div>
     <% @reviews = Review.where(for_user_id: current_user.id) %>
 
     <% @reviews.each do |review| %>
-    <div class="cards images card" id="matched-recipes-cards">
-      <div >
-        <%= "From: #{User.find(review.user_id).first_name}"%>
-      </div>
+      <div class="card" id="review-card">
       <div class="card-body flex-grow-1">
+         <%= "From: #{User.find(review.user_id).first_name}"%>
         <h5 class="title"><%= review.content%></h5>
+
         <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating', id: "") %>
         </h5>
 
