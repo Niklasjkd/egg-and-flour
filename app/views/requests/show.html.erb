@@ -67,3 +67,26 @@
     <div>
     </div>
   </div>
+  <div class="mx-4" id="info">
+  <div class="recipe-index-title"><h3>Reviews</h3></div>
+  <div id="matched-recipes">
+    <% @reviews = Review.where(for_user_id: current_user.id) %>
+
+    <% @reviews.each do |review| %>
+    <div class="cards images card" id="matched-recipes-cards">
+      <div >
+        <%= "From: #{User.find(review.user_id).first_name}"%>
+      </div>
+      <div class="card-body flex-grow-1">
+        <h5 class="title"><%= review.content%></h5>
+        <h5><%= select_tag(:rating, options_for_select((1..5).to_a  , review.rating), class: 'review_rating', id: "") %>
+        </h5>
+
+      </div>
+    </div>
+    <% end %>
+    <% if @reviews.size == 0%>
+      <h6 style="font-style: italic; font-weight: 100; text-align: center;">You don't have any reviews.</h6>
+    <% end %>
+  </div>
+</div>
