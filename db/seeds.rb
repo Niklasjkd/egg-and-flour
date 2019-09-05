@@ -13,8 +13,8 @@ UserIngredient.destroy_all
 Recipe.destroy_all
 Ingredient.destroy_all
 Meetup.destroy_all
-User.destroy_all
 Review.destroy_all
+User.destroy_all
 
 puts 'Creating user...'
 
@@ -40,7 +40,7 @@ users = [{
   image: "https://centsai.com/wp-content/uploads/2017/11/iStock-521614808-715x464.jpg",
   address: "Berlin, Rosenthalerplatz"
 },{
-  email: "tes4@example.com",
+  email: "test4@example.com",
   first_name: "Cathy",
   last_name: "Burkhovsky",
   password: "123456",
@@ -146,7 +146,7 @@ puts 'create reviews'
     for_user_id: User.find_by(last_name: "Morris").id
   },{
     content: "had a great time",
-    user_id: User.find_by(last_name: ["Rea","lynn","Burkhovsky"].sample).id,
+    user_id: User.find_by(last_name: ["Rea","Lynn","Burkhovsky"].sample).id,
     rating: 5,
     for_user_id: User.find_by(last_name: "Morris").id
   }]
