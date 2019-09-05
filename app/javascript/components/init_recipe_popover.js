@@ -7,7 +7,6 @@ function ingredientsUnpack(ingredientString) {
   ingredientString.forEach(function(ingredient) {
     const arr = ingredient.split(" ");
     const amount = arr.shift();
-
     var new_property = {
       amount: amount,
       ingredient: arr.join(" ")
@@ -20,10 +19,9 @@ function ingredientsUnpack(ingredientString) {
 
 function click(event) {
   recipe_id = event.target.dataset.id;
+  console.log(recipe_id);
 
   fetch(`https://www.food2fork.com/api/get?key=26f7b22fb219b5a30816b2f68c726786&rId=${recipe_id}`)
-
-
   .then(response => response.json())
   .then((data) => {
 
@@ -48,7 +46,6 @@ function click(event) {
       </div>`;
       description_ele.insertAdjacentHTML("beforeend", movie);
     });
-
 
     const popover = document.querySelector(".recipe-popover");
     popover.style.display = "inline";
@@ -125,6 +122,17 @@ function clickOnRecipe(clickedCard, recipes) {
   updateBtnRecipeArr(recipeArray)
 }
 
+function initDashboardPopover() {
+  const title = document.querySelector(".recipe-index-title");
+
+  if (title) {
+    const member_cards = document.querySelectorAll(".card-img-top");
+    member_cards.forEach(function(card) {
+      card.addEventListener("click", click);
+    });
+  }
+}
+
 import { updateBtnRecipeNamesArr, updateBtnRecipeArr } from "../components/init_recipe_btn";
 
-export { initClickForPopover, clickOnRecipe };
+export { initClickForPopover, clickOnRecipe, initDashboardPopover };

@@ -19,12 +19,13 @@
         <div id="matched-recipes">
           <div class="cards images card" id="matched-recipes-cards">
             <% params[:recipes].uniq.each do |recipe| %>
-            <div class="card-img-top">
+            <% @recipe = Recipe.find(Request.find(recipe).recipe_id) %>
+            <div class="card-img-top" data-id="<%= @recipe.recipe_api_id %>">
               <div class="recipe">
-                <%= image_tag Recipe.find(Request.find(recipe).recipe_id).image, class: "card-img"%>
+                <%= image_tag @recipe.image, class: "card-img", :data => { :id => @recipe.recipe_api_id }%>
               </div>
               <div class="card-body">
-                <p><%=  Recipe.find(Request.find(recipe).recipe_id).name%></p>
+                <p  data-id="<%= @recipe.recipe_api_id %>"><%=  @recipe.name%></p>
               </div>
             </div>
             <% end %>
