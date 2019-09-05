@@ -13,6 +13,7 @@ UserIngredient.destroy_all
 Recipe.destroy_all
 Ingredient.destroy_all
 Meetup.destroy_all
+Review.destroy_all
 User.destroy_all
 
 puts 'Creating user...'
@@ -39,7 +40,7 @@ users = [{
   image: "https://centsai.com/wp-content/uploads/2017/11/iStock-521614808-715x464.jpg",
   address: "Berlin, Rosenthalerplatz"
 },{
-  email: "tes4@example.com",
+  email: "test4@example.com",
   first_name: "Cathy",
   last_name: "Burkhovsky",
   password: "123456",
@@ -93,6 +94,73 @@ end
 
 
 
-puts 'create requests'
+puts 'create reviews'
+  users = ["Rea","Lynn","Morris","Burkhovsky"]
+  user_1 =[{
+    content: "Great kitchen, lovely person!",
+    user_id: User.find_by(last_name: ["Lynn","Morris","Burkhovsky"].sample).id,
+    rating: 5,
+    for_user_id: User.find_by(last_name: "Rea").id
+  },{
+    content: "Has amazing cooking skills!",
+    user_id: User.find_by(last_name: ["Lynn","Morris","Burkhovsky"].sample).id,
+    rating: 5,
+    for_user_id: User.find_by(last_name: "Rea").id
+  },{
+    content: "cozy flat",
+    user_id: User.find_by(last_name: ["Lynn","Morris","Burkhovsky"].sample).id,
+    rating: 4,
+    for_user_id: User.find_by(last_name: "Rea").id
+  },{
+    content: "unforgettable experiance!",
+    user_id: User.find_by(last_name: ["Lynn","Morris","Burkhovsky"].sample).id,
+    rating: 5,
+    for_user_id: User.find_by(last_name: "Rea").id
+  },{
+    content: "loved it!",
+    user_id: User.find_by(last_name: ["Lynn","Morris","Burkhovsky"].sample).id,
+    rating: 4,
+    for_user_id: User.find_by(last_name: "Rea").id
+  }]
+  user_1.each { |review| Review.new(review).save! }
+
+  user_2 =[{
+    content: "Nice person but weak cooking skills",
+    user_id: User.find_by(last_name: ["Rea","Morris","Burkhovsky"].sample).id,
+    rating: 3,
+    for_user_id: User.find_by(last_name: "Lynn").id
+  },{
+    content: "was ok",
+    user_id: User.find_by(last_name: ["Rea","Morris","Burkhovsky"].sample).id,
+    rating: 3,
+    for_user_id: User.find_by(last_name: "Lynn").id
+  }]
+
+  user_2.each { |review| Review.new(review).save! }
+
+  user_3 =[{
+    content: "lovly place, amazing cook!",
+    user_id: User.find_by(last_name: ["Rea","Lynn","Burkhovsky"].sample).id,
+    rating: 5,
+
+    for_user_id: User.find_by(last_name: "Morris").id
+  },{
+    content: "had a great time",
+    user_id: User.find_by(last_name: ["Rea","Lynn","Burkhovsky"].sample).id,
+    rating: 5,
+    for_user_id: User.find_by(last_name: "Morris").id
+  }]
+
+  user_3.each { |review| Review.new(review).save! }
+
+  user_4 =[{
+      content: "dirty kitchen",
+      user_id: User.find_by(last_name: ["Rea","Morris","Lynn"].sample).id,
+      rating: 1,
+      for_user_id: User.find_by(last_name: "Burkhovsky").id
+    }]
+
+user_4.each { |review| Review.new(review).save! }
+
 
 puts 'Finished!'
