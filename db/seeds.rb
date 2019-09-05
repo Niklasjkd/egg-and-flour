@@ -12,31 +12,39 @@ RecipeIngredient.destroy_all
 UserIngredient.destroy_all
 Recipe.destroy_all
 Ingredient.destroy_all
+Meetup.destroy_all
 User.destroy_all
 
 puts 'Creating user...'
 
 users = [{
   email: "test1@example.com",
-  first_name: "test1",
-  last_name: "example",
+  first_name: "Andrew",
+  last_name: "Rea",
   password: "123456",
-  image: "https://images.unsplash.com/photo-1556911220-dabc1f02913a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+  image: "https://uproxx.com/wp-content/uploads/2019/02/andrewreafranks.jpg",
   address: "Berlin, Checkpoint Charlie"
 }, {
   email: "test2@example.com",
-  first_name: "test2",
-  last_name: "example",
+  first_name: "Sammy",
+  last_name: "Lynn",
   password: "123456",
   image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
   address: "Berlin, Alexanderplatz"
 },{
   email: "test3@example.com",
-  first_name: "test3",
-  last_name: "example",
+  first_name: "Ted",
+  last_name: "Morris",
   password: "123456",
-  image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" ,
+  image: "https://centsai.com/wp-content/uploads/2017/11/iStock-521614808-715x464.jpg",
   address: "Berlin, Rosenthalerplatz"
+},{
+  email: "tes4@example.com",
+  first_name: "Cathy",
+  last_name: "Burkhovsky",
+  password: "123456",
+  image: "https://www.eatright.org/-/media/homefoodsafety/foursteps/cook/newwomencooking.jpg",
+  address: "Berlin, Kreuzberg"
 }]
 
 users.each { |user| User.new(user).save! }
@@ -76,7 +84,7 @@ INGREDIENT_TYPES.each do |t|
   t[:ingredients].each do |i|
     ingredient = Ingredient.new(
       name: i,
-      unit: "grammes",
+      unit: "grams",
       category: t[:title]
     )
   ingredient.save

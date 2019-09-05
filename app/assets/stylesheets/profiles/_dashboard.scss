@@ -1,18 +1,25 @@
 #profile {
   margin-top: 100px;
   text-align: left;
+  margin-bottom: 100px;
 
   #info-table {
     width: 650px;
     padding: 0 8px;
     min-height: 1px !important;
+    padding-bottom: 50px;
+  }
 
+  #edit-button-layout {
+    display: flex;
+    justify-content: space-between;
   }
 
   #contact-info {
     width: 33%;
     padding: 0 8px;
     border: 1px solid rgb(228, 228, 228);
+    border-radius: 6px;
   }
 
   #image {
@@ -69,20 +76,3 @@
     text-decoration: none;
   }
 }
-
-#matched-recipes {
-  border: dashed 1px;
-  padding: 27px;
-  box-shadow: 1px 3px 5px grey;
-  border-radius: 10px;
-}
-
-
-
-
-
-
-
-
-
-
