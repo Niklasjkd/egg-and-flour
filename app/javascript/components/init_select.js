@@ -6,7 +6,7 @@ const initDisplay = () => {
   var itemsProcessed = 0;
 
   results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=9595ebcd4b807977574c7fd27abda5c1&q=${result.innerText}`
+    fetch(`https://www.food2fork.com/api/search?key=9595ebcd4b807977574c7fd27abda5c1&q=${result.innerText}`)
     .then(response => response.json())
     .then(({recipes}) => {
       itemsProcessed++;
@@ -20,7 +20,7 @@ const initDisplay = () => {
         initClickForPopover();
       }
     })
-  });
+  };
 };
 
 function onlyUnique(value, index, self) {
