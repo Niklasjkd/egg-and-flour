@@ -79,12 +79,22 @@
   </div>
 </div>
 
-<div class="d-flex flex-column" id="info-table">
-  <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
-  <div><p>Member since <%= current_user.created_at.year %></p></div>
-  <div id="basic-info">
-    <h2>Bio</h2>
-    <p>
+
+  <div class="d-flex flex-column" id="info-table">
+    <div id="edit-button-layout">
+    <div><h1 id="intro">Hello, I am <%= current_user.first_name.capitalize %>!</h1></div>
+    <% if @user %>
+      <%= form_for @user, url: edit_user_registration_path(@user), method: :get do |f| %>
+        <%= f.hidden_field :recipes, value: [] %>
+        <%= f.submit "Edit your profile", class: "btn btn-primary", id: "edit_button", style: " margin-top: 15px;
+        margin-left: 123px;" %>
+      <% end %>
+    <% end %>
+    </div>
+    <div><p>Member since <%= current_user.created_at.year %></p></div>
+    <div id="basic-info">
+      <h2>Bio</h2>
+      <p>
       I traded Canada for Berlin when I was 25 because I had a desire to never have to return to " reality" after vacationing again. Germany proved to be a wonderful place to live.
 
       For 15 years I worked in all the top luxury hotels as concierge / guest services and I learned many things that can help you have a fabulous experience. I'm here full time, not an absentee owner.
