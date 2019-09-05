@@ -16,21 +16,15 @@
   }
 }
 
-#meetup-request-layout {
-  display: flex;
-  justify-content: space-between;
 
-  #meetup-button {
-    color: white;
-    background-color: $green!important;
-    box-shadow: 0 0 0 0px !important;
-    justify-content: center;
-    display: flex;
-    margin-top: 15px;
+#meetup-button {
+  color: white;
+  background-color: $green!important;
+  box-shadow: 0 0 0 0px !important;
+  margin: auto;
 
-    &:hover {
-      text-decoration: none;
-    }
+  &:hover {
+    text-decoration: none;
   }
 }
 
