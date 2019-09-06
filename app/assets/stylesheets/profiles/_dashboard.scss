@@ -67,16 +67,7 @@
 }
 
 .request-button {
-    color: white;
-    background-color: $green!important;
-    box-shadow: 0 0 0 0px !important;
-    justify-content: center;
-    display: flex;
     margin-bottom: 8px;
-
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 #edit_button {
@@ -85,28 +76,19 @@
 
 .badge-warning {
   font-weight: 300;
-  color: #fff;
   background-color: #E67E22;
-  font-size: 17px;
-  border-radius: 56px;
-  font-family: Roboto;
-  width: 200px;
-  height: 36px;
-  padding: 10px;
 
+  &:hover {
+    color: white !important;
+  }
 }
 
 .badge-success {
   font-weight: 300;
-  color: #fff;
-  background-color: #4BB543;
-  font-size: 17px;
-  border-radius: 56px;
-  font-family: Roboto;
-  width: 200px;
-  height: 36px;
-  padding: 10px;
 
+  &:hover {
+    color: white !important;
+  }
 }
 
 .btn-failure {
