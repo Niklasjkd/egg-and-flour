@@ -118,9 +118,12 @@
   }
 }
 
+#choose-ingredients {
+  padding-top: 150px;
+
 #category-circle {
-  width: 800px;
-  height: 800px;
+  width: 600px;
+  height: 600px;
   position: relative;
   margin: auto;
 
@@ -128,7 +131,9 @@
     width: 257px;
     height: 193px;
     margin: auto;
-    padding-top: 300px;
+    padding-top: 240px;
+    text-align: center;
+    padding-top: 22px;
   }
 
   button {
@@ -144,6 +149,7 @@
   .category-icon {
     width: 70px;
   }
+}
 }
 
 .section-colums {
@@ -206,7 +212,7 @@ section {
 }
 
 .section-space {
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .bottom-line {
@@ -238,8 +244,7 @@ flex-direction: column;
 
 .egg-footer {
   height: 100px;
-  position: absolute;
-  left: 617px;
+  margin: auto;
 }
 
 #pasta{
