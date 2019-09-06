@@ -54,7 +54,7 @@
         <% end %>
         <% @past.each do |meetup| %>
         <div class="card-img-top meetup-column">
-          <div class="card-body">
+          <div class="card-body" style="padding: 50px;">
             <p class="badge badge-success"> <%= "Status: #{meetup.status}" %> </p>
             <% if meetup.status == "accepted" %>
             <% if meetup.guest_id == current_user.id %>
