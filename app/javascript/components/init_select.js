@@ -14,7 +14,7 @@ const fetchData = (results) => {
   var itemsProcessed = 0;
 
   results.forEach((result) => {
-    fetch(`https://www.food2fork.com/api/search?key=2d39cd2573a495f14330d45aeb2a5f88&q=${result.innerText}`)
+    fetch(`https://www.food2fork.com/api/search?key=a744fe9495ff4531a0930d795fb0bb09&q=${result.innerText}`)
 
     .then(response => response.json())
     .then(({recipes}) => {
