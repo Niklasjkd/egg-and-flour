@@ -5,7 +5,7 @@
   h1 {
     position: absolute;
     left: 8.33%;
-    top: 43.36%;
+    top: 39.36%;
     bottom: 27.59%;
 
     width: 500px;
@@ -19,27 +19,10 @@
     color: #404040;
   }
 
-  h2 {
-    position: absolute;
-    left: 8.33%;
-    top: 52.96%;
-    bottom: 21%;
-
-    width: 500px;
-
-    font-family: $body-font;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 30px;
-    line-height: 35px;
-
-    color: #717171;
-  }
-
   h3 {
     position: absolute;
     left: 8.33%;
-    top: 57.96%;
+    top: 50.96%;
     bottom: 21%;
 
     width: 500px;
@@ -60,7 +43,7 @@
   .btn-primary {
     position: absolute;
     left: 8.33%;
-    top: 514px;
+    top: 69%;
 
     .disabled {
       background-color: grey;
@@ -92,7 +75,7 @@
       width: 301px;
       height: 178px;
       left: 161px;
-      top: 174px;
+      top: 30%;
 
       box-shadow: 0px 16px 49px rgba(0, 0, 0, 0.28);
     }
@@ -101,7 +84,7 @@
       width: auto;
       height: 160px;
       left: 44px;
-      top: 343px;
+      top: 46%;
 
       box-shadow: 0px 4px 49px rgba(0, 0, 0, 0.38);
       transform: rotate(90deg);
@@ -111,7 +94,7 @@
       width: 171px;
       height: 242px;
       left: 404px;
-      top: 343px;
+      top: 46%;
 
       box-shadow: 0px 4px 49px rgba(0, 0, 0, 0.38);
     }
@@ -119,7 +102,7 @@
 }
 
 #choose-ingredients {
-  padding-top: 150px;
+  padding-top: 70px;
 
 #category-circle {
   width: 600px;
@@ -212,7 +195,7 @@ section {
 }
 
 .section-space {
-  margin-bottom: 100px;
+  margin-bottom: 75px;
 }
 
 .bottom-line {

@@ -76,6 +76,7 @@
 
 .badge-warning {
   font-weight: 300;
+  font-size: inherit;
   background-color: #E67E22;
 
   &:hover {
@@ -85,6 +86,7 @@
 
 .badge-success {
   font-weight: 300;
+  font-size: inherit;
 
   &:hover {
     color: white !important;

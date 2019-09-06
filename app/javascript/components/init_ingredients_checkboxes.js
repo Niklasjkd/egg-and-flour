@@ -34,7 +34,7 @@ function positionIngredients(data_) {
     inhalt += "</div>";
     inhalt += "</div>";
 
-    x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80 + 40;
+    x = Math.round(width + radius * Math.cos(angle) - itemW/2) - 80 + 45;
     y = Math.round(height + radius * Math.sin(angle) - itemH/2) - 80;
 
     $('#category-circle').append('<div id="'+ item +'">'+ inhalt +'<div/>')
