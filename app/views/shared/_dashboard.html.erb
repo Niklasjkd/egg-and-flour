@@ -15,7 +15,7 @@
       <div class="">
         <h2>Contact details</h2>
         <div><%=current_user.email %></div>
-        <div>+4917290903217</div>
+        <div>+49 1575 9625920</div>
       </div>
       <div class="recipe-index-title"><h3>Meetups</h3></div>
       <div id="matched-recipes">
@@ -32,7 +32,7 @@
               <%="You sent a request to #{User.find(meetup.guest_id).first_name.capitalize}"%>
             </div>
             <div class="card-body meetup-column">
-           <p class="badge badge-warning"><%= "Status: #{meetup.status.capitalize}" %> </p>
+           <p class="badge badge-warning"><%= meetup.status.capitalize %> </p>
              <%= link_to "Cancel", meetup_path(meetup_id: meetup.id), method: :delete, class: "btn btn-failure request-button" %>
            </div>
          </div>
@@ -45,7 +45,7 @@
             <%="You got a request from: #{User.find(meetup.host_id).first_name.capitalize}"  %>
           </div>
           <div class="card-body">
-            <p class="badge badge-warning"><%= "Status: #{meetup.status} " %> </p>
+            <p class="badge badge-warning"><%= meetup.status %> </p>
             <%= link_to "Decline", meetup_path(status: "declined",  meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
             <%= link_to "Accept", meetup_path(status: "accepted", meetup_id: meetup.id), method: :patch, class: "btn btn-primary request-button" %>
           </div>
@@ -55,20 +55,20 @@
         <% @past.each do |meetup| %>
         <div class="card-img-top meetup-column">
           <div class="card-body">
-            <p class="badge badge-success"> <%= "Status: #{meetup.status}" %> </p>
+            <p class="badge badge-success"> <%= meetup.status %> </p>
             <% if meetup.status == "accepted" %>
             <% if meetup.guest_id == current_user.id %>
                 <div class="">
                   <h3> <%= "Contact #{User.find(meetup.host_id).first_name} today! " %></h3>
                   <p><%= "Their email: #{User.find(meetup.host_id).email}" %></p>
-                   <p> <%="Their phone number: +4917290903217"%></p>
+                   <p>Their phone number:<br>+49 172 0903217</p>
                 </div>
               <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.host_id), class: "btn btn-secondary request-button" %>
               <% else %>
                 <div class="">
                  <h3> <%= "Contact #{User.find(meetup.guest_id).first_name} today! " %></h3>
                  <p><%= "Their email: #{User.find(meetup.guest_id).email}" %></p>
-                  <p> <%="Their phone number: +4917290903217"%></p>
+                  <p>Their phone number:<br>+49 172 90903217</p>
                 </div>
               <%= link_to "Write review", new_review_path(meetup_id: meetup.id, user_id: meetup.guest_id), class: "btn btn-secondary request-button" %>
             <% end %>

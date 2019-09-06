@@ -21,7 +21,7 @@ function click(event) {
   recipe_id = event.target.dataset.id;
   console.log(recipe_id);
 
-  fetch(`https://www.food2fork.com/api/get?key=578f7f12bdb6dd279a954b7386722b0a&rId=${recipe_id}`)
+  fetch(`https://www.food2fork.com/api/get?key=9595ebcd4b807977574c7fd27abda5c1&rId=${recipe_id}`)
 
   .then(response => response.json())
   .then((data) => {
